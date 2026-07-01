@@ -2,7 +2,7 @@ package ap.project.civilization.model.hex;
 
 import ap.project.civilization.model.Clickable;
 
-public class Hex implements Clickable {
+public abstract class Hex implements Clickable {
     private final HexCoord coordinate;
 
     public Hex(HexCoord coordinate) {
