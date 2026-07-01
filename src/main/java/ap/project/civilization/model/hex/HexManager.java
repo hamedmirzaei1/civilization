@@ -1,13 +1,20 @@
 package ap.project.civilization.model.hex;
 
+import ap.project.civilization.model.terrain.TerrainSpawn;
+
 import java.util.Collection;
 import java.util.HashMap;
 
 public class HexManager {
-    HashMap<HexCoord, Hex> hexData;
+    private HashMap<HexCoord, Hex> hexData;
+
+    private TerrainSpawn terrainSpawn;
 
     public HexManager() {
         hexData = new HashMap<>();
+        terrainSpawn = new TerrainSpawn(this);
+
+        terrainSpawn.createTerrain(30);
     }
 
 

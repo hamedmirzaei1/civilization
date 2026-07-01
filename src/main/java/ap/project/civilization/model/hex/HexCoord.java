@@ -9,6 +9,7 @@ public class HexCoord {
         this.r = r;
     }
 
+
     public int getQ() {
         return q;
     }

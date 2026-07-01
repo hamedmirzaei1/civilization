@@ -2,6 +2,7 @@ package ap.project.civilization.view;
 
 import ap.project.civilization.controller.GameController;
 import ap.project.civilization.view.render.Renderer;
+import ap.project.civilization.view.util.GameColors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,7 @@ public class GamePanel extends JPanel {
     private final Camera camera;
 
     public GamePanel(GameController controller) {
+        setBackground(GameColors.BACKGROUND);
         renderer = new Renderer(controller.getModel());
         camera = new Camera();
     }

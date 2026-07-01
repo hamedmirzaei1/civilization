@@ -15,8 +15,9 @@ public class HexRenderer implements Renderable{
 
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        for(HexCoord coordinate : model.getHexManager().getCoordinates()) {
-            Polygon polygon = CalculateHex.calculate(coordinate, 20); // todo : fix the sizing
+        g2d.setColor(Color.BLACK);
+        for(HexCoord coordinate : model.getHexManager().getCoordinates()) { //todo : render only on page hexes
+            Polygon polygon = CalculateHex.calculate(coordinate, 50); // todo : fix the sizing
             g2d.drawPolygon(polygon);
         }
     }
