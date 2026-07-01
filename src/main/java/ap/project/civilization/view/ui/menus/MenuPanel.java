@@ -1,6 +1,6 @@
-package ap.project.civilization.view.menus;
+package ap.project.civilization.view.ui.menus;
 
-import ap.project.civilization.controller.Controller;
+import ap.project.civilization.controller.GameController;
 import ap.project.civilization.view.GameFrame;
 import ap.project.civilization.view.util.UIColors;
 
@@ -11,7 +11,7 @@ public class MenuPanel extends JPanel {
     JButton settingsButton;
     JButton exitButton;
 
-    public MenuPanel(Controller controller, GameFrame gameFrame) {
+    public MenuPanel(GameController controller, GameFrame gameFrame) {
         setPanel();
         createButtons(controller, gameFrame);
     }
@@ -22,7 +22,7 @@ public class MenuPanel extends JPanel {
 
         setBackground(UIColors.MENU_BACKGROUND);
     }
-    private void createButtons(Controller controller, GameFrame gameFrame) {
+    private void createButtons(GameController controller, GameFrame gameFrame) {
         startGameButton = new MenuButton("Start");
         settingsButton = new MenuButton("Settings");
         exitButton = new MenuButton("Exit");
@@ -40,7 +40,7 @@ public class MenuPanel extends JPanel {
 
     }
 
-    private void initButtons(Controller controller, GameFrame gameFrame) {
+    private void initButtons(GameController controller, GameFrame gameFrame) {
         startGameButton.addActionListener(e -> gameFrame.changePage("GAME"));
         settingsButton.addActionListener(e -> gameFrame.changePage("SETTINGS"));
         exitButton.addActionListener(e -> {

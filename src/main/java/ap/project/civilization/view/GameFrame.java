@@ -1,8 +1,8 @@
 package ap.project.civilization.view;
 
-import ap.project.civilization.controller.Controller;
-import ap.project.civilization.view.menus.MenuPanel;
-import ap.project.civilization.view.menus.SettingsPanel;
+import ap.project.civilization.controller.GameController;
+import ap.project.civilization.view.ui.menus.MenuPanel;
+import ap.project.civilization.view.ui.menus.SettingsPanel;
 import ap.project.civilization.view.util.Constants;
 
 import javax.swing.*;
@@ -14,9 +14,9 @@ public class GameFrame extends JFrame {
 
     private final GamePanel gamePanel;
 
-    public GameFrame(Controller controller) {
+    public GameFrame(GameController controller) {
         setWindow();
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(controller);
         makeCards(controller);
     }
 
@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
         setResizable(false);
     }
 
-    private void makeCards(Controller controller) {
+    private void makeCards(GameController controller) {
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
 

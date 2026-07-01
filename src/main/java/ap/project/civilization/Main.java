@@ -1,9 +1,14 @@
 package ap.project.civilization;
 
-import ap.project.civilization.controller.Controller;
+import ap.project.civilization.controller.GameController;
+
+import javax.swing.*;
 
 public class Main {
     static void main(String[] args) {
-        Controller controller = new Controller();
+        SwingUtilities.invokeLater(() -> {
+            GameController controller = new GameController();
+            controller.start();
+        });
     }
 }

@@ -1,4 +1,4 @@
-package ap.project.civilization.view.menus;
+package ap.project.civilization.view.ui.menus;
 
 import javax.swing.*;
 
