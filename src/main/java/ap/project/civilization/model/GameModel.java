@@ -1,6 +1,6 @@
 package ap.project.civilization.model;
 
-import ap.project.civilization.model.terrain.HexManager;
+import ap.project.civilization.model.hex.HexManager;
 
 public class GameModel {
     HexManager hexManager;
