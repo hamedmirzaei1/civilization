@@ -1,6 +1,6 @@
 package ap.project.civilization.view.menus;
 
-import ap.project.civilization.view.util.FontManager;
+import ap.project.civilization.view.util.Fonts;
 import ap.project.civilization.view.util.UIColors;
 
 import javax.swing.*;
@@ -10,15 +10,13 @@ import java.awt.event.MouseEvent;
 
 public class MenuButton extends JButton {
     public MenuButton(String text) {
-        Font font = FontManager.getInstance().getGloock();
-
         setText(text);
         setAlignmentX(JComponent.CENTER_ALIGNMENT);
         setAlignmentY(JComponent.CENTER_ALIGNMENT);
         setHorizontalAlignment(SwingConstants.LEFT);
         setFocusable(false);
 
-        setFont(font);
+        setFont(Fonts.GLOOCK(24f));
         setBorderPainted(false);
         setForeground(UIColors.BUTTON);
 
@@ -37,18 +35,5 @@ public class MenuButton extends JButton {
                 setForeground(UIColors.BUTTON);
             }
         });
-    }
-
-    public static void makeSameWidth(JButton... buttons) {
-        int width = 0;
-
-        for (JButton button : buttons) {
-            width = Math.max(width, button.getPreferredSize().width);
-        }
-
-        for (JButton button : buttons) {
-            Dimension size = new Dimension(width, button.getPreferredSize().height);
-            button.setMaximumSize(size);
-        }
     }
 }

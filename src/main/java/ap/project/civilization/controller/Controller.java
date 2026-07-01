@@ -7,10 +7,10 @@ public class Controller {
     private GamePanel view;
 
     public Controller() {
-        initGameWindow();
+        initView();
     }
 
-    private void initGameWindow() {
+    private void initView() {
         GameFrame gameFrame = new GameFrame(this);
         view = gameFrame.getView();
     }

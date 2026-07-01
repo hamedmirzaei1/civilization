@@ -23,11 +23,12 @@ public class MenuPanel extends JPanel {
         setBackground(UIColors.MENU_BACKGROUND);
     }
     private void createButtons(Controller controller, GameFrame gameFrame) {
-        startGameButton = new MenuButton("Start Game");
+        startGameButton = new MenuButton("Start");
         settingsButton = new MenuButton("Settings");
         exitButton = new MenuButton("Exit");
 
         initButtons(controller, gameFrame);
+
         placeButtons();
     }
     private void placeButtons() {
@@ -37,7 +38,6 @@ public class MenuPanel extends JPanel {
         add(exitButton);
         add(Box.createVerticalGlue());
 
-        MenuButton.makeSameWidth(startGameButton, settingsButton, exitButton);
     }
 
     private void initButtons(Controller controller, GameFrame gameFrame) {
