@@ -1,6 +1,6 @@
 package ap.project.civilization.view.util;
 
-public class Constants {
+public final class Constants {
     private final static int windowWidth = 1280;
     private final static int windowHeight = 720;
 

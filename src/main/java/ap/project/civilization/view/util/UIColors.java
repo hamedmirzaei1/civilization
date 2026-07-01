@@ -2,7 +2,7 @@ package ap.project.civilization.view.util;
 
 import java.awt.*;
 
-public class UIColors {
+public final class UIColors {
     private UIColors() {}
 
     public static final Color MENU_BACKGROUND = new Color(82, 60, 53);
