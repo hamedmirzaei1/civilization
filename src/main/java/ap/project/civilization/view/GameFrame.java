@@ -1,7 +1,9 @@
 package ap.project.civilization.view;
 
-import ap.project.civilization.view.menu.MenuPanel;
-import ap.project.civilization.view.menu.SettingsPanel;
+import ap.project.civilization.controller.Controller;
+import ap.project.civilization.view.menus.MenuPanel;
+import ap.project.civilization.view.menus.SettingsPanel;
+import ap.project.civilization.view.util.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +11,13 @@ import java.awt.*;
 public class GameFrame extends JFrame {
     private JPanel cards;
     private CardLayout cardLayout;
-    private GamePanel gamePanel;
 
-    public GameFrame() {
+    private final GamePanel gamePanel;
+
+    public GameFrame(Controller controller) {
         setWindow();
         gamePanel = new GamePanel();
-        makeCards();
+        makeCards(controller);
     }
 
     private void setWindow() {
@@ -25,11 +28,11 @@ public class GameFrame extends JFrame {
         setResizable(false);
     }
 
-    private void makeCards() {
+    private void makeCards(Controller controller) {
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
 
-        MenuPanel menuPanel = new MenuPanel();
+        MenuPanel menuPanel = new MenuPanel(controller, this);
         SettingsPanel settingsPanel = new SettingsPanel();
 
         cards.add(menuPanel, "MENU");

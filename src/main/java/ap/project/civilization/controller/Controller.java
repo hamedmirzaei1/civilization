@@ -11,7 +11,11 @@ public class Controller {
     }
 
     private void initGameWindow() {
-        GameFrame gameFrame = new GameFrame();
+        GameFrame gameFrame = new GameFrame(this);
         view = gameFrame.getView();
+    }
+
+    public void exitGame() {
+        System.exit(0);
     }
 }
