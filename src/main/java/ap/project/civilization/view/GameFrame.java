@@ -3,7 +3,7 @@ package ap.project.civilization.view;
 import ap.project.civilization.controller.GameController;
 import ap.project.civilization.view.ui.menus.MenuPanel;
 import ap.project.civilization.view.ui.menus.SettingsPanel;
-import ap.project.civilization.view.util.Constants;
+import ap.project.civilization.view.util.ViewConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class GameFrame extends JFrame {
 
     private void setWindow() {
         setTitle("Civilization");
-        setSize(Constants.getWindowWidth(), Constants.getWindowHeight());
+        setSize(ViewConstants.getWindowWidth(), ViewConstants.getWindowHeight());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

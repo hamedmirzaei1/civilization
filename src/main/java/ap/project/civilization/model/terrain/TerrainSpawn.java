@@ -11,12 +11,10 @@ public class TerrainSpawn {
     }
 
     public void createTerrain(int number) {
-        for(int i=0; i<number; i++) {
-            for(int j=0; j<number; j++) {
+        for (int i = 0; i < number; i++) {
+            for (int j = 0; j < number; j++) {
                 hexManager.putHex(i, j, new Forest(new HexCoord(i, j)));
             }
         }
     }
-
-
 }

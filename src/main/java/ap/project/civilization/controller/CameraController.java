@@ -5,7 +5,7 @@ import ap.project.civilization.view.Camera;
 import java.awt.event.KeyEvent;
 
 public class CameraController {
-    private static final int CAMERA_SPEED = 10;
+    private static final int CAMERA_SPEED = 8;
 
     private final Camera camera;
     private final KeyboardController keyboard;

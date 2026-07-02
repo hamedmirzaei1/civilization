@@ -1,6 +1,7 @@
 package ap.project.civilization.model.hex;
 
 import ap.project.civilization.model.terrain.TerrainSpawn;
+import ap.project.civilization.model.util.ModelConstants;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,14 +9,15 @@ import java.util.HashMap;
 public class HexManager {
     private HashMap<HexCoord, Hex> hexData;
 
-    private final TerrainSpawn terrainSpawn;
-    private int worldSize;
+    private TerrainSpawn terrainSpawn;
 
+    private int hexSize;
     public HexManager() {
         hexData = new HashMap<>();
         terrainSpawn = new TerrainSpawn(this);
-        worldSize = 30;
-        terrainSpawn.createTerrain(worldSize);
+        terrainSpawn.createTerrain(ModelConstants.WORLD_SIZE);
+
+        hexSize = 50;
     }
 
 
@@ -36,7 +38,7 @@ public class HexManager {
         return hexData.values();
     }
 
-    public int getWorldSize() {
-        return worldSize;
+    public int getHexSize() {
+        return hexSize;
     }
 }

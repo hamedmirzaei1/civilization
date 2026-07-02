@@ -23,4 +23,6 @@ public abstract class Hex implements Clickable {
     public int getR() {
         return coordinate.getR();
     }
+
+
 }
