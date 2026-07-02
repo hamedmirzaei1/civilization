@@ -5,6 +5,10 @@ import java.awt.*;
 public final class GameColors {
     private GameColors() {}
 
-    public static final Color FOREST_TERRAIN = new Color(12, 92, 47);
+    public static final Color FOREST_TERRAIN = new Color(46, 103, 54);
+    public static final Color PLAIN_TERRAIN = new Color(201, 185, 118);
+    public static final Color MOUNTAIN_TERRAIN = new Color(120, 126, 123);
+    public static final Color LAWN_TERRAIN = new Color(120, 175, 57);
+
     public static final Color BACKGROUND = new Color(156, 147, 146);
 }

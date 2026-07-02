@@ -31,10 +31,10 @@ public class Camera {
         centerOn((int)k.getX(), (int)k.getY());
     }
 
-    public int worldToScreenX(int x) {
+    public double worldToScreenX(double x) {
         return x - screenX;
     }
-    public int worldToScreenY(int y) {
+    public double worldToScreenY(double y) {
         return y - screenY;
     }
 

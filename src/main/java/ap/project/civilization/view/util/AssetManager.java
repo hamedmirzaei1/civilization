@@ -16,7 +16,7 @@ public final class AssetManager {
     private AssetManager() { }
 
     public static void loadAll() throws IOException {
-        load("/sprites/cow.png", TerrainType.PLAIN);
+        load("/sprites/cow-2.png", TerrainType.PLAIN);
         load("/sprites/rock.png", TerrainType.MOUNTAIN);
         load("/sprites/tree.png", TerrainType.FOREST);
         load("/sprites/farm.png", TerrainType.LAWN);
