@@ -1,4 +1,4 @@
-package ap.project.civilization.view;
+package ap.project.civilization.view.ui;
 
 import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.util.ModelConstants;

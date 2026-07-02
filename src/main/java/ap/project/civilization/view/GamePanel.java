@@ -1,14 +1,12 @@
 package ap.project.civilization.view;
 
 import ap.project.civilization.controller.GameController;
-import ap.project.civilization.model.hex.HexManager;
-import ap.project.civilization.view.render.MakeHex;
 import ap.project.civilization.view.render.Renderer;
+import ap.project.civilization.view.ui.Camera;
 import ap.project.civilization.view.util.GameColors;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class GamePanel extends JPanel {
     private final Renderer renderer;

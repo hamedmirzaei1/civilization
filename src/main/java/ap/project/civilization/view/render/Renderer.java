@@ -1,9 +1,11 @@
 package ap.project.civilization.view.render;
 
 import ap.project.civilization.model.GameModel;
-import ap.project.civilization.view.Camera;
+import ap.project.civilization.view.ui.Camera;
+import ap.project.civilization.view.util.AssetManager;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class Renderer implements Renderable{
     private GameModel model;
@@ -12,6 +14,12 @@ public class Renderer implements Renderable{
     public Renderer(GameModel model) {
         this.model = model;
         hexRenderer = new HexRenderer(model);
+
+        try {
+            AssetManager.loadAll();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

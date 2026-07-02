@@ -1,6 +1,6 @@
 package ap.project.civilization.view.render;
 
-import ap.project.civilization.view.Camera;
+import ap.project.civilization.view.ui.Camera;
 
 import java.awt.*;
 
