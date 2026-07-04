@@ -20,12 +20,6 @@ public class MakeHex {
         return p;
     }
 
-    public static Point2D.Double hexToPixel(int q, int r, int size) {
-        double x = size * Math.sqrt(3) * (q + r / 2.0);
-        double y = size * 1.5 * r;
-
-        return new Point2D.Double(x, y); // returns the center
-    }
 
     public static double hexToPixelY(int r, double size) {
         return size * 1.5 * r;

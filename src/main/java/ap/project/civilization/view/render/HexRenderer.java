@@ -22,11 +22,11 @@ public class HexRenderer implements Renderable{
 
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        double size = model.getHexManager().getHexSize() * camera.getZoom();
+        double renderHexSize = ViewConstants.HEX_BASE_SIZE * camera.getZoom();
 
-        HexCoord cameraHexCoord = pixelToHex(camera.getScreenX(), camera.getScreenY(), size);
-        int numberQ = (int)(ViewConstants.getWindowWidth()/size);
-        int numberR = (int)(ViewConstants.getWindowHeight()/size);
+        HexCoord cameraHexCoord = pixelToHex(camera.getScreenX(), camera.getScreenY(), renderHexSize);
+        int numberQ = (int)(ViewConstants.getWindowWidth()/ renderHexSize);
+        int numberR = (int)(ViewConstants.getWindowHeight()/ renderHexSize);
 
         for(Hex hex : model.getHexManager().getHexes(
                 cameraHexCoord.getQ()-numberQ,
@@ -34,7 +34,7 @@ public class HexRenderer implements Renderable{
                 cameraHexCoord.getQ()+numberQ,
                 cameraHexCoord.getR()+numberR
                 )) {
-            draw(g2d, camera, hex, size);
+            draw(g2d, camera, hex, renderHexSize);
         }
     }
 
@@ -50,7 +50,7 @@ public class HexRenderer implements Renderable{
         if(hex.isVisible()) { // todo : refactor and scale architecture, make renderer lazy
             g2d.setColor(((Terrain)hex).getTerrainType().getColor());
             g2d.fill(polygon);
-            g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), (int)x, (int)y, 35, 35, null);
+            g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), (int)x, (int)y, (int)size/2, (int)size/2, null);
         }
 
         g2d.setColor(Color.DARK_GRAY);

@@ -12,13 +12,10 @@ public class HexManager {
 
     private TerrainSpawn terrainSpawn;
 
-    private int hexSize;
     public HexManager() {
         hexData = new HashMap<>();
         terrainSpawn = new TerrainSpawn(this);
         terrainSpawn.createTerrain(ModelConstants.WORLD_SIZE);
-
-        hexSize = 50;
     }
 
 
@@ -49,7 +46,4 @@ public class HexManager {
         return result;
     }
 
-    public int getHexSize() {
-        return hexSize;
-    }
 }

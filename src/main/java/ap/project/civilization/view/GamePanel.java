@@ -15,7 +15,9 @@ public class GamePanel extends JPanel {
     public GamePanel(GameController controller) {
         renderer = new Renderer(controller.getModel());
         camera = new Camera();
-        setPanel(controller);
+
+        setBackground(GameColors.BACKGROUND);
+        camera.centerOnWorld();
     }
 
     @Override
@@ -23,11 +25,6 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
 
         renderer.render((Graphics2D) g, camera);
-    }
-
-    private void setPanel(GameController controller) {
-        setBackground(GameColors.BACKGROUND);
-        camera.centerOnWorld(controller.getModel().getHexManager());
     }
 
     public Camera getCamera() {

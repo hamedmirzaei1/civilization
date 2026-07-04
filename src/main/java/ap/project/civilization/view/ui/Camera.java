@@ -26,13 +26,15 @@ public class Camera {
         screenY += dy;
     }
 
-    public void centerOn(int worldX, int worldY) {
+    public void centerOn(double worldX, double worldY) {
         screenX = worldX - ViewConstants.getWindowWidth()/2;
         screenY = worldY - ViewConstants.getWindowHeight()/2;
     }
-    public void centerOnWorld(HexManager hexManager) {
-        Point2D k = MakeHex.hexToPixel(ModelConstants.WORLD_SIZE /2, ModelConstants.WORLD_SIZE /2, hexManager.getHexSize());
-        centerOn((int)k.getX(), (int)k.getY());
+    public void centerOnWorld() {
+        centerOn(
+                MakeHex.hexToPixelX(ModelConstants.WORLD_SIZE /2, ModelConstants.WORLD_SIZE /2, ViewConstants.HEX_BASE_SIZE),
+                MakeHex.hexToPixelY(ModelConstants.WORLD_SIZE/2, ViewConstants.HEX_BASE_SIZE)
+        );
     }
 
     public double worldToScreenX(double x) {
@@ -63,13 +65,18 @@ public class Camera {
     }
 
     public void updateZoom() {
-        zoom += (targetZoom - zoom) * 0.1;
+        double diff = targetZoom - zoom;
 
+        if (Math.abs(diff) > 0.0005) {
+            zoom += diff * 0.3;
+        } else {
+            zoom = targetZoom;
+        }
     }
     public void zoomIn() {
-        targetZoom = Math.min(targetZoom * 1.01, 4.0);
+        targetZoom = Math.min(targetZoom * 1.01, 2);
     }
     public void zoomOut() {
-        targetZoom = Math.max(targetZoom / 1.01, 0.25);
+        targetZoom = Math.max(targetZoom / 1.01, 0.8);
     }
 }
