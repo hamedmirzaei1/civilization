@@ -28,10 +28,6 @@ public class HexManager {
     public Hex getHex(HexCoord coordinate) {
         return hexData.get(coordinate);
     }
-    public boolean conatainHex(int q, int r) {
-        if(hexData.containsKey(new HexCoord(q, r))) return true;
-        return false;
-    }
     public void putHex(int q, int r, Hex hex) {
         hexData.put(new HexCoord(q, r), hex);
     }
@@ -46,6 +42,7 @@ public class HexManager {
         Collection<Hex> result = new ArrayList<>();
         for(int i=startQ; i<=endQ; i++) {
             for(int j=startR; j<=endR; j++) {
+                if(!hexData.containsKey(new HexCoord(i, j))) continue;
                 result.add(getHex(i, j));
             }
         }

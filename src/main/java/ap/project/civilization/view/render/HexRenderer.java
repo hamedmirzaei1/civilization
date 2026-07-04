@@ -27,10 +27,10 @@ public class HexRenderer implements Renderable{
 
         HexCoord cameraHexCoord = pixelToHex(camera.getScreenX(), camera.getScreenY(), size);
         int numberQ = (int)(ViewConstants.getWindowWidth()/size);
-        int numberR = (int)(ViewConstants.getWindowHeight()/size);
+        int numberR = (int)((ViewConstants.getWindowHeight()/size));
 
         for(Hex hex : model.getHexManager().getHexes(
-                cameraHexCoord.getQ(),
+                cameraHexCoord.getQ()-numberQ,
                 cameraHexCoord.getR(),
                 cameraHexCoord.getQ()+numberQ,
                 cameraHexCoord.getR()+numberR
@@ -43,8 +43,6 @@ public class HexRenderer implements Renderable{
         Point2D.Double pixelCoordinate = hexToPixel(hex.getQ(), hex.getR(), size); //todo: avoid allocating memory
         pixelCoordinate = cameraTransform(pixelCoordinate.x, pixelCoordinate.y, camera);
 
-//        if(outOfScreen(pixelCoordinate, camera, size)) return;
-
         Polygon polygon = MakeHex.hexShape(pixelCoordinate.x, pixelCoordinate.y, size);
 
         if(hex.isVisible()) { // todo : refactor and scale architecture, make renderer lazy
@@ -55,16 +53,6 @@ public class HexRenderer implements Renderable{
 
         g2d.setColor(Color.DARK_GRAY);
         g2d.drawPolygon(polygon);
-    }
-
-    private boolean outOfScreen(Point2D.Double point, Camera camera, int margin) {
-        if(point.x < -margin || point.x > ViewConstants.getWindowWidth()+margin) {
-            return true;
-        }
-        if(point.y < -margin || point.y > ViewConstants.getWindowHeight()+margin) {
-            return true;
-        }
-        return false;
     }
 
 
