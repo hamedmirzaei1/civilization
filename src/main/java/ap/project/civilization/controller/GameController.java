@@ -9,7 +9,6 @@ public class GameController {
     private GameModel model;
 
     private GameLoop gameLoop;
-    private KeyboardController keyboardController;
     private CameraController cameraController;
 
     public GameController() {
@@ -33,8 +32,9 @@ public class GameController {
         view = gameFrame.getView();
 
         gameLoop = new GameLoop(this);
-        keyboardController = new KeyboardController(view);
-        cameraController = new CameraController(view.getCamera(), keyboardController);
+
+        cameraController = new CameraController(view.getCamera(), new KeyboardController(view));
+        MouseController mouseController = new MouseController(cameraController, view);
     }
 
     public void exitGame() {

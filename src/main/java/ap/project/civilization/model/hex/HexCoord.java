@@ -1,8 +1,8 @@
 package ap.project.civilization.model.hex;
 
 public class HexCoord {
-    private int q;
-    private int r;
+    private final int q;
+    private final int r;
 
 
     public HexCoord(int q, int r) {

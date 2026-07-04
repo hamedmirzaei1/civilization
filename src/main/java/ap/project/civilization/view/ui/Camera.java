@@ -8,16 +8,20 @@ import ap.project.civilization.view.util.ViewConstants;
 import java.awt.geom.Point2D;
 
 public class Camera {
-    private int screenX;
-    private int screenY;
+    private double screenX;
+    private double screenY;
 
+    private double zoom;
+    private double targetZoom;
 
     public Camera() {
         screenX = 0;
         screenY = 0;
+        zoom = 1.0;
+        targetZoom = 1.0;
     }
 
-    public void move(int dx, int dy) {
+    public void move(double dx, double dy) {
         screenX += dx;
         screenY += dy;
     }
@@ -38,18 +42,34 @@ public class Camera {
         return y - screenY;
     }
 
-    public int screenToWorldX(int x) {
+    public double screenToWorldX(int x) {
         return x + screenX;
     }
-    public int screenToWorldY(int y) {
+    public double screenToWorldY(int y) {
         return y + screenY;
     }
 
-    public int getScreenX() {
+    public double getScreenX() {
         return screenX;
     }
 
-    public int getScreenY() {
+    public double getScreenY() {
         return screenY;
+    }
+
+
+    public double getZoom() {
+        return zoom;
+    }
+
+    public void updateZoom() {
+        zoom += (targetZoom - zoom) * 0.1;
+
+    }
+    public void zoomIn() {
+        targetZoom = Math.min(targetZoom * 1.01, 4.0);
+    }
+    public void zoomOut() {
+        targetZoom = Math.max(targetZoom / 1.01, 0.25);
     }
 }

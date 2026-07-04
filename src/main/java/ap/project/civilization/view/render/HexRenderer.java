@@ -9,7 +9,6 @@ import ap.project.civilization.view.util.AssetManager;
 import ap.project.civilization.view.util.ViewConstants;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 import static ap.project.civilization.view.render.MakeHex.*;
 
@@ -23,11 +22,11 @@ public class HexRenderer implements Renderable{
 
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        int size = model.getHexManager().getHexSize();
+        double size = model.getHexManager().getHexSize() * camera.getZoom();
 
         HexCoord cameraHexCoord = pixelToHex(camera.getScreenX(), camera.getScreenY(), size);
         int numberQ = (int)(ViewConstants.getWindowWidth()/size);
-        int numberR = (int)((ViewConstants.getWindowHeight()/size));
+        int numberR = (int)(ViewConstants.getWindowHeight()/size);
 
         for(Hex hex : model.getHexManager().getHexes(
                 cameraHexCoord.getQ()-numberQ,
@@ -39,16 +38,19 @@ public class HexRenderer implements Renderable{
         }
     }
 
-    private void draw(Graphics2D g2d, Camera camera, Hex hex, int size) {
-        Point2D.Double pixelCoordinate = hexToPixel(hex.getQ(), hex.getR(), size); //todo: avoid allocating memory
-        pixelCoordinate = cameraTransform(pixelCoordinate.x, pixelCoordinate.y, camera);
+    private void draw(Graphics2D g2d, Camera camera, Hex hex, double size) {
+        double x = hexToPixelX(hex.getQ(), hex.getR(), size);
+        double y = hexToPixelY(hex.getR(), size);
 
-        Polygon polygon = MakeHex.hexShape(pixelCoordinate.x, pixelCoordinate.y, size);
+        x = camera.worldToScreenX(x);
+        y = camera.worldToScreenY(y);
+
+        Polygon polygon = MakeHex.hexShape(x, y, size);
 
         if(hex.isVisible()) { // todo : refactor and scale architecture, make renderer lazy
             g2d.setColor(((Terrain)hex).getTerrainType().getColor());
             g2d.fill(polygon);
-            g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), (int)pixelCoordinate.x, (int)pixelCoordinate.y, 35, 35, null);
+            g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), (int)x, (int)y, 35, 35, null);
         }
 
         g2d.setColor(Color.DARK_GRAY);

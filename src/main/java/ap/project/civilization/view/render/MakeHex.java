@@ -27,16 +27,17 @@ public class MakeHex {
         return new Point2D.Double(x, y); // returns the center
     }
 
-    public static HexCoord pixelToHex(int x, int y, int size) {
+    public static double hexToPixelY(int r, double size) {
+        return size * 1.5 * r;
+    }
+    public static double hexToPixelX(int q, int r, double size) {
+        return size * Math.sqrt(3) * (q + r / 2.0);
+    }
+
+    public static HexCoord pixelToHex(double x, double y, double size) {
         double r = y / (size * 1.5);
         double q = x / (size * Math.sqrt(3)) - r / 2.0;
 
         return new HexCoord((int)q, (int)r);
-    }
-
-    public static Point2D.Double cameraTransform(double x, double y, Camera camera) {
-        x = camera.worldToScreenX(x);
-        y = camera.worldToScreenY(y);
-        return new Point2D.Double(x, y);
     }
 }

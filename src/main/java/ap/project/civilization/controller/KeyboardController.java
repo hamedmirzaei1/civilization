@@ -13,6 +13,10 @@ public class KeyboardController {
         bind(component, "A");
         bind(component, "S");
         bind(component, "D");
+
+
+        bind(component, "EQUALS");
+        bind(component, "MINUS");
     }
 
     private void bind(JComponent component, String key) {

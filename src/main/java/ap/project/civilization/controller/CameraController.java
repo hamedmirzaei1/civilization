@@ -16,7 +16,7 @@ public class CameraController {
     }
 
     public void update() {
-        int dx = 0, dy = 0;
+        double dx = 0, dy = 0;
         if (keyboard.isPressed(KeyEvent.VK_W)) {
             dy = -CAMERA_SPEED;
         }
@@ -31,7 +31,18 @@ public class CameraController {
         if (keyboard.isPressed(KeyEvent.VK_D)) {
             dx = CAMERA_SPEED;
         }
+
         camera.move(dx, dy);
+
+        if (keyboard.isPressed(KeyEvent.VK_EQUALS) || keyboard.isPressed(KeyEvent.VK_ADD)) {
+            camera.zoomIn();
+        }
+
+        if (keyboard.isPressed(KeyEvent.VK_MINUS) || keyboard.isPressed(KeyEvent.VK_SUBTRACT)) {
+            camera.zoomOut();
+        }
+
+        camera.updateZoom();
     }
 
 }
