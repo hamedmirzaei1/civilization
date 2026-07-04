@@ -1,5 +1,6 @@
 package ap.project.civilization.view.render;
 
+import ap.project.civilization.model.hex.HexCoord;
 import ap.project.civilization.view.ui.Camera;
 
 import java.awt.*;
@@ -23,7 +24,14 @@ public class MakeHex {
         double x = size * Math.sqrt(3) * (q + r / 2.0);
         double y = size * 1.5 * r;
 
-        return new Point2D.Double(x, y);
+        return new Point2D.Double(x, y); // returns the center
+    }
+
+    public static HexCoord pixelToHex(int x, int y, int size) {
+        double r = y / (size * 1.5);
+        double q = x / (size * Math.sqrt(3)) - r / 2.0;
+
+        return new HexCoord((int)q, (int)r);
     }
 
     public static Point2D.Double cameraTransform(double x, double y, Camera camera) {

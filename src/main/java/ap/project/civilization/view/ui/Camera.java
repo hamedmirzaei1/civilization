@@ -44,4 +44,12 @@ public class Camera {
     public int screenToWorldY(int y) {
         return y + screenY;
     }
+
+    public int getScreenX() {
+        return screenX;
+    }
+
+    public int getScreenY() {
+        return screenY;
+    }
 }

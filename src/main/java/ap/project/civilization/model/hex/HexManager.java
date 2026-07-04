@@ -3,6 +3,7 @@ package ap.project.civilization.model.hex;
 import ap.project.civilization.model.terrain.TerrainSpawn;
 import ap.project.civilization.model.util.ModelConstants;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -27,6 +28,10 @@ public class HexManager {
     public Hex getHex(HexCoord coordinate) {
         return hexData.get(coordinate);
     }
+    public boolean conatainHex(int q, int r) {
+        if(hexData.containsKey(new HexCoord(q, r))) return true;
+        return false;
+    }
     public void putHex(int q, int r, Hex hex) {
         hexData.put(new HexCoord(q, r), hex);
     }
@@ -36,6 +41,15 @@ public class HexManager {
     }
     public Collection<Hex> getHexes() {
         return hexData.values();
+    }
+    public Collection<Hex> getHexes(int startQ, int startR, int endQ, int endR) {
+        Collection<Hex> result = new ArrayList<>();
+        for(int i=startQ; i<=endQ; i++) {
+            for(int j=startR; j<=endR; j++) {
+                result.add(getHex(i, j));
+            }
+        }
+        return result;
     }
 
     public int getHexSize() {
