@@ -5,10 +5,12 @@ import ap.project.civilization.model.Clickable;
 public abstract class Hex implements Clickable {
     private final HexCoord coordinate;
     private boolean visible;
+    private boolean unlock;
 
     public Hex(HexCoord coordinate) {
         this.coordinate = coordinate;
         visible = true;
+        unlock = true;
     }
 
     @Override
@@ -28,5 +30,9 @@ public abstract class Hex implements Clickable {
 
     public boolean isVisible() {
         return visible;
+    }
+
+    public boolean isUnlock() {
+        return unlock;
     }
 }

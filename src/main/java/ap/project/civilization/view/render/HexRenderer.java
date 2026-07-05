@@ -6,13 +6,14 @@ import ap.project.civilization.model.hex.HexCoord;
 import ap.project.civilization.model.terrain.Terrain;
 import ap.project.civilization.view.ui.Camera;
 import ap.project.civilization.view.util.AssetManager;
+import ap.project.civilization.view.util.GameColors;
 import ap.project.civilization.view.util.ViewConstants;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 
-import static ap.project.civilization.view.render.MakeHex.*;
+import static ap.project.civilization.view.render.CalculateHex.*;
 import static ap.project.civilization.view.util.ViewConstants.HEX_BASE_SIZE;
 
 public class HexRenderer implements Renderable{
@@ -54,7 +55,7 @@ public class HexRenderer implements Renderable{
         double x = camera.worldToScreenX(pixelCoords.get(hex).x);
         double y = camera.worldToScreenY(pixelCoords.get(hex).y);
 
-        Polygon polygon = MakeHex.hexShape(x, y, screenHexSize); //todo : not allocate a polygon for each hex
+        Polygon polygon = CalculateHex.hexShape(x, y, screenHexSize); //todo : not allocate a polygon for each hex
 
         if(hex.isVisible()) { // todo : refactor and scale architecture, make renderer lazy
             g2d.setColor(((Terrain)hex).getTerrainType().getColor());
@@ -64,6 +65,10 @@ public class HexRenderer implements Renderable{
         }
 
         g2d.setColor(Color.DARK_GRAY);
+        if(hex.isUnlock()) {
+            g2d.setColor(GameColors.UNLOCK_REGION_BORDER);
+            g2d.setStroke(new BasicStroke(4));
+        }
         g2d.drawPolygon(polygon);
     }
 

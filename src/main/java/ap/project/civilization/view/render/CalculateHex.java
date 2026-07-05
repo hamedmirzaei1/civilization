@@ -4,7 +4,7 @@ import ap.project.civilization.model.hex.HexCoord;
 
 import java.awt.*;
 
-public class MakeHex {
+public class CalculateHex {
 
     public static Polygon hexShape(double x, double y, double size) {
         Polygon p = new Polygon();

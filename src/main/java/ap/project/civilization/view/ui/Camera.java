@@ -1,7 +1,7 @@
 package ap.project.civilization.view.ui;
 
 import ap.project.civilization.model.util.ModelConstants;
-import ap.project.civilization.view.render.MakeHex;
+import ap.project.civilization.view.render.CalculateHex;
 import ap.project.civilization.view.util.ViewConstants;
 
 
@@ -30,8 +30,8 @@ public class Camera {
     }
     public void centerOnWorld() {
         centerOn(
-                MakeHex.hexToWorldPixelX(ModelConstants.WORLD_SIZE /2, ModelConstants.WORLD_SIZE /2, ViewConstants.HEX_BASE_SIZE),
-                MakeHex.hexToWorldPixelY(ModelConstants.WORLD_SIZE/2, ViewConstants.HEX_BASE_SIZE)
+                CalculateHex.hexToWorldPixelX(ModelConstants.WORLD_SIZE /2, ModelConstants.WORLD_SIZE /2, ViewConstants.HEX_BASE_SIZE),
+                CalculateHex.hexToWorldPixelY(ModelConstants.WORLD_SIZE/2, ViewConstants.HEX_BASE_SIZE)
         );
     }
 

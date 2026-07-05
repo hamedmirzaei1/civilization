@@ -11,4 +11,6 @@ public final class GameColors {
     public static final Color LAWN_TERRAIN = new Color(120, 175, 57);
 
     public static final Color BACKGROUND = new Color(156, 147, 146);
+
+    public static final Color UNLOCK_REGION_BORDER = new Color(175, 133, 17);
 }
