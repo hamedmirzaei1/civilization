@@ -1,4 +1,4 @@
-package ap.project.civilization.controller;
+package ap.project.civilization.controller.input;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

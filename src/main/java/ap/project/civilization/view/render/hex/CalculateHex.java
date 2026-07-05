@@ -26,10 +26,33 @@ public class CalculateHex {
         return size * Math.sqrt(3) * (q + r / 2.0);
     }
 
+//    public static HexCoord worldPixelToHex(double x, double y, double size) {
+//        double r = y / (size * 1.5);
+//        double q = x / (size * Math.sqrt(3)) - r / 2.0;
+//
+//        return new HexCoord((int)q, (int)r);
+//    }
+
     public static HexCoord worldPixelToHex(double x, double y, double size) {
         double r = y / (size * 1.5);
         double q = x / (size * Math.sqrt(3)) - r / 2.0;
 
-        return new HexCoord((int)q, (int)r);
+        double xCube = q;
+        double zCube = r;
+        double yCube = -xCube - zCube;
+
+        int rx = (int)Math.round(xCube);
+        int ry = (int)Math.round(yCube);
+        int rz = (int)Math.round(zCube);
+
+        double dx = Math.abs(rx - xCube);
+        double dy = Math.abs(ry - yCube);
+        double dz = Math.abs(rz - zCube);
+
+        if(dx > dy && dx > dz) rx = -ry - rz;
+        else if (dy > dz) ry = -rx - rz;
+        else rz = -rx - ry;
+
+        return new HexCoord(rx, rz);
     }
 }

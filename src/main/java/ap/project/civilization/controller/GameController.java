@@ -1,5 +1,7 @@
 package ap.project.civilization.controller;
 
+import ap.project.civilization.controller.input.KeyboardController;
+import ap.project.civilization.controller.input.MouseController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GameFrame;
 import ap.project.civilization.view.GamePanel;
@@ -35,7 +37,7 @@ public class GameController {
         gameLoop = new GameLoop(this);
 
         cameraController = new CameraController(view.getCamera(), new KeyboardController(view));
-        MouseController mouseController = new MouseController(cameraController, view);
+        MouseController mouseController = new MouseController(this);
     }
 
     public void exitGame() {
@@ -44,5 +46,13 @@ public class GameController {
 
     public GameModel getModel() {
         return model;
+    }
+
+    public GamePanel getView() {
+        return view;
+    }
+
+    public CameraController getCameraController() {
+        return cameraController;
     }
 }

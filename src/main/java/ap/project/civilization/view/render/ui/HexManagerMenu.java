@@ -8,11 +8,12 @@ import ap.project.civilization.view.util.ViewConstants;
 import javax.swing.*;
 import java.awt.*;
 
+import static ap.project.civilization.view.util.ViewConstants.GAME_UI_MARGIN;
+
 public class HexManagerMenu {
-    private final static int margin = 15;
     private final static int y = (int)(ViewConstants.getWindowHeight() * 0.5);
     private final static int width = (int)(ViewConstants.getWindowHeight() * 0.4);
-    private final static int height = ViewConstants.getWindowHeight()-y-margin*3;
+    private final static int height = ViewConstants.getWindowHeight()-y-GAME_UI_MARGIN*3;
 
     private boolean showing;
 
@@ -27,7 +28,7 @@ public class HexManagerMenu {
 
     public void draw(Graphics2D g2d) {
         g2d.setColor(UIColors.MENU_BACKGROUND);
-        g2d.fillRoundRect(margin, y, width, height, 10, 10);
+        g2d.fillRoundRect(GAME_UI_MARGIN, y, width, height, 10, 10);
 
         if(!exitButton.isVisible()) exitButton.setVisible(true);
     }
@@ -38,7 +39,7 @@ public class HexManagerMenu {
     }
     private void makeExitButton(GamePanel view) {
         exitButton = new MenuButton("close",  16f);
-        exitButton.setBounds(margin, y , width, 40);
+        exitButton.setBounds(GAME_UI_MARGIN, y , width, 40);
         view.add(exitButton);
         exitButton.addActionListener(e -> {
             showing = false;
@@ -47,7 +48,7 @@ public class HexManagerMenu {
     }
     private void makeBuildButton(GamePanel view) {
         buildButton = new MenuButton("Build", 24f);
-        buildButton.setBounds(margin, y+40, width, 40);
+        buildButton.setBounds(GAME_UI_MARGIN, y+40, width, 40);
         view.add(buildButton);
     }
 

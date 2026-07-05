@@ -42,10 +42,10 @@ public class Camera {
         return (y - cameraY) * zoom;
     }
 
-    public double screenToWorldX(int x) {
+    public double screenToWorldX(double x) {
         return (x / zoom) + cameraX;
     }
-    public double screenToWorldY(int y) {
+    public double screenToWorldY(double y) {
         return (y / zoom) + cameraY;
     }
 

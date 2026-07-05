@@ -1,5 +1,6 @@
 package ap.project.civilization.controller;
 
+import ap.project.civilization.controller.input.KeyboardController;
 import ap.project.civilization.view.render.Camera;
 
 import java.awt.event.KeyEvent;
@@ -45,4 +46,7 @@ public class CameraController {
         camera.updateZoom();
     }
 
+    public Camera getCamera() {
+        return camera;
+    }
 }
