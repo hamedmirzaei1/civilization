@@ -9,9 +9,9 @@ public final class GameColors {
     public static final Color PLAIN_TERRAIN = new Color(201, 185, 118);
     public static final Color MOUNTAIN_TERRAIN = new Color(120, 126, 123);
     public static final Color LAWN_TERRAIN = new Color(120, 175, 57);
-    public static final Color TOWN_HALL = new Color(186, 64, 19);
+    public static final Color TOWN_HALL = new Color(188, 143, 19);
 
     public static final Color BACKGROUND = new Color(156, 147, 146);
 
-    public static final Color UNLOCK_REGION_BORDER = new Color(175, 133, 17);
+    public static final Color UNLOCK_REGION_BORDER = TOWN_HALL;
 }

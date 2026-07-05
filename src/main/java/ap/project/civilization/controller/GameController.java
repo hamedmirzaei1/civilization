@@ -17,6 +17,7 @@ public class GameController {
 
     public void start() {
         gameLoop.start();
+        view.getMusicPlayer().play();
     }
 
     public void update() {

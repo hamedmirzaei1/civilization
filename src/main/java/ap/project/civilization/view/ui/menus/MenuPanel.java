@@ -41,7 +41,10 @@ public class MenuPanel extends JPanel {
     }
 
     private void initButtons(GameController controller, GameFrame gameFrame) {
-        startGameButton.addActionListener(e -> gameFrame.changePage("GAME"));
+        startGameButton.addActionListener(e -> {
+            gameFrame.changePage("GAME");
+            controller.start();
+        });
         settingsButton.addActionListener(e -> gameFrame.changePage("SETTINGS"));
         exitButton.addActionListener(e -> {
             controller.exitGame();

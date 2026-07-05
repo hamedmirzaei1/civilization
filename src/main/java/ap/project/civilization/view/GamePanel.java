@@ -3,6 +3,7 @@ package ap.project.civilization.view;
 import ap.project.civilization.controller.GameController;
 import ap.project.civilization.view.render.Renderer;
 import ap.project.civilization.view.ui.Camera;
+import ap.project.civilization.view.ui.MusicPlayer;
 import ap.project.civilization.view.util.GameColors;
 
 import javax.swing.*;
@@ -11,10 +12,12 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     private final Renderer renderer;
     private final Camera camera;
+    private final MusicPlayer musicPlayer;
 
     public GamePanel(GameController controller) {
         renderer = new Renderer(controller.getModel());
         camera = new Camera();
+        musicPlayer = new MusicPlayer();
 
         setBackground(GameColors.BACKGROUND);
         camera.centerOnWorld();
@@ -29,5 +32,9 @@ public class GamePanel extends JPanel {
 
     public Camera getCamera() {
         return camera;
+    }
+
+    public MusicPlayer getMusicPlayer() {
+        return musicPlayer;
     }
 }
