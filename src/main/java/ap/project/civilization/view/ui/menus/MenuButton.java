@@ -8,14 +8,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MenuButton extends JButton {
-    public MenuButton(String text) {
+    public MenuButton(String text, float size) {
         setText(text);
         setAlignmentX(JComponent.CENTER_ALIGNMENT);
         setAlignmentY(JComponent.CENTER_ALIGNMENT);
-        setHorizontalAlignment(SwingConstants.LEFT);
+        setHorizontalAlignment(SwingConstants.CENTER);
         setFocusable(false);
 
-        setFont(Fonts.GLOOCK(24f));
+        setFont(Fonts.GLOOCK(size));
         setBorderPainted(false);
         setForeground(UIColors.BUTTON);
 

@@ -1,7 +1,9 @@
 package ap.project.civilization.view.render;
 
 import ap.project.civilization.model.GameModel;
+import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.hex.HexRenderer;
+import ap.project.civilization.view.render.ui.UIRenderer;
 import ap.project.civilization.view.util.AssetManager;
 
 import java.awt.*;
@@ -10,10 +12,12 @@ import java.io.IOException;
 public class Renderer implements Renderable{
     private GameModel model;
     private HexRenderer hexRenderer;
+    private UIRenderer uiRenderer;
 
-    public Renderer(GameModel model) {
+    public Renderer(GameModel model, GamePanel view) {
         this.model = model;
         hexRenderer = new HexRenderer(model);
+        uiRenderer = new UIRenderer(view);
 
         try {
             AssetManager.loadAll();
@@ -28,5 +32,6 @@ public class Renderer implements Renderable{
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         hexRenderer.render(g2d, camera);
+        uiRenderer.render(g2d, camera);
     }
 }

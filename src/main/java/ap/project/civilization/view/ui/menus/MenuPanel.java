@@ -23,9 +23,10 @@ public class MenuPanel extends JPanel {
         setBackground(UIColors.MENU_BACKGROUND);
     }
     private void createButtons(GameController controller, GameFrame gameFrame) {
-        startGameButton = new MenuButton("Start");
-        settingsButton = new MenuButton("Settings");
-        exitButton = new MenuButton("Exit");
+        float size = 24f;
+        startGameButton = new MenuButton("Start", size);
+        settingsButton = new MenuButton("Settings", size);
+        exitButton = new MenuButton("Exit", size);
 
         initButtons(controller, gameFrame);
 

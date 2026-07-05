@@ -15,10 +15,11 @@ public class GamePanel extends JPanel {
     private final MusicPlayer musicPlayer;
 
     public GamePanel(GameController controller) {
-        renderer = new Renderer(controller.getModel());
+        renderer = new Renderer(controller.getModel(), this);
         camera = new Camera();
         musicPlayer = new MusicPlayer();
 
+        setLayout(null);
         setBackground(GameColors.BACKGROUND);
         camera.centerOnWorld();
     }
