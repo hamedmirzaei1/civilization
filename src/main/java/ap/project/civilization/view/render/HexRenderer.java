@@ -47,29 +47,17 @@ public class HexRenderer implements Renderable{
                 cameraHexCoord.getQ()+numberQ,
                 cameraHexCoord.getR()+numberR
                 )) {
-            draw(g2d, camera, hex, screenHexSize);
+            placeHex(g2d, camera, hex, screenHexSize);
         }
     }
 
-    private void draw(Graphics2D g2d, Camera camera, Hex hex, double screenHexSize) {
+    private void placeHex(Graphics2D g2d, Camera camera, Hex hex, double screenHexSize) {
         double x = camera.worldToScreenX(pixelCoords.get(hex).x);
         double y = camera.worldToScreenY(pixelCoords.get(hex).y);
 
         Polygon polygon = CalculateHex.hexShape(x, y, screenHexSize); //todo : not allocate a polygon for each hex
 
-        if(hex.isVisible()) { // todo : refactor and scale architecture, make renderer lazy
-            g2d.setColor(((Terrain)hex).getTerrainType().getColor());
-            g2d.fill(polygon);
-            // todo : make the following prescaled
-            g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), (int)x, (int)y, (int) screenHexSize /2, (int) screenHexSize /2, null);
-        }
-
-        g2d.setColor(Color.DARK_GRAY);
-        if(hex.isUnlock()) {
-            g2d.setColor(GameColors.UNLOCK_REGION_BORDER);
-            g2d.setStroke(new BasicStroke(4));
-        }
-        g2d.drawPolygon(polygon);
+        DrawHex.draw(g2d, polygon, hex, (int)x, (int)y, (int)screenHexSize);
     }
 
 }
