@@ -8,12 +8,14 @@ import ap.project.civilization.view.util.GameColors;
 import java.awt.*;
 
 public class DrawHex {
+
     public static void draw(Graphics2D g2d, Polygon polygon, Hex hex, int x, int y, int hexSize) {
+        // todo : make assets prescaled
         if(hex.isVisible()) {
-            g2d.setColor(((Terrain)hex).getTerrainType().getColor());
+            g2d.setColor(((Terrain) hex).getTerrainType().getColor());
             g2d.fill(polygon);
-            // todo : make the following prescaled
-            g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), (int)x, (int)y, hexSize, hexSize, null);
+
+            drawResource(g2d, hex, x, y , hexSize);
         }
 
         if(hex.isUnlock()) {
@@ -23,5 +25,29 @@ public class DrawHex {
             g2d.setColor(Color.DARK_GRAY);
         }
         g2d.drawPolygon(polygon);
+    }
+
+    private static void drawResource(Graphics2D g2d, Hex hex, int x, int y, int hexSize) {
+        int drawSize = hexSize;
+        int drawX = x;
+        int drawY = y;
+
+        switch (((Terrain) hex).getTerrainType()) {
+            case MOUNTAIN:
+                drawSize *= 1;
+                drawX -= hexSize * 0.8;
+                drawY -= hexSize * 0.8;
+                break;
+            case LAWN:
+                drawSize *= 0.6;
+                break;
+            case PLAIN:
+                drawSize *= 0.6;
+                break;
+            case FOREST:
+                drawX -= hexSize /4;
+                drawY -= hexSize /4;
+        }
+        g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), drawX, drawY, drawSize, drawSize, null);
     }
 }

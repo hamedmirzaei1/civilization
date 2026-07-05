@@ -18,11 +18,11 @@ import static ap.project.civilization.view.util.ViewConstants.HEX_BASE_SIZE;
 
 public class HexRenderer implements Renderable{
     private final GameModel model;
-
     private final HashMap<Hex, Point2D.Double> pixelCoords;
 
     public HexRenderer(GameModel model) {
         this.model = model;
+
 
         pixelCoords = new HashMap<>();
         for(Hex hex : model.getHexManager().getHexes()) {
