@@ -10,7 +10,7 @@ public abstract class Hex implements Clickable {
     public Hex(HexCoord coordinate) {
         this.coordinate = coordinate;
         visible = true;
-        unlock = true;
+        unlock = false;
     }
 
     @Override
@@ -34,5 +34,13 @@ public abstract class Hex implements Clickable {
 
     public boolean isUnlock() {
         return unlock;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public void setUnlock(boolean unlock) {
+        this.unlock = unlock;
     }
 }

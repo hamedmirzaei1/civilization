@@ -13,8 +13,13 @@ public class TerrainSpawn {
     }
 
     public void createTerrain(int number) {
+        TownHall townHall = new TownHall();
+        hexManager.putHex(townHall.getQ(), townHall.getR(), townHall);
+
         for (int i = 0; i < number; i++) {
             for (int j = 0; j < number; j++) {
+                if(i == townHall.getQ() && j == townHall.getR()) continue;
+
                 TerrainType randomTerrain = TerrainType.values()[ThreadLocalRandom.current().nextInt(TerrainType.values().length)];
                 hexManager.putHex(i, j, new Terrain(new HexCoord(i, j), randomTerrain));
             }

@@ -9,6 +9,7 @@ public final class GameColors {
     public static final Color PLAIN_TERRAIN = new Color(201, 185, 118);
     public static final Color MOUNTAIN_TERRAIN = new Color(120, 126, 123);
     public static final Color LAWN_TERRAIN = new Color(120, 175, 57);
+    public static final Color TOWN_HALL = new Color(81, 41, 73);
 
     public static final Color BACKGROUND = new Color(156, 147, 146);
 

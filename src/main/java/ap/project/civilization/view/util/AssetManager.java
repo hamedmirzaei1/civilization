@@ -11,26 +11,28 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class AssetManager {
-    private static final Map<TerrainType, BufferedImage> sprites = new HashMap<>();
+    private static final Map<TerrainType, BufferedImage> terrainSprites = new HashMap<>();
 
     private AssetManager() { }
 
     public static void loadAll() throws IOException {
-        load("/sprites/cow-2.png", TerrainType.PLAIN);
-        load("/sprites/rock.png", TerrainType.MOUNTAIN);
-        load("/sprites/tree.png", TerrainType.FOREST);
-        load("/sprites/farm.png", TerrainType.LAWN);
+        loadTerrain("/sprites/cow-2.png", TerrainType.PLAIN);
+        loadTerrain("/sprites/rock.png", TerrainType.MOUNTAIN);
+        loadTerrain("/sprites/tree.png", TerrainType.FOREST);
+        loadTerrain("/sprites/farm.png", TerrainType.LAWN);
+
+
     }
 
-    private static void load(String path, TerrainType type) throws IOException {
+    private static void loadTerrain(String path, TerrainType type) throws IOException {
         try (InputStream in = Objects.requireNonNull(
                 AssetManager.class.getResourceAsStream(path),
                 "Missing resource: " + path)) {
-            sprites.put(type, ImageIO.read(in));
+            terrainSprites.put(type, ImageIO.read(in));
         }
     }
 
     public static BufferedImage get(TerrainType type) {
-        return sprites.get(type);
+        return terrainSprites.get(type);
     }
 }
