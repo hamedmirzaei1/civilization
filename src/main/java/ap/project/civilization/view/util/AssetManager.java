@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public final class AssetManager {
     private static final Map<TerrainType, BufferedImage> terrainSprites = new HashMap<>();
+    private static final Map<String, BufferedImage> sprites = new HashMap<>();
 
     private AssetManager() { }
 
@@ -21,6 +22,7 @@ public final class AssetManager {
         loadTerrain("/sprites/tree.png", TerrainType.FOREST);
         loadTerrain("/sprites/farm.png", TerrainType.LAWN);
 
+        load("/sprites/town-hall.png", "townHall");
 
     }
 
@@ -32,7 +34,18 @@ public final class AssetManager {
         }
     }
 
+    private static void load(String path, String name) throws IOException {
+        try (InputStream in = Objects.requireNonNull(
+                AssetManager.class.getResourceAsStream(path),
+                "Missing resource: " + path)) {
+            sprites.put(name, ImageIO.read(in));
+        }
+    }
+
     public static BufferedImage get(TerrainType type) {
         return terrainSprites.get(type);
+    }
+    public static BufferedImage get(String name) {
+        return sprites.get(name);
     }
 }

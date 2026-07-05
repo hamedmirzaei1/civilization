@@ -22,6 +22,7 @@ public class DrawHex {
         if(hex instanceof TownHall) {
             g2d.setColor(GameColors.TOWN_HALL);
             g2d.fill(polygon);
+            g2d.drawImage(AssetManager.get("townHall"), (int)(x - hexSize*0.75), (int)(y - hexSize*0.75), (int)(hexSize*1.5), (int)(hexSize*1.5), null);
         }
 
         if(hex.isUnlock()) { // todo : fix borders overlap
