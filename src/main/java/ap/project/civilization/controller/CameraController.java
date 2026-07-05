@@ -1,6 +1,6 @@
 package ap.project.civilization.controller;
 
-import ap.project.civilization.view.ui.Camera;
+import ap.project.civilization.view.render.Camera;
 
 import java.awt.event.KeyEvent;
 

@@ -1,4 +1,4 @@
-package ap.project.civilization.view.render;
+package ap.project.civilization.view.render.hex;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.terrain.Terrain;
@@ -22,7 +22,7 @@ public class DrawHex {
         if(hex instanceof TownHall) {
             g2d.setColor(GameColors.TOWN_HALL);
             g2d.fill(polygon);
-            g2d.drawImage(AssetManager.get("townHall"), (int)(x - hexSize*0.75), (int)(y - hexSize*0.75), (int)(hexSize*1.5), (int)(hexSize*1.5), null);
+            g2d.drawImage(AssetManager.get("TOWN_HALL"), (int)(x - hexSize*0.75), (int)(y - hexSize*0.75), (int)(hexSize*1.5), (int)(hexSize*1.5), null);
         }
 
         if(hex.isUnlock()) { // todo : fix borders overlap
@@ -41,23 +41,36 @@ public class DrawHex {
         int drawSize = hexSize;
         int drawX = x;
         int drawY = y;
+        String asset = "";
 
         switch (((Terrain) hex).getTerrainType()) {
             case MOUNTAIN:
-                drawSize *= 1;
                 drawX -= hexSize * 0.8;
                 drawY -= hexSize * 0.8;
+                asset = "ROCK";
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
+
+                drawSize *= 0.5;
+                drawX = x;
+                drawY = y;
+                asset = "IRON";
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
                 break;
             case LAWN:
                 drawSize *= 0.6;
+                asset = "FARM";
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
                 break;
             case PLAIN:
                 drawSize *= 0.6;
+                asset = "COW";
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
                 break;
             case FOREST:
                 drawX -= hexSize /4;
                 drawY -= hexSize /4;
+                asset = "TREE";
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
         }
-        g2d.drawImage(AssetManager.get(((Terrain)hex).getTerrainType()), drawX, drawY, drawSize, drawSize, null);
     }
 }

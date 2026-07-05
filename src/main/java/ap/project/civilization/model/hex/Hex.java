@@ -9,7 +9,7 @@ public abstract class Hex implements Clickable {
 
     public Hex(HexCoord coordinate) {
         this.coordinate = coordinate;
-        visible = true;
+        visible = false;
         unlock = false;
     }
 

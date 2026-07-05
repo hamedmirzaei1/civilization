@@ -1,22 +1,20 @@
-package ap.project.civilization.view.render;
+package ap.project.civilization.view.render.hex;
 
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
-import ap.project.civilization.model.terrain.Terrain;
-import ap.project.civilization.view.ui.Camera;
-import ap.project.civilization.view.util.AssetManager;
-import ap.project.civilization.view.util.GameColors;
+import ap.project.civilization.view.render.Camera;
+import ap.project.civilization.view.render.Renderable;
 import ap.project.civilization.view.util.ViewConstants;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 
-import static ap.project.civilization.view.render.CalculateHex.*;
+import static ap.project.civilization.view.render.hex.CalculateHex.*;
 import static ap.project.civilization.view.util.ViewConstants.HEX_BASE_SIZE;
 
-public class HexRenderer implements Renderable{
+public class HexRenderer implements Renderable {
     private final GameModel model;
     private final HashMap<Hex, Point2D.Double> pixelCoords;
 

@@ -1,4 +1,4 @@
-package ap.project.civilization.view.render;
+package ap.project.civilization.view.render.hex;
 
 import ap.project.civilization.model.hex.HexCoord;
 

@@ -1,4 +1,4 @@
-package ap.project.civilization.view.ui;
+package ap.project.civilization.view.util;
 
 import javax.sound.sampled.*;
 import java.io.IOException;

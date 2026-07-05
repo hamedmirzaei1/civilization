@@ -1,7 +1,7 @@
 package ap.project.civilization.view.render;
 
 import ap.project.civilization.model.GameModel;
-import ap.project.civilization.view.ui.Camera;
+import ap.project.civilization.view.render.hex.HexRenderer;
 import ap.project.civilization.view.util.AssetManager;
 
 import java.awt.*;

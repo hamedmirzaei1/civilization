@@ -10,6 +10,7 @@ public class Terrain extends Hex {
         super(coordinate);
 
         this.terrainType = terrainType;
+        setVisible(true);
     }
 
     public TerrainType getTerrainType() {
