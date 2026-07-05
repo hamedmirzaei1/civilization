@@ -1,10 +1,8 @@
 package ap.project.civilization.view.render;
 
 import ap.project.civilization.model.hex.HexCoord;
-import ap.project.civilization.view.ui.Camera;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class MakeHex {
 
@@ -21,14 +19,14 @@ public class MakeHex {
     }
 
 
-    public static double hexToPixelY(int r, double size) {
+    public static double hexToWorldPixelY(int r, double size) {
         return size * 1.5 * r;
     }
-    public static double hexToPixelX(int q, int r, double size) {
+    public static double hexToWorldPixelX(int q, int r, double size) {
         return size * Math.sqrt(3) * (q + r / 2.0);
     }
 
-    public static HexCoord pixelToHex(double x, double y, double size) {
+    public static HexCoord worldPixelToHex(double x, double y, double size) {
         double r = y / (size * 1.5);
         double q = x / (size * Math.sqrt(3)) - r / 2.0;
 
