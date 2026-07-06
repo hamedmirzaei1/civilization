@@ -1,6 +1,7 @@
 package ap.project.civilization.controller.input;
 
 import ap.project.civilization.controller.GameController;
+import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
@@ -15,6 +16,8 @@ public class SelectionController {
 
     private boolean SelectionMode;
 
+    private Hex selectedHex;
+
     public SelectionController(GameController controller, Camera camera) {
         this.camera = camera;
         this.controller = controller;
@@ -22,14 +25,17 @@ public class SelectionController {
         SelectionMode = false;
     }
     public void select(MouseEvent e) {
+        double worldX = camera.screenToWorldX(e.getX());
+        double worldY = camera.screenToWorldY(e.getY());
+        HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
+
         if(SelectionMode) {
             SelectionMode = false;
+            unSelect();
         }
         else {
-            double worldX = camera.screenToWorldX(e.getX());
-            double worldY = camera.screenToWorldY(e.getY());
-            HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
-
+            selectedHex = controller.getModel().getHexManager().getHex(coord);
+            controller.getModel().getHexManager().getHex(coord).setSelected(true);
             SelectionMode = true;
         }
     }
@@ -38,7 +44,9 @@ public class SelectionController {
         return SelectionMode;
     }
 
-    public void setSelectionMode(boolean selectionMode) {
-        this.SelectionMode = selectionMode;
+    public void unSelect() {
+        SelectionMode = false;
+        if(selectedHex != null) selectedHex.setSelected(false);
+
     }
 }

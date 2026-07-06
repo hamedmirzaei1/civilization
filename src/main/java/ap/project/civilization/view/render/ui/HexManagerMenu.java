@@ -7,6 +7,7 @@ import ap.project.civilization.view.util.UIColors;
 import ap.project.civilization.view.util.ViewConstants;
 
 import java.awt.*;
+import java.util.HashMap;
 
 import static ap.project.civilization.view.util.ViewConstants.GAME_UI_MARGIN;
 
@@ -15,14 +16,13 @@ public class HexManagerMenu {
     private final static int width = (int)(ViewConstants.getWindowHeight() * 0.4);
     private final static int height = ViewConstants.getWindowHeight()-y-GAME_UI_MARGIN*3;
 
-
-    private MenuButton exitButton;
-    private MenuButton buildButton;
+    private HashMap<String, MenuButton> menuButtons;
 
     private GameController controller;
     public HexManagerMenu(GamePanel view, GameController controller) {
         this.controller = controller;
         buildButtons(view);
+        initButtons();
     }
 
     public void draw(Graphics2D g2d) {
@@ -37,37 +37,41 @@ public class HexManagerMenu {
     }
 
     private void buildButtons(GamePanel view) {
-        makeExitButton(view);
-        makeBuildButton(view);
+        menuButtons = new HashMap<>();
+        makeButton(view, "close", 16f, 0);
+        makeButton(view, "Explore", 24f, 1);
+        makeButton(view, "Build", 24f, 2);
         hideButtons();
     }
-    private void makeExitButton(GamePanel view) {
-        exitButton = new MenuButton("close",  16f);
-        exitButton.setBounds(GAME_UI_MARGIN, y , width, 40);
-        view.add(exitButton);
-        exitButton.addActionListener(e -> {
-            setSelectionMode(false);
+    private void initButtons() {
+        menuButtons.get("close").addActionListener(e -> {
+            disableSelectionMode();
             hideButtons();
         });
     }
-    private void makeBuildButton(GamePanel view) {
-        buildButton = new MenuButton("Build", 24f);
-        buildButton.setBounds(GAME_UI_MARGIN, y+40, width, 40);
-        view.add(buildButton);
+
+    private void makeButton(GamePanel view, String name, float size, int order) {
+        int height = 50;
+        MenuButton button = new MenuButton(name, size);
+        button.setBounds(GAME_UI_MARGIN, y+order*height, width, height);
+        view.add(button);
+        menuButtons.put(name, button);
     }
 
     private void hideButtons() {
-        exitButton.setVisible(false);
-        buildButton.setVisible(false);
+        for(MenuButton button : menuButtons.values()) {
+            button.setVisible(false);
+        }
     }
     private void showButtons() {
-        if(!exitButton.isVisible()) exitButton.setVisible(true);
-        if(!buildButton.isVisible()) buildButton.setVisible(true);
+        for(MenuButton button : menuButtons.values()) {
+            if(!button.isVisible()) button.setVisible(true);
+        }
     }
     private boolean isSelectionMode() {
         return controller.getMouseController().getSelectionController().isSelectionMode();
     }
-    private void setSelectionMode(boolean hexSelected) {
-        controller.getMouseController().getSelectionController().setSelectionMode(hexSelected);
+    private void disableSelectionMode() {
+        controller.getMouseController().getSelectionController().unSelect();
     }
 }

@@ -32,6 +32,10 @@ public class DrawHex {
             g2d.setColor(Color.DARK_GRAY);
             g2d.setStroke(new BasicStroke(1));
         }
+        if(hex.isSelected()) {
+            g2d.setColor(Color.RED);
+            g2d.setStroke(new BasicStroke(5));
+        }
 
 
         g2d.drawPolygon(polygon);
