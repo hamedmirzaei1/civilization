@@ -12,6 +12,7 @@ public class GameController {
 
     private GameLoop gameLoop;
     private CameraController cameraController;
+    private MouseController mouseController;
 
     public GameController() {
         initController();
@@ -37,7 +38,7 @@ public class GameController {
         gameLoop = new GameLoop(this);
 
         cameraController = new CameraController(view.getCamera(), new KeyboardController(view));
-        MouseController mouseController = new MouseController(this);
+        mouseController = new MouseController(this);
     }
 
     public void exitGame() {
@@ -54,5 +55,9 @@ public class GameController {
 
     public CameraController getCameraController() {
         return cameraController;
+    }
+
+    public MouseController getMouseController() {
+        return mouseController;
     }
 }

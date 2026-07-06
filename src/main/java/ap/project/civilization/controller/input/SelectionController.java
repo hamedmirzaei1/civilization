@@ -30,7 +30,15 @@ public class SelectionController {
             double worldY = camera.screenToWorldY(e.getY());
             HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
 
-            controller.getModel().getHexManager().getHex(coord).setVisible(false);
+            hexSelected = true;
         }
+    }
+
+    public boolean isHexSelected() {
+        return hexSelected;
+    }
+
+    public void setHexSelected(boolean hexSelected) {
+        this.hexSelected = hexSelected;
     }
 }

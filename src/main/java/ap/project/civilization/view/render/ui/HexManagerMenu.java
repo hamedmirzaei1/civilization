@@ -1,5 +1,6 @@
 package ap.project.civilization.view.render.ui;
 
+import ap.project.civilization.controller.GameController;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.ui.menus.MenuButton;
 import ap.project.civilization.view.util.UIColors;
@@ -15,34 +16,38 @@ public class HexManagerMenu {
     private final static int width = (int)(ViewConstants.getWindowHeight() * 0.4);
     private final static int height = ViewConstants.getWindowHeight()-y-GAME_UI_MARGIN*3;
 
-    private boolean showing;
 
     private MenuButton exitButton;
     private MenuButton buildButton;
 
-    public HexManagerMenu(GamePanel view) {
-        showing = true;
-
+    private GameController controller;
+    public HexManagerMenu(GamePanel view, GameController controller) {
+        this.controller = controller;
         buildButtons(view);
     }
 
     public void draw(Graphics2D g2d) {
+        if(!isHexSelected()) {
+            hideButtons();
+            return;
+        }
         g2d.setColor(UIColors.MENU_BACKGROUND);
         g2d.fillRoundRect(GAME_UI_MARGIN, y, width, height, 10, 10);
 
-        if(!exitButton.isVisible()) exitButton.setVisible(true);
+        showButtons();
     }
 
     private void buildButtons(GamePanel view) {
         makeExitButton(view);
         makeBuildButton(view);
+        hideButtons();
     }
     private void makeExitButton(GamePanel view) {
         exitButton = new MenuButton("close",  16f);
         exitButton.setBounds(GAME_UI_MARGIN, y , width, 40);
         view.add(exitButton);
         exitButton.addActionListener(e -> {
-            showing = false;
+            setHexSelected(false);
             hideButtons();
         });
     }
@@ -56,8 +61,14 @@ public class HexManagerMenu {
         exitButton.setVisible(false);
         buildButton.setVisible(false);
     }
-
-    public boolean isShowing() {
-        return showing;
+    private void showButtons() {
+        if(!exitButton.isVisible()) exitButton.setVisible(true);
+        if(!buildButton.isVisible()) buildButton.setVisible(true);
+    }
+    private boolean isHexSelected() {
+        return controller.getMouseController().getSelectionController().isHexSelected();
+    }
+    private void setHexSelected(boolean hexSelected) {
+        controller.getMouseController().getSelectionController().setHexSelected(hexSelected);
     }
 }

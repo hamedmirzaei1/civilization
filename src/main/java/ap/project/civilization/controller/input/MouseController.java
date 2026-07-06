@@ -46,4 +46,9 @@ public class MouseController implements MouseListener, MouseMotionListener, Mous
 
     @Override
     public void mouseExited(MouseEvent e) {}
+
+
+    public SelectionController getSelectionController() {
+        return selectionController;
+    }
 }

@@ -1,5 +1,6 @@
 package ap.project.civilization.view.render;
 
+import ap.project.civilization.controller.GameController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.hex.HexRenderer;
@@ -14,10 +15,10 @@ public class Renderer implements Renderable{
     private HexRenderer hexRenderer;
     private UIRenderer uiRenderer;
 
-    public Renderer(GameModel model, GamePanel view) {
-        this.model = model;
+    public Renderer(GameController controller, GamePanel view) {
+        this.model = controller.getModel();
         hexRenderer = new HexRenderer(model);
-        uiRenderer = new UIRenderer(view);
+        uiRenderer = new UIRenderer(controller, view);
 
         try {
             AssetManager.loadAll();
