@@ -40,8 +40,8 @@ public class HexRenderer implements Renderable {
         int numberR = (int)(ViewConstants.getWindowHeight()/ screenHexSize);
 
         for(Hex hex : model.getHexManager().getHexes(
-                cameraHexCoord.getQ()-numberQ,
-                cameraHexCoord.getR(),
+                cameraHexCoord.getQ()-numberQ/2,
+                cameraHexCoord.getR()-numberR/4,
                 cameraHexCoord.getQ()+numberQ,
                 cameraHexCoord.getR()+numberR
                 )) {

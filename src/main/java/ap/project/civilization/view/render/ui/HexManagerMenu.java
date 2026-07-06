@@ -6,7 +6,6 @@ import ap.project.civilization.view.ui.menus.MenuButton;
 import ap.project.civilization.view.util.UIColors;
 import ap.project.civilization.view.util.ViewConstants;
 
-import javax.swing.*;
 import java.awt.*;
 
 import static ap.project.civilization.view.util.ViewConstants.GAME_UI_MARGIN;
@@ -27,7 +26,7 @@ public class HexManagerMenu {
     }
 
     public void draw(Graphics2D g2d) {
-        if(!isHexSelected()) {
+        if(!isSelectionMode()) {
             hideButtons();
             return;
         }
@@ -47,7 +46,7 @@ public class HexManagerMenu {
         exitButton.setBounds(GAME_UI_MARGIN, y , width, 40);
         view.add(exitButton);
         exitButton.addActionListener(e -> {
-            setHexSelected(false);
+            setSelectionMode(false);
             hideButtons();
         });
     }
@@ -65,10 +64,10 @@ public class HexManagerMenu {
         if(!exitButton.isVisible()) exitButton.setVisible(true);
         if(!buildButton.isVisible()) buildButton.setVisible(true);
     }
-    private boolean isHexSelected() {
-        return controller.getMouseController().getSelectionController().isHexSelected();
+    private boolean isSelectionMode() {
+        return controller.getMouseController().getSelectionController().isSelectionMode();
     }
-    private void setHexSelected(boolean hexSelected) {
-        controller.getMouseController().getSelectionController().setHexSelected(hexSelected);
+    private void setSelectionMode(boolean hexSelected) {
+        controller.getMouseController().getSelectionController().setSelectionMode(hexSelected);
     }
 }

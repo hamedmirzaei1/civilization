@@ -13,32 +13,32 @@ public class SelectionController {
     private final GameController controller;
     private final Camera camera;
 
-    private boolean hexSelected;
+    private boolean SelectionMode;
 
     public SelectionController(GameController controller, Camera camera) {
         this.camera = camera;
         this.controller = controller;
 
-        hexSelected = false;
+        SelectionMode = false;
     }
     public void select(MouseEvent e) {
-        if(hexSelected) {
-            hexSelected = false;
+        if(SelectionMode) {
+            SelectionMode = false;
         }
         else {
             double worldX = camera.screenToWorldX(e.getX());
             double worldY = camera.screenToWorldY(e.getY());
             HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
 
-            hexSelected = true;
+            SelectionMode = true;
         }
     }
 
-    public boolean isHexSelected() {
-        return hexSelected;
+    public boolean isSelectionMode() {
+        return SelectionMode;
     }
 
-    public void setHexSelected(boolean hexSelected) {
-        this.hexSelected = hexSelected;
+    public void setSelectionMode(boolean selectionMode) {
+        this.SelectionMode = selectionMode;
     }
 }
