@@ -33,6 +33,11 @@ public class UnitManager {
         return hexUnitData;
     }
 
+    public void changeHexLocation(Unit unit, Hex currentHex, Hex targetHex) {
+        hexUnitData.get(currentHex).remove(unit);
+        hexUnitData.get(targetHex).add(unit);
+    }
+
     public void addUnit(Unit unit, Hex hex) {
         units.add(unit);
         hexUnitData.get(hex).add(unit);
@@ -45,7 +50,8 @@ public class UnitManager {
 
     public void update() {
         for(Unit unit : units) {
-            unit.update();
+            unit.update(this);
         }
     }
+
 }

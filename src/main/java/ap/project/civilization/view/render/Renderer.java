@@ -5,7 +5,9 @@ import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.hex.HexRenderer;
 import ap.project.civilization.view.render.ui.UIRenderer;
+import ap.project.civilization.view.render.unit.UnitRenderer;
 import ap.project.civilization.view.util.game.AssetManager;
+import ap.project.civilization.view.util.ui.Fonts;
 import ap.project.civilization.view.util.ui.ViewConstants;
 
 import java.awt.*;
@@ -34,7 +36,7 @@ public class Renderer implements Renderable{
     public void render(Graphics2D g2d, Camera camera) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
+        g2d.setFont(Fonts.GLOOCK((float) hexRenderer.getScreenHexSize()));
 
         hexRenderer.render(g2d, camera);
         unitRenderer.render(g2d, camera);

@@ -1,11 +1,12 @@
 package ap.project.civilization.controller.input;
 
-import ap.project.civilization.controller.GameController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
+import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
+import ap.project.civilization.view.render.unit.UnitRenderer;
 
 import java.awt.event.MouseEvent;
 
@@ -15,42 +16,65 @@ public class SelectionController {
     private final GameModel model;
     private final Camera camera;
 
-    private boolean SelectionMode;
+    private boolean selectionMode;
 
     private Hex selectedHex;
+    private Unit selectedUnit;
 
     public SelectionController(GameModel model, Camera camera) {
         this.camera = camera;
         this.model = model;
 
-        SelectionMode = false;
+        selectionMode = false;
     }
+
     public void select(MouseEvent e) {
         double worldX = camera.screenToWorldX(e.getX());
         double worldY = camera.screenToWorldY(e.getY());
         HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
 
-        if(SelectionMode) {
-            SelectionMode = false;
+        if(selectionMode) {
             unSelect();
         }
         else {
             selectedHex = model.getHexManager().getHex(coord);
+            selectUnit(worldX, worldY);
+
+            if(selectedUnit != null) return;
+
             model.getHexManager().getHex(coord).setSelected(true);
-            SelectionMode = true;
+            selectionMode = true;
         }
     }
 
-    public boolean isSelectionMode() {
-        return SelectionMode;
+    private void selectUnit(double x, double y) {
+        for(Unit unit : model.getUnitManager().getHexUnitData().get(selectedHex)) {  //todo: scale to 6 neighbors
+            if(unit.isMoving()) return;
+
+            double dx = x - unit.getX();
+            double dy = y - unit.getY();
+
+            if(dx*dx + dy*dy <= HEX_BASE_SIZE/6 * HEX_BASE_SIZE/6) {
+                selectedUnit = unit;
+                unit.setSelected(true);
+                selectionMode = true;
+            }
+        }
     }
 
     public void unSelect() {
-        SelectionMode = false;
+        selectionMode = false;
         if(selectedHex != null) selectedHex.setSelected(false);
-
+        if(selectedUnit != null) selectedUnit.setSelected(false);
+        selectedHex = null;
+        selectedUnit = null;
     }
-    public void exploreHex() {
-        if(selectedHex != null); //todo : use a method in model for removing fog of war
+
+    public boolean isSelectionMode() {
+        return selectionMode;
+    }
+
+    public void onHexExplore() {
+//        if(selectedHex != null) //todo : use a method in model for removing fog of war
     }
 }

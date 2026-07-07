@@ -15,7 +15,6 @@ public class GamePanel extends JPanel {
     private final Camera camera;
     private final MusicPlayer musicPlayer;
 
-    private GameController controller;
     public GamePanel(GameModel model) {
         renderer = new Renderer(model, this);
         camera = new Camera(renderer);
@@ -42,7 +41,6 @@ public class GamePanel extends JPanel {
     }
 
     public void setController(GameController controller) {
-        this.controller = controller;
         renderer.setController(controller);
     }
 }

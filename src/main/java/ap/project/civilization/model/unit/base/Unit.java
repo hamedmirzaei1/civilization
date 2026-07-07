@@ -17,6 +17,7 @@ public abstract class Unit {
     double dx, dy;
     private boolean moving;
 
+    private boolean selected;
     public Unit(Hex currentHex, UnitType unitType, int ap, int maxAP, double x, double y) {
         this.currentHex = currentHex;
         this.unitType = unitType;
@@ -28,14 +29,17 @@ public abstract class Unit {
         dx = 0;
         dy = 0;
         moving = false;
+
+        selected = false;
     }
 
-    public void update() {
+    public void update(UnitManager unitManager) {
         if(!moving) return;
         if(arrived()) {
             x = targetX;
             y = targetY;
 
+            unitManager.changeHexLocation(this, currentHex, targetHex);
             currentHex = targetHex;
             targetHex = null;
 
@@ -83,5 +87,13 @@ public abstract class Unit {
         this.targetHex = targetHex;
         this.targetX = targetX;
         this.targetY = targetY;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

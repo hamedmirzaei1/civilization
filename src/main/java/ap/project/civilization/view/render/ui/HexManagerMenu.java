@@ -48,7 +48,7 @@ public class HexManagerMenu {
             selectionController.unSelect();
             hideButtons();
         });
-        menuButtons.get("Explore").addActionListener(e -> selectionController.exploreHex());
+        menuButtons.get("Explore").addActionListener(e -> selectionController.onHexExplore());
     }
 
     private void makeButton(GamePanel view, String name, float size, int order) {

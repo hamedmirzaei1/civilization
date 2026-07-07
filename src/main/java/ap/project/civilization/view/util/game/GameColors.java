@@ -16,5 +16,5 @@ public final class GameColors {
     public static final Color UNLOCK_REGION_BORDER = new Color(154, 110, 2);
     public static final Color SELECTED_BORDER = new Color(166, 39, 47);
 
-    public static final Color EXPLORER_UNIT = new Color(255, 77, 7);
+    public static final Color EXPLORER_UNIT = new Color(39, 96, 152);
 }
