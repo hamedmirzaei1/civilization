@@ -36,7 +36,6 @@ public class Renderer implements Renderable{
     public void render(Graphics2D g2d, Camera camera) {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        g2d.setFont(Fonts.GLOOCK((float) hexRenderer.getScreenHexSize()));
 
         hexRenderer.render(g2d, camera);
         unitRenderer.render(g2d, camera);
