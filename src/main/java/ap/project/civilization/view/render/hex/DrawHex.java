@@ -8,14 +8,11 @@ import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
 import java.awt.geom.Path2D;
+import java.awt.image.BufferedImage;
 
 public class DrawHex {
-    private static final Stroke BORDER = new BasicStroke(4);
-    private static final Stroke NORMAL = new BasicStroke(2);
-    private static final Stroke SELECTED = new BasicStroke(6);
 
     public static void draw(Graphics2D g2d, Path2D.Double outlineHex, Path2D.Double hexShape, Hex hex, double nx, double ny, int hexSize) {
-        // todo : make assets prescaled
         g2d.translate(nx, ny);
 
         if(hex.isUnlock()) {
@@ -29,28 +26,29 @@ public class DrawHex {
             g2d.setColor(GameColors.SELECTED_BORDER);
             g2d.fill(outlineHex);
         }
+        g2d.draw(outlineHex);
 
         if((hex instanceof Terrain) && hex.isVisible()) {
             g2d.setColor(((Terrain) hex).getTerrainType().getColor());
             g2d.fill(hexShape);
 
-            drawResource(g2d, hex, 0, 0 , hexSize);
+            drawResource(g2d, hex, hexSize);
         }
 
         if(hex instanceof TownHall) {
             g2d.setColor(GameColors.TOWN_HALL);
             g2d.fill(hexShape);
-            g2d.drawImage(AssetManager.get("TOWN_HALL"), -(int)(hexSize*0.75), -(int)(hexSize*0.75), (int)(hexSize*1.5), (int)(hexSize*1.5), null);
+            int offset = -(int)(hexSize * 0.75);
+            g2d.drawImage(AssetManager.get("TOWN_HALL"), offset, offset, null);
         }
 
 
         g2d.translate(-nx, -ny);
     }
 
-    private static void drawResource(Graphics2D g2d, Hex hex, int x, int y, int hexSize) {
-        int drawSize = hexSize;
-        int drawX = x;
-        int drawY = y;
+    private static void drawResource(Graphics2D g2d, Hex hex, int hexSize) {
+        int drawX = 0;
+        int drawY = 0;
         String asset = "";
 
         switch (((Terrain) hex).getTerrainType()) {
@@ -58,29 +56,26 @@ public class DrawHex {
                 drawX -= hexSize * 0.8;
                 drawY -= hexSize * 0.8;
                 asset = "ROCK";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
 
-                drawSize *= 0.5;
-                drawX = x;
-                drawY = y;
+                drawX = 0;
+                drawY = 0;
                 asset = "IRON";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
                 break;
             case LAWN:
-                drawSize *= 0.6;
                 asset = "FARM";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY,null);
                 break;
             case PLAIN:
-                drawSize *= 0.6;
                 asset = "COW";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
                 break;
             case FOREST:
                 drawX -= hexSize /4;
                 drawY -= hexSize /4;
                 asset = "TREE";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, drawSize, drawSize, null);
+                g2d.drawImage(AssetManager.get(asset), drawX, drawY,null);
         }
     }
 }

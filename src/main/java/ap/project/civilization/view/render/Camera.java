@@ -2,6 +2,7 @@ package ap.project.civilization.view.render;
 
 import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.view.render.hex.CalculateHex;
+import ap.project.civilization.view.util.game.AssetManager;
 import ap.project.civilization.view.util.ui.ViewConstants;
 
 
@@ -64,9 +65,13 @@ public class Camera {
         double centerWorldY = screenToWorldY(ViewConstants.getWindowHeight() / 2);
 
         zoom += diff * 0.5;
-        renderer.getHexRenderer().updateShape(this);
+        updateView();
 
         centerOn(centerWorldX, centerWorldY);
+    }
+    private void updateView() {
+        renderer.getHexRenderer().updateShape(this);
+        AssetManager.updateScale((int)renderer.getHexRenderer().getScreenHexSize());
     }
 
     public void zoomIn() {

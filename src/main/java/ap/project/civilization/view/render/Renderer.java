@@ -6,6 +6,7 @@ import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.hex.HexRenderer;
 import ap.project.civilization.view.render.ui.UIRenderer;
 import ap.project.civilization.view.util.game.AssetManager;
+import ap.project.civilization.view.util.ui.ViewConstants;
 
 import java.awt.*;
 import java.io.IOException;
@@ -23,11 +24,13 @@ public class Renderer implements Renderable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        AssetManager.updateScale((int) ViewConstants.HEX_BASE_SIZE);
     }
 
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         hexRenderer.render(g2d, camera);

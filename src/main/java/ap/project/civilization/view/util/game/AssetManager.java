@@ -1,6 +1,9 @@
 package ap.project.civilization.view.util.game;
 
+import ap.project.civilization.view.util.ui.ViewConstants;
+
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,9 +12,13 @@ import java.util.Map;
 import java.util.Objects;
 
 public final class AssetManager {
+    private static final Map<String, BufferedImage> originals = new HashMap<>();
     private static final Map<String, BufferedImage> sprites = new HashMap<>();
 
     private AssetManager() { }
+    static {
+        updateScale((int)ViewConstants.HEX_BASE_SIZE);
+    }
 
     public static void loadAll() throws IOException {
         load("/sprites/cow-2.png", "COW");
@@ -24,16 +31,37 @@ public final class AssetManager {
 
     }
 
-
-
     private static void load(String path, String name) throws IOException {
         try (InputStream in = Objects.requireNonNull(
                 AssetManager.class.getResourceAsStream(path),
                 "Missing resource: " + path)) {
-            sprites.put(name, ImageIO.read(in));
+            BufferedImage image = ImageIO.read(in);
+            originals.put(name, image);
+            sprites.put(name, image);
         }
     }
 
+    public static void updateScale(int hexSize) {
+
+        sprites.put("TREE", scale(originals.get("TREE"), hexSize, hexSize));
+        sprites.put("ROCK", scale(originals.get("ROCK"), hexSize, hexSize));
+        sprites.put("FARM", scale(originals.get("FARM"), (int)(hexSize * 0.6), (int)(hexSize * 0.6)));
+        sprites.put("COW", scale(originals.get("COW"), (int)(hexSize * 0.6), (int)(hexSize * 0.6)));
+        sprites.put("IRON", scale(originals.get("IRON"), (int)(hexSize * 0.5), (int)(hexSize * 0.5)));
+
+        sprites.put("TOWN_HALL", scale(originals.get("TOWN_HALL"), (int)(hexSize * 1.5), (int)(hexSize * 1.5)));
+    }
+
+    private static BufferedImage scale(BufferedImage src, int width, int height) {
+
+        BufferedImage dst = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = dst.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        g.drawImage(src, 0, 0, width, height, null);
+        g.dispose();
+
+        return dst;
+    }
 
     public static BufferedImage get(String name) {
         return sprites.get(name);

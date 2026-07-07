@@ -64,4 +64,8 @@ public class HexRenderer implements Renderable {
         outlineHex = CalculateHex.hexShape(screenHexSize, 1);
         hexShape = CalculateHex.hexShape(screenHexSize, 0.95);
     }
+
+    public double getScreenHexSize() {
+        return screenHexSize;
+    }
 }
