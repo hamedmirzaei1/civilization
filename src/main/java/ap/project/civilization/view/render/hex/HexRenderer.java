@@ -3,6 +3,7 @@ package ap.project.civilization.view.render.hex;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
+import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.Renderable;
 import ap.project.civilization.view.util.ui.ViewConstants;
@@ -33,7 +34,7 @@ public class HexRenderer implements Renderable{
         int numberQ = (int)(ViewConstants.getWindowWidth()/ screenHexSize);
         int numberR = (int)(ViewConstants.getWindowHeight()/ screenHexSize);
 
-        for(Hex hex : model.getHexManager().getHexes(
+        for(Hex hex : HexManager.getInstance().getHexes(
                 cameraHexCoord.getQ()-numberQ/2,
                 cameraHexCoord.getR()-numberR/4,
                 cameraHexCoord.getQ()+numberQ,

@@ -44,8 +44,6 @@ public class UnitManager {
     }
     private void spawnUnits(HexManager hexManager) {
         Unit unit = unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
-        Hex targetHex = hexManager.getHex(hexManager.getTownHall().getQ(), hexManager.getTownHall().getR()+1);
-        MoveUnit.moveToHex(unit, targetHex, hexManager);
     }
 
     public void update() {

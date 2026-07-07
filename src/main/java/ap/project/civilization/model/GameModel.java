@@ -8,7 +8,7 @@ public class GameModel {
     private UnitManager unitManager;
 
     public GameModel() {
-        hexManager = new HexManager();
+        hexManager = HexManager.getInstance();
         unitManager = new UnitManager(hexManager);
     }
 

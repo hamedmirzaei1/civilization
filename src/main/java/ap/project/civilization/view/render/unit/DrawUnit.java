@@ -16,7 +16,7 @@ public class DrawUnit {
 
         if(unit.isSelected()) {
             g2d.setColor(GameColors.SELECTED_BORDER);
-            g2d.setStroke(SELECTED);
+            g2d.setStroke(NORMAL);
         } else {
             g2d.setColor(Color.WHITE);
             g2d.setStroke(NORMAL);

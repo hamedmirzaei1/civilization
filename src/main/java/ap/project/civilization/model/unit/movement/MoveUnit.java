@@ -32,9 +32,9 @@ public class MoveUnit {
         return speed;
     }
 
-    public static void setMovableHexes(Unit unit, HexManager hexManager, boolean movable) {
+    public static void setMovableHexes(Unit unit, boolean movable) {
         if(unit.getCurrentHex() == null) return;
-        for(Hex h : FogOfWar.neigbors(unit.getCurrentHex(), hexManager)) {
+        for(Hex h : FogOfWar.neigbors(unit.getCurrentHex())) {
             h.setMovable(movable);
         }
     }

@@ -18,10 +18,8 @@ public class SelectionController {
     private final Camera camera;
 
     private boolean selectionMode;
-
     private Hex selectedHex;
     private Unit selectedUnit;
-
     private Hex lastSelectedHex;
     public SelectionController(GameModel model, Camera camera) {
         this.camera = camera;
@@ -41,7 +39,7 @@ public class SelectionController {
         if(selectionMode) {
             if(selectedUnit != null && selectedHex != null) {
                 MoveUnit.moveToHex(selectedUnit, selectedHex, model.getHexManager());
-                MoveUnit.setMovableHexes(selectedUnit, model.getHexManager(), false);
+                MoveUnit.setMovableHexes(selectedUnit, false);
             }
             unSelect();
             selectionMode = false;
@@ -50,7 +48,7 @@ public class SelectionController {
             selectUnit(worldX, worldY);
 
             if(selectedUnit != null) {
-                MoveUnit.setMovableHexes(selectedUnit, model.getHexManager(), true);
+                MoveUnit.setMovableHexes(selectedUnit, true);
                 selectedHex = null;
             } else {
                 model.getHexManager().getHex(coord).setSelected(true);

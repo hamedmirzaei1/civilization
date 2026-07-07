@@ -3,6 +3,7 @@ package ap.project.civilization.model.hex;
 import ap.project.civilization.model.terrain.TerrainSpawn;
 import ap.project.civilization.model.util.ModelConstants;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,14 +14,15 @@ import static ap.project.civilization.view.render.hex.CalculateHex.hexToWorldPix
 import static ap.project.civilization.view.util.ui.ViewConstants.HEX_BASE_SIZE;
 
 public class HexManager {
+    private static HexManager instance;
+
     private HashMap<HexCoord, Hex> hexData;
 
     private final TerrainSpawn terrainSpawn;
     private Hex townHall;
-
     private final HashMap<Hex, Point2D.Double> pixelCoords;
 
-    public HexManager() {
+    private HexManager() {
         hexData = new HashMap<>();
         terrainSpawn = new TerrainSpawn(this);
         terrainSpawn.createTerrain(ModelConstants.WORLD_SIZE);
@@ -32,6 +34,12 @@ public class HexManager {
                     hexToWorldPixelY(hex.getR(), HEX_BASE_SIZE)
             ));
         }
+    }
+    public static HexManager getInstance() {
+        if(instance == null) {
+            instance = new HexManager();
+        }
+        return instance;
     }
 
 
