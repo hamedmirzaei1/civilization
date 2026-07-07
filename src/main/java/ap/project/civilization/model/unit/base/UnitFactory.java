@@ -14,10 +14,14 @@ public class UnitFactory {
     }
 
     public Unit createUnit(UnitType unitType, Hex location) {
+        Unit unit;
         if(unitType == UnitType.EXPLORER) {
-            unitManager.addUnit(new Explorer(location,
+            unit = new Explorer(location,
                     hexManager.getPixelCoords().get(location).x,
-                    hexManager.getPixelCoords().get(location).y), location);
+                    hexManager.getPixelCoords().get(location).y);
+
+            unitManager.addUnit(unit, location);
+            return unit;
         }
         //todo
         return null;

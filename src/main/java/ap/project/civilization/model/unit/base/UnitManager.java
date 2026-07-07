@@ -2,6 +2,7 @@ package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.unit.MoveUnit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,12 +38,14 @@ public class UnitManager {
         hexUnitData.get(hex).add(unit);
     }
     private void spawnUnits(HexManager hexManager) {
-        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        Unit unit = unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        Hex targetHex = hexManager.getHex(hexManager.getTownHall().getQ()+1, hexManager.getTownHall().getR());
+        MoveUnit.moveToHex(unit, targetHex, hexManager);
     }
 
     public void update() {
         for(Unit unit : units) {
-            unit.move();
+            unit.update();
         }
     }
 }

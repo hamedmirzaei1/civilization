@@ -1,8 +1,6 @@
 package ap.project.civilization.view.render.hex;
 
-import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.unit.base.Unit;
-import ap.project.civilization.model.unit.base.UnitManager;
 import ap.project.civilization.view.render.Camera;
 
 import java.awt.*;
