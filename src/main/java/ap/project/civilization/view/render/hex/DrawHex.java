@@ -7,38 +7,44 @@ import ap.project.civilization.view.util.game.AssetManager;
 import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
+import java.awt.geom.Path2D;
 
 public class DrawHex {
+    private static final Stroke BORDER = new BasicStroke(4);
+    private static final Stroke NORMAL = new BasicStroke(2);
+    private static final Stroke SELECTED = new BasicStroke(6);
 
-    public static void draw(Graphics2D g2d, Polygon polygon, Hex hex, int x, int y, int hexSize) {
+    public static void draw(Graphics2D g2d, Path2D.Double outlineHex, Path2D.Double hexShape, Hex hex, double nx, double ny, int hexSize) {
         // todo : make assets prescaled
+        g2d.translate(nx, ny);
+
+        if(hex.isUnlock()) {
+            g2d.setColor(GameColors.UNLOCK_REGION_BORDER);
+            g2d.fill(outlineHex);
+        } else {
+            g2d.setColor(Color.DARK_GRAY);
+            g2d.fill(outlineHex);
+        }
+        if(hex.isSelected()) {
+            g2d.setColor(GameColors.SELECTED_BORDER);
+            g2d.fill(outlineHex);
+        }
+
         if((hex instanceof Terrain) && hex.isVisible()) {
             g2d.setColor(((Terrain) hex).getTerrainType().getColor());
-            g2d.fill(polygon);
+            g2d.fill(hexShape);
 
-            drawResource(g2d, hex, x, y , hexSize);
+            drawResource(g2d, hex, 0, 0 , hexSize);
         }
 
         if(hex instanceof TownHall) {
             g2d.setColor(GameColors.TOWN_HALL);
-            g2d.fill(polygon);
-            g2d.drawImage(AssetManager.get("TOWN_HALL"), (int)(x - hexSize*0.75), (int)(y - hexSize*0.75), (int)(hexSize*1.5), (int)(hexSize*1.5), null);
-        }
-
-        if(hex.isUnlock()) { // todo : fix borders overlap
-            g2d.setColor(GameColors.UNLOCK_REGION_BORDER);
-            g2d.setStroke(new BasicStroke(4));
-        } else {
-            g2d.setColor(Color.DARK_GRAY);
-            g2d.setStroke(new BasicStroke(1));
-        }
-        if(hex.isSelected()) {
-            g2d.setColor(Color.RED);
-            g2d.setStroke(new BasicStroke(5));
+            g2d.fill(hexShape);
+            g2d.drawImage(AssetManager.get("TOWN_HALL"), -(int)(hexSize*0.75), -(int)(hexSize*0.75), (int)(hexSize*1.5), (int)(hexSize*1.5), null);
         }
 
 
-        g2d.drawPolygon(polygon);
+        g2d.translate(-nx, -ny);
     }
 
     private static void drawResource(Graphics2D g2d, Hex hex, int x, int y, int hexSize) {

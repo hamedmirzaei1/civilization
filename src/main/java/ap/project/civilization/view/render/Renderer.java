@@ -27,7 +27,7 @@ public class Renderer implements Renderable{
 
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         hexRenderer.render(g2d, camera);
@@ -36,5 +36,9 @@ public class Renderer implements Renderable{
 
     public void setController(GameController controller) {
         uiRenderer.setController(controller);
+    }
+
+    public HexRenderer getHexRenderer() {
+        return hexRenderer;
     }
 }

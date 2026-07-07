@@ -13,5 +13,6 @@ public final class GameColors {
 
     public static final Color BACKGROUND = new Color(156, 147, 146);
 
-    public static final Color UNLOCK_REGION_BORDER = TOWN_HALL;
+    public static final Color UNLOCK_REGION_BORDER = new Color(154, 110, 2);
+    public static final Color SELECTED_BORDER = new Color(166, 39, 47);
 }

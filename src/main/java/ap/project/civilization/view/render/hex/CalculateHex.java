@@ -3,20 +3,29 @@ package ap.project.civilization.view.render.hex;
 import ap.project.civilization.model.hex.HexCoord;
 
 import java.awt.*;
+import java.awt.geom.Path2D;
 
 public class CalculateHex {
 
-    public static Polygon hexShape(double x, double y, double size) {
-        Polygon p = new Polygon();
+    public static Path2D.Double hexShape(double size, double offset) {
+        size = size * offset;
+        Path2D.Double shape = new Path2D.Double();
         for (int i = 0; i < 6; i++) {
             double angle = Math.toRadians(60 * i - 30);
-            int nx = (int)(x + size * Math.cos(angle));
-            int ny = (int)(y + size * Math.sin(angle));
+            double nx = size * Math.cos(angle);
+            double ny = size * Math.sin(angle);
 
-            p.addPoint(nx, ny);
+            if(i == 0) {
+                shape.moveTo(nx, ny);
+            }
+            else {
+                shape.lineTo(nx, ny);
+            }
         }
-        return p;
+        shape.closePath();
+        return shape;
     }
+
 
 
     public static double hexToWorldPixelY(int r, double size) {
@@ -25,13 +34,6 @@ public class CalculateHex {
     public static double hexToWorldPixelX(int q, int r, double size) {
         return size * Math.sqrt(3) * (q + r / 2.0);
     }
-
-//    public static HexCoord worldPixelToHex(double x, double y, double size) {
-//        double r = y / (size * 1.5);
-//        double q = x / (size * Math.sqrt(3)) - r / 2.0;
-//
-//        return new HexCoord((int)q, (int)r);
-//    }
 
     public static HexCoord worldPixelToHex(double x, double y, double size) {
         double r = y / (size * 1.5);

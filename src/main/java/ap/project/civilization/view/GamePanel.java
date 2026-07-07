@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
     private GameController controller;
     public GamePanel(GameModel model) {
         renderer = new Renderer(model, this);
-        camera = new Camera();
+        camera = new Camera(renderer);
         musicPlayer = new MusicPlayer();
 
         setLayout(null);

@@ -12,7 +12,9 @@ public class Camera {
     private double zoom;
     private double targetZoom;
 
-    public Camera() {
+    private Renderer renderer;
+    public Camera(Renderer renderer) {
+        this.renderer = renderer;
         cameraX = 0;
         cameraY = 0;
         zoom = 1.0;
@@ -62,6 +64,7 @@ public class Camera {
         double centerWorldY = screenToWorldY(ViewConstants.getWindowHeight() / 2);
 
         zoom += diff * 0.5;
+        renderer.getHexRenderer().updateShape(this);
 
         centerOn(centerWorldX, centerWorldY);
     }
