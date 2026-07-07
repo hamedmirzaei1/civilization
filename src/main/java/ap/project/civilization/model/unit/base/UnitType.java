@@ -1,4 +1,4 @@
-package ap.project.civilization.model.unit;
+package ap.project.civilization.model.unit.base;
 
 public enum UnitType {
     EXPLORER,

@@ -1,4 +1,4 @@
-package ap.project.civilization.model.unit;
+package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
@@ -20,7 +20,7 @@ public class UnitManager {
             hexUnitData.put(hex, new ArrayList<>());
         }
 
-        unitFactory = new UnitFactory(this);
+        unitFactory = new UnitFactory(this, hexManager);
         spawnUnits(hexManager);
     }
 
@@ -38,5 +38,11 @@ public class UnitManager {
     }
     private void spawnUnits(HexManager hexManager) {
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+    }
+
+    public void update() {
+        for(Unit unit : units) {
+            unit.move();
+        }
     }
 }

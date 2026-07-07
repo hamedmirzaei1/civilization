@@ -3,20 +3,35 @@ package ap.project.civilization.model.hex;
 import ap.project.civilization.model.terrain.TerrainSpawn;
 import ap.project.civilization.model.util.ModelConstants;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import static ap.project.civilization.view.render.hex.CalculateHex.hexToWorldPixelX;
+import static ap.project.civilization.view.render.hex.CalculateHex.hexToWorldPixelY;
+import static ap.project.civilization.view.util.ui.ViewConstants.HEX_BASE_SIZE;
+
 public class HexManager {
     private HashMap<HexCoord, Hex> hexData;
 
-    private TerrainSpawn terrainSpawn;
+    private final TerrainSpawn terrainSpawn;
     private Hex townHall;
+
+    private final HashMap<Hex, Point2D.Double> pixelCoords;
 
     public HexManager() {
         hexData = new HashMap<>();
         terrainSpawn = new TerrainSpawn(this);
         terrainSpawn.createTerrain(ModelConstants.WORLD_SIZE);
+
+        pixelCoords = new HashMap<>();
+        for(Hex hex : hexData.values()) {
+            pixelCoords.put(hex, new Point2D.Double(
+                    hexToWorldPixelX(hex.getQ(), hex.getR(), HEX_BASE_SIZE),
+                    hexToWorldPixelY(hex.getR(), HEX_BASE_SIZE)
+            ));
+        }
     }
 
 
@@ -33,6 +48,11 @@ public class HexManager {
     public Collection<HexCoord> getCoordinates() {
         return hexData.keySet();
     }
+
+    public HashMap<Hex, Point2D.Double> getPixelCoords() {
+        return pixelCoords;
+    }
+
     public Collection<Hex> getHexes() {
         return hexData.values();
     }
@@ -50,7 +70,6 @@ public class HexManager {
     public Hex getTownHall() {
         return townHall;
     }
-
     public void setTownHall(Hex townHall) {
         this.townHall = townHall;
     }

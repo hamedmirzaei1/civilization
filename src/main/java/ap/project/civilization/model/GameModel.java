@@ -1,7 +1,7 @@
 package ap.project.civilization.model;
 
 import ap.project.civilization.model.hex.HexManager;
-import ap.project.civilization.model.unit.UnitManager;
+import ap.project.civilization.model.unit.base.UnitManager;
 
 public class GameModel {
     private HexManager hexManager;
@@ -13,6 +13,7 @@ public class GameModel {
     }
 
     public void update() {
+        unitManager.update();
     }
 
     public HexManager getHexManager() {
