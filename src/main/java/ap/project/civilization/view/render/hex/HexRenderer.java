@@ -45,14 +45,15 @@ public class HexRenderer implements Renderable {
                 cameraHexCoord.getQ()+numberQ,
                 cameraHexCoord.getR()+numberR
                 )) {
-            placeHex(g2d, camera, hex, screenHexSize);
+            double x = camera.worldToScreenX(pixelCoords.get(hex).x);
+            double y = camera.worldToScreenY(pixelCoords.get(hex).y);
+
+            placeHex(g2d, x, y, hex, screenHexSize);
+            DrawUnit.drawUnits(x, y , hex, g2d, screenHexSize, model.getUnitManager());
         }
     }
 
-    private void placeHex(Graphics2D g2d, Camera camera, Hex hex, double screenHexSize) {
-        double x = camera.worldToScreenX(pixelCoords.get(hex).x);
-        double y = camera.worldToScreenY(pixelCoords.get(hex).y);
-
+    private void placeHex(Graphics2D g2d, double x, double y, Hex hex, double screenHexSize) {
         Polygon polygon = CalculateHex.hexShape(x, y, screenHexSize); //todo : not allocate a polygon for each hex
 
         DrawHex.draw(g2d, polygon, hex, (int)x, (int)y, (int)screenHexSize);

@@ -12,7 +12,7 @@ public class UnitFactory {
 
     public Unit createUnit(UnitType unitType, Hex location) {
         if(unitType == UnitType.EXPLORER) {
-            unitManager.addUnit(new Explorer(location));
+            unitManager.addUnit(new Explorer(location), location);
         }
         //todo
         return new Explorer(location);
