@@ -1,8 +1,6 @@
 package ap.project.civilization.model.hex;
 
-import ap.project.civilization.model.Clickable;
-
-public abstract class Hex implements Clickable {
+public abstract class Hex {
     private final HexCoord coordinate;
     private boolean visible;
     private boolean unlock;
@@ -13,11 +11,6 @@ public abstract class Hex implements Clickable {
         visible = false;
         unlock = false;
         selected = false;
-    }
-
-    @Override
-    public boolean contains(int x, int y) {
-        return false;
     }
 
     public HexCoord getCoordinate() {

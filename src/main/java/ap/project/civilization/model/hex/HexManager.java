@@ -11,6 +11,7 @@ public class HexManager {
     private HashMap<HexCoord, Hex> hexData;
 
     private TerrainSpawn terrainSpawn;
+    private Hex townHall;
 
     public HexManager() {
         hexData = new HashMap<>();
@@ -46,4 +47,11 @@ public class HexManager {
         return result;
     }
 
+    public Hex getTownHall() {
+        return townHall;
+    }
+
+    public void setTownHall(Hex townHall) {
+        this.townHall = townHall;
+    }
 }

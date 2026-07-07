@@ -11,10 +11,10 @@ public class TerrainSpawn {
     public TerrainSpawn(HexManager hexManager) {
         this.hexManager = hexManager;
     }
-
     public void createTerrain(int number) {
         TownHall townHall = new TownHall();
         hexManager.putHex(townHall.getQ(), townHall.getR(), townHall);
+        hexManager.setTownHall(townHall);
 
         for (int i = 0; i < number; i++) {
             for (int j = 0; j < number; j++) {
