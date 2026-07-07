@@ -5,12 +5,14 @@ public abstract class Hex {
     private boolean visible;
     private boolean unlock;
     private boolean selected;
+    private boolean movable;
 
     public Hex(HexCoord coordinate) {
         this.coordinate = coordinate;
         visible = false;
         unlock = false;
         selected = false;
+        movable = false;
     }
 
     public HexCoord getCoordinate() {
@@ -42,8 +44,14 @@ public abstract class Hex {
     public boolean isSelected() {
         return selected;
     }
-
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public boolean isMovable() {
+        return movable;
+    }
+    public void setMovable(boolean movable) {
+        this.movable = movable;
     }
 }

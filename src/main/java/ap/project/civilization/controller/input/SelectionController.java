@@ -3,6 +3,7 @@ package ap.project.civilization.controller.input;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
+import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.view.render.Camera;
@@ -38,8 +39,9 @@ public class SelectionController {
         selectedHex = model.getHexManager().getHex(coord);
 
         if(selectionMode) {
-            if(selectedUnit != null) {
+            if(selectedUnit != null && selectedHex != null) {
                 MoveUnit.moveToHex(selectedUnit, selectedHex, model.getHexManager());
+                MoveUnit.setMovableHexes(selectedUnit, model.getHexManager(), false);
             }
             unSelect();
             selectionMode = false;
@@ -47,9 +49,12 @@ public class SelectionController {
         else {
             selectUnit(worldX, worldY);
 
-            if(selectedUnit != null) return;
-
-            model.getHexManager().getHex(coord).setSelected(true);
+            if(selectedUnit != null) {
+                MoveUnit.setMovableHexes(selectedUnit, model.getHexManager(), true);
+                selectedHex = null;
+            } else {
+                model.getHexManager().getHex(coord).setSelected(true);
+            }
             selectionMode = true;
         }
     }
@@ -65,6 +70,7 @@ public class SelectionController {
                 selectedUnit = unit;
                 unit.setSelected(true);
                 selectionMode = true;
+
             }
         }
     }

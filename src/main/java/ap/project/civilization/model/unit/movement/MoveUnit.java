@@ -6,7 +6,9 @@ import ap.project.civilization.model.unit.base.Unit;
 
 public class MoveUnit {
     private static int speed = 2;
+
     public static void moveToHex(Unit unit, Hex targetHex, HexManager hexManager) {
+        if(!targetHex.isMovable()) return;
         unit.setTargetHex(
                 targetHex,
                 hexManager.getPixelCoords().get(targetHex).x,
@@ -19,6 +21,7 @@ public class MoveUnit {
         double baseY = hexManager.getPixelCoords().get(unit.getCurrentHex()).y;
 
         double distance = Math.hypot(targetX-baseX, targetY-baseY);
+        if(distance == 0) return;
         unit.setDx((targetX-baseX) / distance * speed);
         unit.setDy((targetY-baseY) / distance * speed);
 
@@ -28,4 +31,13 @@ public class MoveUnit {
     public static int getSpeed() {
         return speed;
     }
+
+    public static void setMovableHexes(Unit unit, HexManager hexManager, boolean movable) {
+        if(unit.getCurrentHex() == null) return;
+        for(Hex h : FogOfWar.neigbors(unit.getCurrentHex(), hexManager)) {
+            h.setMovable(movable);
+        }
+    }
+
+
 }

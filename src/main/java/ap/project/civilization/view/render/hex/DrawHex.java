@@ -26,6 +26,10 @@ public class DrawHex {
             g2d.setColor(GameColors.SELECTED_BORDER);
             g2d.fill(outlineHex);
         }
+        if(hex.isMovable()) {
+            g2d.setColor(GameColors.MOVABLE_BORDER);
+            g2d.fill(outlineHex);
+        }
         g2d.setStroke(stroke);
         g2d.setColor(Color.BLACK);
         g2d.draw(outlineHex);
