@@ -2,7 +2,7 @@ package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
-import ap.project.civilization.model.unit.MoveUnit;
+import ap.project.civilization.model.unit.movement.MoveUnit;
 
 import java.util.ArrayList;
 import java.util.HashMap;

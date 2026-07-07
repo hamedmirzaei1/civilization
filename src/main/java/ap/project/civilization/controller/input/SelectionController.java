@@ -3,10 +3,10 @@ package ap.project.civilization.controller.input;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
+import ap.project.civilization.model.unit.movement.MoveUnit;
 import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
-import ap.project.civilization.view.render.unit.UnitRenderer;
 
 import java.awt.event.MouseEvent;
 
@@ -21,6 +21,7 @@ public class SelectionController {
     private Hex selectedHex;
     private Unit selectedUnit;
 
+    private Hex lastSelectedHex;
     public SelectionController(GameModel model, Camera camera) {
         this.camera = camera;
         this.model = model;
@@ -33,11 +34,17 @@ public class SelectionController {
         double worldY = camera.screenToWorldY(e.getY());
         HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
 
+        lastSelectedHex = selectedHex;
+        selectedHex = model.getHexManager().getHex(coord);
+
         if(selectionMode) {
+            if(selectedUnit != null) {
+                MoveUnit.moveToHex(selectedUnit, selectedHex, model.getHexManager());
+            }
             unSelect();
+            selectionMode = false;
         }
         else {
-            selectedHex = model.getHexManager().getHex(coord);
             selectUnit(worldX, worldY);
 
             if(selectedUnit != null) return;
@@ -63,10 +70,9 @@ public class SelectionController {
     }
 
     public void unSelect() {
-        selectionMode = false;
-        if(selectedHex != null) selectedHex.setSelected(false);
+        if(lastSelectedHex != null) lastSelectedHex.setSelected(false);
+        lastSelectedHex = null;
         if(selectedUnit != null) selectedUnit.setSelected(false);
-        selectedHex = null;
         selectedUnit = null;
     }
 

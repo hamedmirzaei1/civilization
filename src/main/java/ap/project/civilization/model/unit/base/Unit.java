@@ -1,7 +1,7 @@
 package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
-import ap.project.civilization.model.unit.MoveUnit;
+import ap.project.civilization.model.unit.movement.MoveUnit;
 
 public abstract class Unit {
     private UnitType unitType;
@@ -46,6 +46,8 @@ public abstract class Unit {
             dx = 0;
             dy = 0;
             moving = false;
+
+            arrive();
             return;
         }
 
@@ -56,6 +58,7 @@ public abstract class Unit {
     public boolean arrived() {
         return Math.hypot(targetX - x, targetY - y) <= MoveUnit.getSpeed();
     }
+    public abstract void arrive();
 
     public double getX() {
         return x;

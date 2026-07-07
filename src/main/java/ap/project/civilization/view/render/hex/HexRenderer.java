@@ -23,7 +23,7 @@ public class HexRenderer implements Renderable{
         this.model = model;
 
         outlineHex = CalculateHex.hexShape(HEX_BASE_SIZE, 1);
-        hexShape = CalculateHex.hexShape(HEX_BASE_SIZE, 0.95);
+        hexShape = CalculateHex.hexShape(HEX_BASE_SIZE, 0.9);
         screenHexSize = HEX_BASE_SIZE;
     }
 
@@ -49,7 +49,7 @@ public class HexRenderer implements Renderable{
     public void updateShape(Camera camera) {
         screenHexSize = HEX_BASE_SIZE * camera.getZoom();
         outlineHex = CalculateHex.hexShape(screenHexSize, 1);
-        hexShape = CalculateHex.hexShape(screenHexSize, 0.95);
+        hexShape = CalculateHex.hexShape(screenHexSize, 0.9);
     }
 
     public double getScreenHexSize() {

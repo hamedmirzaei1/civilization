@@ -1,4 +1,4 @@
-package ap.project.civilization.model.unit;
+package ap.project.civilization.model.unit.movement;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;

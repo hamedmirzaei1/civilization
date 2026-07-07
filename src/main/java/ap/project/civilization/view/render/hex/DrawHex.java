@@ -11,7 +11,7 @@ import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 
 public class DrawHex {
-
+    private static final Stroke stroke = new BasicStroke(1);
     public static void draw(Graphics2D g2d, Path2D.Double outlineHex, Path2D.Double hexShape, Hex hex, double nx, double ny, int hexSize) {
         g2d.translate(nx, ny);
 
@@ -26,6 +26,8 @@ public class DrawHex {
             g2d.setColor(GameColors.SELECTED_BORDER);
             g2d.fill(outlineHex);
         }
+        g2d.setStroke(stroke);
+        g2d.setColor(Color.BLACK);
         g2d.draw(outlineHex);
 
         if((hex instanceof Terrain) && hex.isVisible()) {
