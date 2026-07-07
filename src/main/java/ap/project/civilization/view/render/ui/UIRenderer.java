@@ -8,7 +8,7 @@ import ap.project.civilization.view.render.Renderable;
 import java.awt.*;
 
 public class UIRenderer implements Renderable {
-    private HexManagerMenu hexManagerMenu;
+    private final HexManagerMenu hexManagerMenu;
 
     public UIRenderer(GamePanel view) {
         hexManagerMenu = new HexManagerMenu(view);

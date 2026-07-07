@@ -17,22 +17,21 @@ import java.util.HashMap;
 import static ap.project.civilization.view.render.hex.CalculateHex.*;
 import static ap.project.civilization.view.util.ui.ViewConstants.HEX_BASE_SIZE;
 
-public class HexRenderer {
+public class HexRenderer implements Renderable{
     private final GameModel model;
-    private final UnitRenderer unitRenderer;
 
     private Path2D.Double outlineHex;
     private Path2D.Double hexShape;
     private double screenHexSize;
     public HexRenderer(GameModel model) {
         this.model = model;
-        unitRenderer = new UnitRenderer(model, this);
 
         outlineHex = CalculateHex.hexShape(HEX_BASE_SIZE, 1);
         hexShape = CalculateHex.hexShape(HEX_BASE_SIZE, 0.95);
         screenHexSize = HEX_BASE_SIZE;
     }
 
+    @Override
     public void render(Graphics2D g2d, Camera camera) {
         HexCoord cameraHexCoord = worldPixelToHex(camera.getCameraX(), camera.getCameraY(), HEX_BASE_SIZE);
         int numberQ = (int)(ViewConstants.getWindowWidth()/ screenHexSize);
@@ -48,7 +47,6 @@ public class HexRenderer {
             double y = camera.worldToScreenY(model.getHexManager().getPixelCoords().get(hex).y);
 
             DrawHex.draw(g2d, outlineHex, hexShape, hex, x, y, (int)screenHexSize);
-            unitRenderer.renderHexUnits(g2d, camera, hex);
         }
     }
 

@@ -13,10 +13,12 @@ import java.io.IOException;
 
 public class Renderer implements Renderable{
     private HexRenderer hexRenderer;
+    private final UnitRenderer unitRenderer;
     private UIRenderer uiRenderer;
 
     public Renderer(GameModel model, GamePanel view) {
         hexRenderer = new HexRenderer(model);
+        unitRenderer = new UnitRenderer(model, hexRenderer);
         uiRenderer = new UIRenderer(view);
 
         try {
@@ -35,6 +37,7 @@ public class Renderer implements Renderable{
 
 
         hexRenderer.render(g2d, camera);
+        unitRenderer.render(g2d, camera);
         uiRenderer.render(g2d, camera);
     }
 
