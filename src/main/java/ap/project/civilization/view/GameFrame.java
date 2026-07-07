@@ -1,9 +1,9 @@
 package ap.project.civilization.view;
 
 import ap.project.civilization.controller.GameController;
-import ap.project.civilization.view.ui.menus.MenuPanel;
-import ap.project.civilization.view.ui.menus.SettingsPanel;
-import ap.project.civilization.view.util.ViewConstants;
+import ap.project.civilization.view.ui.panels.MenuPanel;
+import ap.project.civilization.view.ui.panels.SettingsPanel;
+import ap.project.civilization.view.util.ui.ViewConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,12 +12,9 @@ public class GameFrame extends JFrame {
     private JPanel cards;
     private CardLayout cardLayout;
 
-    private final GamePanel gamePanel;
-
-    public GameFrame(GameController controller) {
+    public GameFrame(GameController controller, GamePanel view) {
         setWindow();
-        gamePanel = new GamePanel(controller);
-        makeCards(controller);
+        makeCards(controller, view);
     }
 
     private void setWindow() {
@@ -28,7 +25,7 @@ public class GameFrame extends JFrame {
         setResizable(false);
     }
 
-    private void makeCards(GameController controller) {
+    private void makeCards(GameController controller, GamePanel view) {
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
 
@@ -37,7 +34,7 @@ public class GameFrame extends JFrame {
 
         cards.add(menuPanel, "MENU");
         cards.add(settingsPanel, "SETTINGS");
-        cards.add(gamePanel, "GAME");
+        cards.add(view, "GAME");
 
         cardLayout.show(cards, "MENU");
 
@@ -49,7 +46,4 @@ public class GameFrame extends JFrame {
         cardLayout.show(cards, pageName);
     }
 
-    public GamePanel getView() {
-        return gamePanel;
-    }
 }

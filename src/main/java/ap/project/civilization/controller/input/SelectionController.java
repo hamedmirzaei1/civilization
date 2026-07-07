@@ -1,6 +1,7 @@
 package ap.project.civilization.controller.input;
 
 import ap.project.civilization.controller.GameController;
+import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
 import ap.project.civilization.view.render.Camera;
@@ -8,19 +9,19 @@ import ap.project.civilization.view.render.hex.CalculateHex;
 
 import java.awt.event.MouseEvent;
 
-import static ap.project.civilization.view.util.ViewConstants.HEX_BASE_SIZE;
+import static ap.project.civilization.view.util.ui.ViewConstants.HEX_BASE_SIZE;
 
 public class SelectionController {
-    private final GameController controller;
+    private final GameModel model;
     private final Camera camera;
 
     private boolean SelectionMode;
 
     private Hex selectedHex;
 
-    public SelectionController(GameController controller, Camera camera) {
+    public SelectionController(GameModel model, Camera camera) {
         this.camera = camera;
-        this.controller = controller;
+        this.model = model;
 
         SelectionMode = false;
     }
@@ -34,8 +35,8 @@ public class SelectionController {
             unSelect();
         }
         else {
-            selectedHex = controller.getModel().getHexManager().getHex(coord);
-            controller.getModel().getHexManager().getHex(coord).setSelected(true);
+            selectedHex = model.getHexManager().getHex(coord);
+            model.getHexManager().getHex(coord).setSelected(true);
             SelectionMode = true;
         }
     }
@@ -48,5 +49,8 @@ public class SelectionController {
         SelectionMode = false;
         if(selectedHex != null) selectedHex.setSelected(false);
 
+    }
+    public void exploreHex() {
+        if(selectedHex != null); //todo : use a method in model for removing fog of war
     }
 }

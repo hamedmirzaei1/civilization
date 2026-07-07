@@ -5,14 +5,14 @@ import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.Renderable;
-import ap.project.civilization.view.util.ViewConstants;
+import ap.project.civilization.view.util.ui.ViewConstants;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 
 import static ap.project.civilization.view.render.hex.CalculateHex.*;
-import static ap.project.civilization.view.util.ViewConstants.HEX_BASE_SIZE;
+import static ap.project.civilization.view.util.ui.ViewConstants.HEX_BASE_SIZE;
 
 public class HexRenderer implements Renderable {
     private final GameModel model;

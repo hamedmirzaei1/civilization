@@ -1,10 +1,11 @@
 package ap.project.civilization.view;
 
 import ap.project.civilization.controller.GameController;
+import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.render.Renderer;
 import ap.project.civilization.view.render.Camera;
-import ap.project.civilization.view.util.MusicPlayer;
-import ap.project.civilization.view.util.GameColors;
+import ap.project.civilization.view.util.game.MusicPlayer;
+import ap.project.civilization.view.util.game.GameColors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +15,9 @@ public class GamePanel extends JPanel {
     private final Camera camera;
     private final MusicPlayer musicPlayer;
 
-    public GamePanel(GameController controller) {
-        renderer = new Renderer(controller, this);
+    private GameController controller;
+    public GamePanel(GameModel model) {
+        renderer = new Renderer(model, this);
         camera = new Camera();
         musicPlayer = new MusicPlayer();
 
@@ -37,5 +39,10 @@ public class GamePanel extends JPanel {
 
     public MusicPlayer getMusicPlayer() {
         return musicPlayer;
+    }
+
+    public void setController(GameController controller) {
+        this.controller = controller;
+        renderer.setController(controller);
     }
 }

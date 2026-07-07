@@ -2,19 +2,26 @@ package ap.project.civilization.controller;
 
 import ap.project.civilization.controller.input.KeyboardController;
 import ap.project.civilization.controller.input.MouseController;
+import ap.project.civilization.controller.input.SelectionController;
 import ap.project.civilization.model.GameModel;
-import ap.project.civilization.view.GameFrame;
 import ap.project.civilization.view.GamePanel;
 
 public class GameController {
-    private GamePanel view;
-    private GameModel model;
+    private final GamePanel view;
+    private final GameModel model;
 
     private GameLoop gameLoop;
-    private CameraController cameraController;
-    private MouseController mouseController;
 
-    public GameController() {
+    private KeyboardController keyboardController;
+    private MouseController mouseController;
+    private SelectionController selectionController;
+
+    private CameraController cameraController;
+
+    public GameController(GameModel model, GamePanel view) {
+        this.model = model;
+        this.view = view;
+
         initController();
     }
 
@@ -30,34 +37,19 @@ public class GameController {
     }
 
     private void initController() {
-        model = new GameModel();
-
-        GameFrame gameFrame = new GameFrame(this);
-        view = gameFrame.getView();
+        selectionController = new SelectionController(model, view.getCamera());
+        mouseController = new MouseController(view, selectionController);
+        keyboardController = new KeyboardController(view);
+        cameraController = new CameraController(view.getCamera(),keyboardController);
 
         gameLoop = new GameLoop(this);
-
-        cameraController = new CameraController(view.getCamera(), new KeyboardController(view));
-        mouseController = new MouseController(this);
     }
 
     public void exitGame() {
         System.exit(0);
     }
 
-    public GameModel getModel() {
-        return model;
-    }
-
-    public GamePanel getView() {
-        return view;
-    }
-
-    public CameraController getCameraController() {
-        return cameraController;
-    }
-
-    public MouseController getMouseController() {
-        return mouseController;
+    public SelectionController getSelectionController() {
+        return selectionController;
     }
 }

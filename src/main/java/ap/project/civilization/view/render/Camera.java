@@ -2,7 +2,7 @@ package ap.project.civilization.view.render;
 
 import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.view.render.hex.CalculateHex;
-import ap.project.civilization.view.util.ViewConstants;
+import ap.project.civilization.view.util.ui.ViewConstants;
 
 
 public class Camera {

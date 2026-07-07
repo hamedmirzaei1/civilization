@@ -1,15 +1,16 @@
 package ap.project.civilization.view.render.ui;
 
 import ap.project.civilization.controller.GameController;
+import ap.project.civilization.controller.input.SelectionController;
 import ap.project.civilization.view.GamePanel;
-import ap.project.civilization.view.ui.menus.MenuButton;
-import ap.project.civilization.view.util.UIColors;
-import ap.project.civilization.view.util.ViewConstants;
+import ap.project.civilization.view.ui.components.MenuButton;
+import ap.project.civilization.view.util.ui.UIColors;
+import ap.project.civilization.view.util.ui.ViewConstants;
 
 import java.awt.*;
 import java.util.HashMap;
 
-import static ap.project.civilization.view.util.ViewConstants.GAME_UI_MARGIN;
+import static ap.project.civilization.view.util.ui.ViewConstants.GAME_UI_MARGIN;
 
 public class HexManagerMenu {
     private final static int y = (int)(ViewConstants.getWindowHeight() * 0.5);
@@ -18,15 +19,14 @@ public class HexManagerMenu {
 
     private HashMap<String, MenuButton> menuButtons;
 
-    private GameController controller;
-    public HexManagerMenu(GamePanel view, GameController controller) {
-        this.controller = controller;
+    private SelectionController selectionController;
+    public HexManagerMenu(GamePanel view) {
         buildButtons(view);
         initButtons();
     }
 
     public void draw(Graphics2D g2d) {
-        if(!isSelectionMode()) {
+        if(!selectionController.isSelectionMode()) {
             hideButtons();
             return;
         }
@@ -45,9 +45,10 @@ public class HexManagerMenu {
     }
     private void initButtons() {
         menuButtons.get("close").addActionListener(e -> {
-            disableSelectionMode();
+            selectionController.unSelect();
             hideButtons();
         });
+        menuButtons.get("Explore").addActionListener(e -> selectionController.exploreHex());
     }
 
     private void makeButton(GamePanel view, String name, float size, int order) {
@@ -68,10 +69,8 @@ public class HexManagerMenu {
             if(!button.isVisible()) button.setVisible(true);
         }
     }
-    private boolean isSelectionMode() {
-        return controller.getMouseController().getSelectionController().isSelectionMode();
-    }
-    private void disableSelectionMode() {
-        controller.getMouseController().getSelectionController().unSelect();
+
+    public void setController(GameController controller) {
+        selectionController = controller.getSelectionController();
     }
 }

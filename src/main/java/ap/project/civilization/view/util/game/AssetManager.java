@@ -1,9 +1,6 @@
-package ap.project.civilization.view.util;
-
-import ap.project.civilization.model.terrain.TerrainType;
+package ap.project.civilization.view.util.game;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;

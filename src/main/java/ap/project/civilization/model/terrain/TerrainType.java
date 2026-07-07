@@ -1,6 +1,6 @@
 package ap.project.civilization.model.terrain;
 
-import ap.project.civilization.view.util.GameColors;
+import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
 

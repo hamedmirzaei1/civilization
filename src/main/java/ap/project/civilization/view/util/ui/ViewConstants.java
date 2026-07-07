@@ -1,4 +1,4 @@
-package ap.project.civilization.view.util;
+package ap.project.civilization.view.util.ui;
 
 public final class ViewConstants {
     private final static int windowWidth = 1280;

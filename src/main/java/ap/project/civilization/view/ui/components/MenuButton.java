@@ -1,7 +1,7 @@
-package ap.project.civilization.view.ui.menus;
+package ap.project.civilization.view.ui.components;
 
-import ap.project.civilization.view.util.Fonts;
-import ap.project.civilization.view.util.UIColors;
+import ap.project.civilization.view.util.ui.Fonts;
+import ap.project.civilization.view.util.ui.UIColors;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

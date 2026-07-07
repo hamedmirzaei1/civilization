@@ -1,4 +1,4 @@
-package ap.project.civilization.view.util;
+package ap.project.civilization.view.util.ui;
 
 import java.awt.*;
 

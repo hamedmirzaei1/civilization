@@ -3,8 +3,8 @@ package ap.project.civilization.view.render.hex;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.terrain.Terrain;
 import ap.project.civilization.model.terrain.TownHall;
-import ap.project.civilization.view.util.AssetManager;
-import ap.project.civilization.view.util.GameColors;
+import ap.project.civilization.view.util.game.AssetManager;
+import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
 

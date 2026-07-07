@@ -1,8 +1,9 @@
-package ap.project.civilization.view.ui.menus;
+package ap.project.civilization.view.ui.panels;
 
 import ap.project.civilization.controller.GameController;
 import ap.project.civilization.view.GameFrame;
-import ap.project.civilization.view.util.UIColors;
+import ap.project.civilization.view.ui.components.MenuButton;
+import ap.project.civilization.view.util.ui.UIColors;
 
 import javax.swing.*;
 

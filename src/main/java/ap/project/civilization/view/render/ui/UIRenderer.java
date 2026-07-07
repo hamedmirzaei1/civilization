@@ -10,14 +10,15 @@ import java.awt.*;
 public class UIRenderer implements Renderable {
     private HexManagerMenu hexManagerMenu;
 
-    private GameController controller;
-    public UIRenderer(GameController controller, GamePanel view) {
-        this.controller = controller;
-        hexManagerMenu = new HexManagerMenu(view, controller);
+    public UIRenderer(GamePanel view) {
+        hexManagerMenu = new HexManagerMenu(view);
     }
     @Override
     public void render(Graphics2D g2d, Camera camera) {
         hexManagerMenu.draw(g2d);
     }
 
+    public void setController(GameController controller) {
+        hexManagerMenu.setController(controller);
+    }
 }

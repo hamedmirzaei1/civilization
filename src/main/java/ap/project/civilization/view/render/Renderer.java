@@ -5,20 +5,18 @@ import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.hex.HexRenderer;
 import ap.project.civilization.view.render.ui.UIRenderer;
-import ap.project.civilization.view.util.AssetManager;
+import ap.project.civilization.view.util.game.AssetManager;
 
 import java.awt.*;
 import java.io.IOException;
 
 public class Renderer implements Renderable{
-    private GameModel model;
     private HexRenderer hexRenderer;
     private UIRenderer uiRenderer;
 
-    public Renderer(GameController controller, GamePanel view) {
-        this.model = controller.getModel();
+    public Renderer(GameModel model, GamePanel view) {
         hexRenderer = new HexRenderer(model);
-        uiRenderer = new UIRenderer(controller, view);
+        uiRenderer = new UIRenderer(view);
 
         try {
             AssetManager.loadAll();
@@ -34,5 +32,9 @@ public class Renderer implements Renderable{
 
         hexRenderer.render(g2d, camera);
         uiRenderer.render(g2d, camera);
+    }
+
+    public void setController(GameController controller) {
+        uiRenderer.setController(controller);
     }
 }
