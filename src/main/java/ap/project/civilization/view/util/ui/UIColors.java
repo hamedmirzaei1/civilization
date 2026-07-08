@@ -9,5 +9,7 @@ public final class UIColors {
     public static final Color BUTTON = new Color(247, 202, 163);
     public static final Color HOVERED_BUTTON = new Color(161, 77, 3);
 
+    public static final Color LIGHT_MENU_BACKGROUND = new Color(204, 175, 142);
+    public static final Color LABEL_LIGHT = new Color(14, 12, 12);
 
 }

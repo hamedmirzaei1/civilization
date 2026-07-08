@@ -1,8 +1,7 @@
 package ap.project.civilization.view.render.hex;
 
-import ap.project.civilization.model.hex.HexCoord;
+import ap.project.civilization.model.world.hex.HexCoord;
 
-import java.awt.*;
 import java.awt.geom.Path2D;
 
 public class CalculateHex {

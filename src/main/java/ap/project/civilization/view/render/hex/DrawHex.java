@@ -1,14 +1,13 @@
 package ap.project.civilization.view.render.hex;
 
-import ap.project.civilization.model.hex.Hex;
-import ap.project.civilization.model.terrain.Terrain;
-import ap.project.civilization.model.terrain.TownHall;
+import ap.project.civilization.model.world.hex.Hex;
+import ap.project.civilization.model.world.terrain.Terrain;
+import ap.project.civilization.model.world.terrain.TownHall;
 import ap.project.civilization.view.util.game.AssetManager;
 import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
 import java.awt.geom.Path2D;
-import java.awt.image.BufferedImage;
 
 public class DrawHex {
     private static final Stroke stroke = new BasicStroke(1);

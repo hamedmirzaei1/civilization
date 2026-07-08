@@ -3,7 +3,7 @@ package ap.project.civilization.view.render.ui;
 import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.controller.selection.SelectionController;
 import ap.project.civilization.view.GamePanel;
-import ap.project.civilization.view.ui.components.MenuButton;
+import ap.project.civilization.view.navigation.components.MenuButton;
 import ap.project.civilization.view.util.ui.UIColors;
 import ap.project.civilization.view.util.ui.ViewConstants;
 
@@ -48,7 +48,6 @@ public class HexManagerMenu {
             selectionController.unSelect();
             hideButtons();
         });
-        menuButtons.get("Explore").addActionListener(e -> selectionController.onHexExplore());
     }
 
     private void makeButton(GamePanel view, String name, float size, int order) {

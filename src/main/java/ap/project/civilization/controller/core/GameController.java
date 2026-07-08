@@ -38,7 +38,7 @@ public class GameController {
     }
 
     private void initController() {
-        selectionController = new SelectionController(model, view.getCamera());
+        selectionController = new SelectionController(model, view, view.getCamera());
         mouseController = new MouseController(view, selectionController);
         keyboardController = new KeyboardController(view);
         cameraController = new CameraController(view.getCamera(),keyboardController);

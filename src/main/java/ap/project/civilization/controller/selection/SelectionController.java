@@ -1,9 +1,10 @@
 package ap.project.civilization.controller.selection;
 
 import ap.project.civilization.model.GameModel;
-import ap.project.civilization.model.hex.Hex;
-import ap.project.civilization.model.hex.HexCoord;
-import ap.project.civilization.model.unit.core.Unit;
+import ap.project.civilization.model.world.hex.Hex;
+import ap.project.civilization.model.world.hex.HexCoord;
+import ap.project.civilization.model.world.unit.core.Unit;
+import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
 
@@ -16,16 +17,20 @@ public class SelectionController {
     private final Camera camera;
 
     private boolean selectionMode;
-    private Unit selectedUnit;
 
+    private Unit selectedUnit;
     private Hex selectedHex;
     private Hex lastSelectedHex;
 
-    public SelectionController(GameModel model, Camera camera) {
+    private final SelectionMenuController menuController;
+
+    public SelectionController(GameModel model, GamePanel view, Camera camera) {
         this.camera = camera;
         this.model = model;
 
         selectionMode = false;
+
+        menuController = new SelectionMenuController(view.getRenderer().getUiRenderer().getSelectionMenu());
     }
 
     public void select(MouseEvent e) {
@@ -41,6 +46,7 @@ public class SelectionController {
               selectedUnit.getApproach(selectedHex);
             }
             unSelect();
+            menuController.hideMenu();
             selectionMode = false;
         }
         else {
@@ -49,8 +55,10 @@ public class SelectionController {
             if(selectedUnit != null) {
                 selectedUnit.getFocus();
                 selectedHex = null;
+                menuController.showMenu(selectedUnit);
             } else {
-                model.getHexManager().getHex(coord).setSelected(true);
+                selectedHex.setSelected(true);
+                menuController.showMenu(selectedHex);
             }
             selectionMode = true;
         }
@@ -83,7 +91,4 @@ public class SelectionController {
         return selectionMode;
     }
 
-    public void onHexExplore() {
-//        if(selectedHex != null) //todo : use a method in model for removing fog of war
-    }
 }

@@ -43,4 +43,9 @@ public class GamePanel extends JPanel {
     public void setController(GameController controller) {
         renderer.setController(controller);
     }
+
+    public Renderer getRenderer() {
+        return renderer;
+    }
+
 }

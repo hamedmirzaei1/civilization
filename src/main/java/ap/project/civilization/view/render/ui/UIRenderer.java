@@ -8,17 +8,24 @@ import ap.project.civilization.view.render.Renderable;
 import java.awt.*;
 
 public class UIRenderer implements Renderable {
-    private final HexManagerMenu hexManagerMenu;
+    private final SelectionMenuView selectionMenu;
 
+    private final GamePanel view;
     public UIRenderer(GamePanel view) {
-        hexManagerMenu = new HexManagerMenu(view);
+        this.view = view;
+        selectionMenu = new SelectionMenuView();
     }
+
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        hexManagerMenu.draw(g2d);
+        selectionMenu.updateLayout(view.getWidth(), view.getHeight());
+        selectionMenu.render(g2d);
+    }
+
+    public SelectionMenuView getSelectionMenu() {
+        return selectionMenu;
     }
 
     public void setController(GameController controller) {
-        hexManagerMenu.setController(controller);
     }
 }

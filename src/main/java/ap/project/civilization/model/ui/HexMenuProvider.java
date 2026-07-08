@@ -1,7 +1,7 @@
 package ap.project.civilization.model.ui;
 
-import ap.project.civilization.model.hex.Hex;
-import ap.project.civilization.model.terrain.Terrain;
+import ap.project.civilization.model.world.hex.Hex;
+import ap.project.civilization.model.world.terrain.Terrain;
 
 import java.util.ArrayList;
 import java.util.List;

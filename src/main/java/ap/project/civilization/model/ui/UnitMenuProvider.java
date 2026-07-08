@@ -1,6 +1,6 @@
 package ap.project.civilization.model.ui;
 
-import ap.project.civilization.model.unit.core.Unit;
+import ap.project.civilization.model.world.unit.core.Unit;
 
 import java.util.ArrayList;
 import java.util.List;

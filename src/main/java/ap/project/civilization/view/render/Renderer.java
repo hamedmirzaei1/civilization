@@ -48,4 +48,8 @@ public class Renderer implements Renderable{
     public HexRenderer getHexRenderer() {
         return hexRenderer;
     }
+
+    public UIRenderer getUiRenderer() {
+        return uiRenderer;
+    }
 }
