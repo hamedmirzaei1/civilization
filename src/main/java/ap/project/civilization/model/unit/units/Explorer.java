@@ -6,6 +6,7 @@ import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.model.unit.base.UnitManager;
 import ap.project.civilization.model.unit.base.UnitType;
 import ap.project.civilization.model.unit.movement.FogOfWar;
+import ap.project.civilization.model.unit.movement.MoveUnit;
 import ap.project.civilization.model.util.ModelConstants;
 
 public class Explorer extends Unit {
@@ -15,16 +16,23 @@ public class Explorer extends Unit {
         arrive();
     }
 
-    @Override
-    public void update(UnitManager unitManager) {
-        super.update(unitManager);
-    }
 
     @Override
     public void arrive() {
-        if(!getCurrentHex().isVisible()) getCurrentHex().setVisible(true);
-        for(Hex hex : FogOfWar.neigbors(getCurrentHex())) {
+        super.arrive();
+        for(Hex hex : FogOfWar.neigbors(getCurrentHex(), HexManager.getInstance())) {
             hex.setVisible(true);
         }
+    }
+
+    @Override
+    public void getFocus() {
+        MoveUnit.setNeighborsMovable(this, true);
+    }
+
+    @Override
+    public void getApproach(Hex selectedHex) {
+        MoveUnit.moveToHex(this, selectedHex, HexManager.getInstance());
+        MoveUnit.setNeighborsMovable(this, false);
     }
 }

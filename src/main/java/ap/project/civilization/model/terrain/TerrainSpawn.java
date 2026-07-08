@@ -1,7 +1,9 @@
 package ap.project.civilization.model.terrain;
 
+import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
 import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.unit.movement.FogOfWar;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,6 +25,9 @@ public class TerrainSpawn {
                 TerrainType randomTerrain = TerrainType.values()[ThreadLocalRandom.current().nextInt(TerrainType.values().length)];
                 hexManager.putHex(i, j, new Terrain(new HexCoord(i, j), randomTerrain));
             }
+        }
+        for(Hex h : FogOfWar.neigbors(townHall, hexManager)) {
+            h.setUnlock(true);
         }
     }
 }

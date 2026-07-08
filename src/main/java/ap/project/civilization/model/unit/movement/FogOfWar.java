@@ -2,19 +2,27 @@ package ap.project.civilization.model.unit.movement;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.unit.base.Unit;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class FogOfWar {
-    public static Collection<Hex> neigbors(Hex hex) {
+    public static Collection<Hex> neigbors(Hex hex, HexManager hexManager) {
         Collection<Hex> result = new ArrayList<>();
         for(int i=-1; i<=1; i++) {
             for(int j=-1; j<=1; j++) {
                 if(i==j) continue;
-                result.add(HexManager.getInstance().getHex(hex.getQ()+i, hex.getR()+j));
+
+                Hex h = hexManager.getHex(hex.getQ()+i, hex.getR()+j);
+                if(h == null) continue;
+                result.add(h);
             }
         }
         return result;
+    }
+
+    public static void makeUnitHexVisible(Unit unit) {
+        if(!unit.getCurrentHex().isVisible()) unit.getCurrentHex().setVisible(true);
     }
 }

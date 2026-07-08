@@ -28,15 +28,15 @@ public class MoveUnit {
         unit.setMoving(true);
     }
 
-    public static int getSpeed() {
-        return speed;
-    }
-
-    public static void setMovableHexes(Unit unit, boolean movable) {
+    public static void setNeighborsMovable(Unit unit, boolean movable) {
         if(unit.getCurrentHex() == null) return;
-        for(Hex h : FogOfWar.neigbors(unit.getCurrentHex())) {
+        for(Hex h : FogOfWar.neigbors(unit.getCurrentHex(), HexManager.getInstance())) {
             h.setMovable(movable);
         }
+    }
+
+    public static int getSpeed() {
+        return speed;
     }
 
 

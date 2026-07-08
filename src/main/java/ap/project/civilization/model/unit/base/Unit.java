@@ -1,6 +1,7 @@
 package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
+import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 
 public abstract class Unit {
@@ -16,6 +17,12 @@ public abstract class Unit {
     private double x, y;
     double dx, dy;
     private boolean moving;
+
+    public void arrive() {
+        FogOfWar.makeUnitHexVisible(this);
+    }
+    public abstract void getFocus();
+    public abstract void getApproach(Hex hex);
 
     private boolean selected;
     public Unit(Hex currentHex, UnitType unitType, int ap, int maxAP, double x, double y) {
@@ -58,7 +65,23 @@ public abstract class Unit {
     public boolean arrived() {
         return Math.hypot(targetX - x, targetY - y) <= MoveUnit.getSpeed();
     }
-    public abstract void arrive();
+
+    public Hex getCurrentHex() {
+        return currentHex;
+    }
+
+    public void setTargetHex(Hex targetHex, double targetX, double targetY) {
+        this.targetHex = targetHex;
+        this.targetX = targetX;
+        this.targetY = targetY;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public double getX() {
         return x;
@@ -77,26 +100,7 @@ public abstract class Unit {
     public boolean isMoving() {
         return moving;
     }
-
     public void setMoving(boolean moving) {
         this.moving = moving;
-    }
-
-    public Hex getCurrentHex() {
-        return currentHex;
-    }
-
-    public void setTargetHex(Hex targetHex, double targetX, double targetY) {
-        this.targetHex = targetHex;
-        this.targetX = targetX;
-        this.targetY = targetY;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 }
