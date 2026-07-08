@@ -1,8 +1,7 @@
 package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
-import ap.project.civilization.model.hex.HexManager;
-import ap.project.civilization.model.hex.Slot;
+import ap.project.civilization.model.unit.movement.Slot;
 import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 
@@ -15,16 +14,16 @@ public abstract class Unit {
     private Hex currentHex;
     private Hex targetHex;
     private double targetX, targetY;
+    int slotNumber;
+
     private boolean selected;
 
     private double x, y;
     double dx, dy;
     private boolean moving;
-    int slot;
 
     public void arrive() {
         FogOfWar.makeUnitHexVisible(this);
-        Slot.acquireSlot(slot, currentHex, UnitManager.getInstance());
     }
 
     public abstract void getFocus();
@@ -44,9 +43,8 @@ public abstract class Unit {
 
         selected = false;
 
-        slot = Slot.findEmptySlot(currentHex, UnitManager.getInstance());
-        if(slot == -1) throw new IllegalStateException("there's no empty slot");
-        Slot.acquireSlot(slot, currentHex, UnitManager.getInstance());
+        slotNumber = Slot.findEmptySlot(currentHex, UnitManager.getInstance());
+        if(slotNumber == -1) throw new IllegalStateException("there's no empty slot"); // todo : refactor architecture
 
         arrive();
     }
@@ -57,9 +55,11 @@ public abstract class Unit {
             x = targetX;
             y = targetY;
 
-            unitManager.changeUnitLocation(this, currentHex, targetHex);
-            currentHex = targetHex;
-            targetHex = null;
+            if(targetHex != null && !targetHex.equals(currentHex)) {
+                unitManager.changeUnitLocation(this, currentHex, targetHex);
+                currentHex = targetHex;
+                targetHex = null;
+            }
 
             dx = 0;
             dy = 0;
@@ -119,11 +119,11 @@ public abstract class Unit {
         return type;
     }
 
-    public int getSlot() {
-        return slot;
+    public int getSlotNumber() {
+        return slotNumber;
     }
 
-    public void setSlot(int slot) {
-        this.slot = slot;
+    public void setSlotNumber(int slotNumber) {
+        this.slotNumber = slotNumber;
     }
 }

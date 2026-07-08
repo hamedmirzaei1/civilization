@@ -2,8 +2,11 @@ package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.unit.movement.MoveUnit;
+import ap.project.civilization.model.unit.movement.Slot;
 import ap.project.civilization.model.unit.units.BorderExpander;
 import ap.project.civilization.model.unit.units.Explorer;
+import ap.project.civilization.view.util.ui.ViewConstants;
 
 public class UnitFactory {
     private final UnitManager unitManager;
@@ -20,5 +23,7 @@ public class UnitFactory {
                 hexManager.getPixelCoords().get(location).y);
 
         unitManager.addUnit(unit, location);
+        MoveUnit.positionUnit(unit, hexManager, 1);
     }
+
 }

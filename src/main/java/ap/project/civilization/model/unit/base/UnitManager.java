@@ -12,6 +12,7 @@ import java.util.List;
 
 public class UnitManager {
     private static UnitManager instance;
+
     private final List<Unit> units;
     private final HashMap<Hex, List<Unit>> hexUnitData;
     private final HashMap<Hex, boolean[]> hexSlots;
@@ -58,7 +59,7 @@ public class UnitManager {
     }
 
     public void spawnUnits(HexManager hexManager) {
-        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.BORDER_EXPANDER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
@@ -67,12 +68,10 @@ public class UnitManager {
 
         unitFactory.createUnit(UnitType.BORDER_EXPANDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
-        unitFactory.createUnit(UnitType.EXPLORER,
+        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.LEFT, hexManager));
         unitFactory.createUnit(UnitType.BORDER_EXPANDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.UP_LEFT, hexManager));
-        unitFactory.createUnit(UnitType.EXPLORER,
-                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
     }
 
     public void update() {
