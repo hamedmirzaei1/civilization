@@ -1,6 +1,8 @@
 package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
+import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.hex.Slot;
 import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 
@@ -18,10 +20,13 @@ public abstract class Unit {
     private double x, y;
     double dx, dy;
     private boolean moving;
+    int slot;
 
     public void arrive() {
         FogOfWar.makeUnitHexVisible(this);
+        Slot.acquireSlot(slot, currentHex, UnitManager.getInstance());
     }
+
     public abstract void getFocus();
     public abstract void getApproach(Hex hex);
 
@@ -38,6 +43,11 @@ public abstract class Unit {
         moving = false;
 
         selected = false;
+
+        slot = Slot.findEmptySlot(currentHex, UnitManager.getInstance());
+        if(slot == -1) throw new IllegalStateException("there's no empty slot");
+        Slot.acquireSlot(slot, currentHex, UnitManager.getInstance());
+
         arrive();
     }
 
@@ -47,7 +57,7 @@ public abstract class Unit {
             x = targetX;
             y = targetY;
 
-            unitManager.changeHexLocation(this, currentHex, targetHex);
+            unitManager.changeUnitLocation(this, currentHex, targetHex);
             currentHex = targetHex;
             targetHex = null;
 
@@ -107,5 +117,13 @@ public abstract class Unit {
 
     public UnitType getType() {
         return type;
+    }
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
     }
 }

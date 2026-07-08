@@ -4,27 +4,39 @@ import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.unit.movement.Direction;
 import ap.project.civilization.model.unit.movement.FogOfWar;
-import ap.project.civilization.model.unit.movement.MoveUnit;
+import ap.project.civilization.model.util.ModelConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class UnitManager {
-    private List<Unit> units;
+    private static UnitManager instance;
+    private final List<Unit> units;
     private final HashMap<Hex, List<Unit>> hexUnitData;
+    private final HashMap<Hex, boolean[]> hexSlots;
 
     private final UnitFactory unitFactory;
 
-    public UnitManager(HexManager hexManager) {
+    private UnitManager(HexManager hexManager) {
         units = new ArrayList<>();
         hexUnitData = new HashMap<>();
         for(Hex hex : hexManager.getHexes()) {
             hexUnitData.put(hex, new ArrayList<>());
         }
 
+        hexSlots = new HashMap<>();
+        for(Hex hex : hexManager.getHexes()) {
+            hexSlots.put(hex, new boolean[ModelConstants.HEX_SLOT_NUMBER]);
+        }
+
         unitFactory = new UnitFactory(this, hexManager);
-        spawnUnits(hexManager);
+    }
+    public static UnitManager getInstance() {
+        if(instance == null) {
+            instance = new UnitManager(HexManager.getInstance());
+        }
+        return instance;
     }
 
     public List<Unit> getUnits() {
@@ -35,7 +47,7 @@ public class UnitManager {
         return hexUnitData;
     }
 
-    public void changeHexLocation(Unit unit, Hex currentHex, Hex targetHex) {
+    public void changeUnitLocation(Unit unit, Hex currentHex, Hex targetHex) {
         hexUnitData.get(currentHex).remove(unit);
         hexUnitData.get(targetHex).add(unit);
     }
@@ -44,9 +56,22 @@ public class UnitManager {
         units.add(unit);
         hexUnitData.get(hex).add(unit);
     }
-    private void spawnUnits(HexManager hexManager) {
+
+    public void spawnUnits(HexManager hexManager) {
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+
         unitFactory.createUnit(UnitType.BORDER_EXPANDER,
+                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
+        unitFactory.createUnit(UnitType.EXPLORER,
+                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.LEFT, hexManager));
+        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
+                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.UP_LEFT, hexManager));
+        unitFactory.createUnit(UnitType.EXPLORER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
     }
 
@@ -56,4 +81,7 @@ public class UnitManager {
         }
     }
 
+    public HashMap<Hex, boolean[]> getHexSlots() {
+        return hexSlots;
+    }
 }

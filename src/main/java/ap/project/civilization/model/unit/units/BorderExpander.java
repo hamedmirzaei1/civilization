@@ -3,6 +3,7 @@ package ap.project.civilization.model.unit.units;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.unit.base.Unit;
+import ap.project.civilization.model.unit.base.UnitManager;
 import ap.project.civilization.model.unit.base.UnitType;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 
@@ -25,7 +26,7 @@ public class BorderExpander extends Unit {
     }
     @Override
     public void getApproach(Hex selectedHex) {
-        MoveUnit.moveToHex(this, selectedHex, HexManager.getInstance());
+        MoveUnit.moveToHex(this, selectedHex, HexManager.getInstance(), UnitManager.getInstance());
         MoveUnit.setNeighborsMovable(this, false);
     }
 }

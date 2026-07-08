@@ -9,7 +9,8 @@ public class GameModel {
 
     public GameModel() {
         hexManager = HexManager.getInstance();
-        unitManager = new UnitManager(hexManager);
+        unitManager = UnitManager.getInstance();
+        unitManager.spawnUnits(hexManager);
     }
 
     public void update() {
