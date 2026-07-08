@@ -11,7 +11,7 @@ public class Slot {
     private static final double R = 0.42;
 
     private final static Slot[] SLOTS = {
-            new Slot(0.0, 0.0),
+//            new Slot(0.0, 0.0),
             new Slot(0.0, -R),
             new Slot(0.36, -R / 2),
             new Slot(0.36,  R / 2),

@@ -58,10 +58,10 @@ public class SelectionController {
 
     private void selectUnit(double x, double y) {
         for(Unit unit : model.getUnitManager().getHexUnitData().get(selectedHex)) {  //todo: scale to 6 neighbors
-            if(unit.isMoving()) return;
+            if(unit.getMovement().isMoving()) return;
 
-            double dx = x - unit.getX();
-            double dy = y - unit.getY();
+            double dx = x - unit.getMovement().getX();
+            double dy = y - unit.getMovement().getY();
 
             if(dx*dx + dy*dy <= HEX_BASE_SIZE/6 * HEX_BASE_SIZE/6) {
                 selectedUnit = unit;

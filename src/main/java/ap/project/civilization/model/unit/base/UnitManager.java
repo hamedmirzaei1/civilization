@@ -4,6 +4,7 @@ import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.unit.movement.Direction;
 import ap.project.civilization.model.unit.movement.FogOfWar;
+import ap.project.civilization.model.unit.movement.UnitMovementUpdate;
 import ap.project.civilization.model.util.ModelConstants;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class UnitManager {
 
     private UnitManager(HexManager hexManager) {
         units = new ArrayList<>();
+
         hexUnitData = new HashMap<>();
         for(Hex hex : hexManager.getHexes()) {
             hexUnitData.put(hex, new ArrayList<>());
@@ -33,6 +35,7 @@ public class UnitManager {
 
         unitFactory = new UnitFactory(this, hexManager);
     }
+
     public static UnitManager getInstance() {
         if(instance == null) {
             instance = new UnitManager(HexManager.getInstance());
@@ -59,24 +62,17 @@ public class UnitManager {
     }
 
     public void spawnUnits(HexManager hexManager) {
-        unitFactory.createUnit(UnitType.BORDER_EXPANDER, hexManager.getTownHall());
-        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
-        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
-        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
-        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.BUILDER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.BUILDER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
 
-        unitFactory.createUnit(UnitType.BUILDER,
+        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
-        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
-                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.LEFT, hexManager));
-        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
-                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.UP_LEFT, hexManager));
     }
 
     public void update() {
         for(Unit unit : units) {
-            unit.update(this);
+            UnitMovementUpdate.update(unit, this);
         }
     }
 

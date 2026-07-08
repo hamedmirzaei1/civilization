@@ -9,10 +9,11 @@ import java.awt.*;
 
 public class DrawUnit {
     private final static Stroke NORMAL = new BasicStroke(3);
-    private final static Stroke SELECTED = new BasicStroke(8);
+    private final static Stroke SELECTED = new BasicStroke(5);
+
     public static void drawUnits(Unit unit, Graphics2D g2d, Camera camera, double unitSize) {
-        double screenX = camera.worldToScreenX(unit.getX());
-        double screenY = camera.worldToScreenY(unit.getY());
+        double screenX = camera.worldToScreenX(unit.getMovement().getX());
+        double screenY = camera.worldToScreenY(unit.getMovement().getY());
         double r = unitSize/2;
 
 
@@ -21,7 +22,7 @@ public class DrawUnit {
 
         if(unit.isSelected()) {
             g2d.setColor(GameColors.SELECTED_BORDER);
-            g2d.setStroke(NORMAL);
+            g2d.setStroke(SELECTED);
         } else {
             g2d.setColor(Color.WHITE);
             g2d.setStroke(NORMAL);

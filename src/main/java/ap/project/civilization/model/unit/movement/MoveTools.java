@@ -20,17 +20,20 @@ public class MoveTools {
         double targetX = getTargetX(targetHex, slot, hexManager);
         double targetY = getTargetY(targetHex, slot, hexManager);
 
-        unit.setTargetHex(targetHex, targetX, targetY);
+        unit.getMovement().setTarget(targetHex, targetX, targetY);
         applyVelocity(unit, targetX, targetY, NORMAL_SPEED);
     }
 
     private static void applyVelocity(Unit unit, double targetX, double targetY, double speed) {
-        double distance = Math.hypot(targetX-unit.getX(), targetY-unit.getY());
-        if(distance == 0) return;
-        unit.setDx((targetX-unit.getX()) / distance * speed);
-        unit.setDy((targetY-unit.getY()) / distance * speed);
+        double unitX = unit.getMovement().getX();
+        double unitY = unit.getMovement().getY();
 
-        unit.setMoving(true);
+        double distance = Math.hypot(targetX-unitX, targetY-unitY);
+        if(distance == 0) return;
+        unit.getMovement().setDx((targetX-unitX) / distance * speed);
+        unit.getMovement().setDy((targetY-unitY) / distance * speed);
+
+        unit.getMovement().setMoving(true);
     }
 
     private static double getTargetX(Hex targetHex, int slotNumber, HexManager hexManager) {
@@ -48,7 +51,7 @@ public class MoveTools {
     public static void positionUnit(Unit unit, HexManager hexManager, double speed) {
         double targetX = getTargetX(unit.getCurrentHex(), unit.getSlotNumber(), hexManager);
         double targetY = getTargetY(unit.getCurrentHex(), unit.getSlotNumber(), hexManager);
-        unit.setTargetHex(null, targetX, targetY);
+        unit.getMovement().setTarget(null, targetX, targetY);
         applyVelocity(unit, targetX, targetY, speed);
     }
 

@@ -1,30 +1,22 @@
 package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
+import ap.project.civilization.model.unit.movement.MovementComponent;
 import ap.project.civilization.model.unit.movement.Slot;
 import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveTools;
 
 public abstract class Unit {
-    private UnitType type;
+    private final UnitType type;
 
-    private int maxAP;
+    private final int maxAP;
     private int ap;
 
+    private final MovementComponent movement;
     private Hex currentHex;
-    private Hex targetHex;
-    private double targetX, targetY;
-    int slotNumber;
-
     private boolean selected;
 
-    private double x, y;
-    double dx, dy;
-    private boolean moving;
-
-    public void arrive() {
-        FogOfWar.makeUnitHexVisible(this);
-    }
+    int slotNumber;
 
     public abstract void getFocus();
     public abstract void getApproach(Hex hex);
@@ -35,84 +27,40 @@ public abstract class Unit {
         this.ap = ap;
         this.maxAP = maxAP;
 
-        this.x = x;
-        this.y = y;
-        dx = 0;
-        dy = 0;
-        moving = false;
-
         selected = false;
 
-        slotNumber = Slot.findEmptySlot(currentHex, UnitManager.getInstance());
-        if(slotNumber == -1) throw new IllegalStateException("there's no empty slot"); // todo : refactor architecture
+        movement = new MovementComponent(x, y);
 
+        findSlot();
         arrive();
     }
 
-    public void update(UnitManager unitManager) {
-        if(!moving) return;
-        if(arrived()) {
-            x = targetX;
-            y = targetY;
-
-            if(targetHex != null && !targetHex.equals(currentHex)) {
-                unitManager.changeUnitLocation(this, currentHex, targetHex);
-                currentHex = targetHex;
-                targetHex = null;
-            }
-
-            dx = 0;
-            dy = 0;
-            moving = false;
-
-            arrive();
-            return;
-        }
-
-        x += dx;
-        y += dy;
+    public void arrive() {
+        FogOfWar.makeUnitHexVisible(this);
     }
 
-    public boolean arrived() {
-        return Math.hypot(targetX - x, targetY - y) <= MoveTools.getSpeed();
+    private void findSlot() {
+        slotNumber = Slot.findEmptySlot(currentHex, UnitManager.getInstance());
+        if(slotNumber == -1) throw new IllegalStateException("there's no empty slot"); // todo : refactor architecture
     }
 
     public Hex getCurrentHex() {
         return currentHex;
     }
+    public void setCurrentHex(Hex currentHex) {
+        this.currentHex = currentHex;
+    }
 
-    public void setTargetHex(Hex targetHex, double targetX, double targetY) {
-        this.targetHex = targetHex;
-        this.targetX = targetX;
-        this.targetY = targetY;
+    public MovementComponent getMovement() {
+        return movement;
     }
 
     public boolean isSelected() {
         return selected;
     }
+
     public void setSelected(boolean selected) {
         this.selected = selected;
-    }
-
-    public double getX() {
-        return x;
-    }
-    public double getY() {
-        return y;
-    }
-
-    public void setDx(double dx) {
-        this.dx = dx;
-    }
-    public void setDy(double dy) {
-        this.dy = dy;
-    }
-
-    public boolean isMoving() {
-        return moving;
-    }
-    public void setMoving(boolean moving) {
-        this.moving = moving;
     }
 
     public UnitType getType() {
