@@ -1,6 +1,6 @@
 package ap.project.civilization.view;
 
-import ap.project.civilization.controller.GameController;
+import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.view.ui.panels.MenuPanel;
 import ap.project.civilization.view.ui.panels.SettingsPanel;
 import ap.project.civilization.view.util.ui.ViewConstants;

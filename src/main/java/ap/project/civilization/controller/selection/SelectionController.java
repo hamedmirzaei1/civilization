@@ -1,9 +1,9 @@
-package ap.project.civilization.controller.input;
+package ap.project.civilization.controller.selection;
 
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexCoord;
-import ap.project.civilization.model.unit.base.Unit;
+import ap.project.civilization.model.unit.core.Unit;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
 

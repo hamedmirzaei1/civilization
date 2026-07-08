@@ -2,9 +2,9 @@ package ap.project.civilization.model.unit.units;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
-import ap.project.civilization.model.unit.base.Unit;
-import ap.project.civilization.model.unit.base.UnitManager;
-import ap.project.civilization.model.unit.base.UnitType;
+import ap.project.civilization.model.unit.core.Unit;
+import ap.project.civilization.model.unit.core.UnitManager;
+import ap.project.civilization.model.unit.core.UnitType;
 import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveTools;
 import ap.project.civilization.model.util.ModelConstants;

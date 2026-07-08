@@ -1,6 +1,6 @@
 package ap.project.civilization;
 
-import ap.project.civilization.controller.GameController;
+import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GameFrame;
 import ap.project.civilization.view.GamePanel;

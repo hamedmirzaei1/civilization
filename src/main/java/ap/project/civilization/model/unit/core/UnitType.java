@@ -1,4 +1,4 @@
-package ap.project.civilization.model.unit.base;
+package ap.project.civilization.model.unit.core;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.unit.units.BorderExpander;

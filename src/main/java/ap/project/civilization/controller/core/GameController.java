@@ -1,8 +1,9 @@
-package ap.project.civilization.controller;
+package ap.project.civilization.controller.core;
 
+import ap.project.civilization.controller.util.CameraController;
 import ap.project.civilization.controller.input.KeyboardController;
 import ap.project.civilization.controller.input.MouseController;
-import ap.project.civilization.controller.input.SelectionController;
+import ap.project.civilization.controller.selection.SelectionController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 

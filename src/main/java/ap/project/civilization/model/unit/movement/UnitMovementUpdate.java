@@ -1,7 +1,7 @@
 package ap.project.civilization.model.unit.movement;
 
-import ap.project.civilization.model.unit.base.Unit;
-import ap.project.civilization.model.unit.base.UnitManager;
+import ap.project.civilization.model.unit.core.Unit;
+import ap.project.civilization.model.unit.core.UnitManager;
 
 public class UnitMovementUpdate {
     public static void update(Unit unit, UnitManager unitManager) {

@@ -1,6 +1,6 @@
 package ap.project.civilization.view.render.ui;
 
-import ap.project.civilization.controller.GameController;
+import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.Renderable;

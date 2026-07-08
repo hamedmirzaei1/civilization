@@ -1,4 +1,4 @@
-package ap.project.civilization.controller;
+package ap.project.civilization.controller.util;
 
 import ap.project.civilization.controller.input.KeyboardController;
 import ap.project.civilization.view.render.Camera;

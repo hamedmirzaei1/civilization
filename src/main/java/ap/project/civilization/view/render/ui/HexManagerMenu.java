@@ -1,7 +1,7 @@
 package ap.project.civilization.view.render.ui;
 
-import ap.project.civilization.controller.GameController;
-import ap.project.civilization.controller.input.SelectionController;
+import ap.project.civilization.controller.core.GameController;
+import ap.project.civilization.controller.selection.SelectionController;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.ui.components.MenuButton;
 import ap.project.civilization.view.util.ui.UIColors;

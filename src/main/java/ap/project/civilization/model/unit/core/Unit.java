@@ -1,10 +1,9 @@
-package ap.project.civilization.model.unit.base;
+package ap.project.civilization.model.unit.core;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.unit.movement.MovementComponent;
 import ap.project.civilization.model.unit.movement.Slot;
 import ap.project.civilization.model.unit.movement.FogOfWar;
-import ap.project.civilization.model.unit.movement.MoveTools;
 
 public abstract class Unit {
     private final UnitType type;

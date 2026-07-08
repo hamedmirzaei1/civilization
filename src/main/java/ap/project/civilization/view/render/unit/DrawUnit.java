@@ -1,6 +1,6 @@
 package ap.project.civilization.view.render.unit;
 
-import ap.project.civilization.model.unit.base.Unit;
+import ap.project.civilization.model.unit.core.Unit;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.util.game.GameColors;
 import ap.project.civilization.view.util.ui.Fonts;

@@ -1,13 +1,12 @@
 package ap.project.civilization.view.render;
 
-import ap.project.civilization.controller.GameController;
+import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.hex.HexRenderer;
 import ap.project.civilization.view.render.ui.UIRenderer;
 import ap.project.civilization.view.render.unit.UnitRenderer;
 import ap.project.civilization.view.util.game.AssetManager;
-import ap.project.civilization.view.util.ui.Fonts;
 import ap.project.civilization.view.util.ui.ViewConstants;
 
 import java.awt.*;

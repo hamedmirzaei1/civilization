@@ -1,7 +1,7 @@
 package ap.project.civilization.model.unit.movement;
 
 import ap.project.civilization.model.hex.Hex;
-import ap.project.civilization.model.unit.base.UnitManager;
+import ap.project.civilization.model.unit.core.UnitManager;
 import ap.project.civilization.model.util.ModelConstants;
 
 public class Slot {

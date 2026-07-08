@@ -2,8 +2,8 @@ package ap.project.civilization.model.unit.movement;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
-import ap.project.civilization.model.unit.base.Unit;
-import ap.project.civilization.model.unit.base.UnitManager;
+import ap.project.civilization.model.unit.core.Unit;
+import ap.project.civilization.model.unit.core.UnitManager;
 import ap.project.civilization.view.util.ui.ViewConstants;
 
 public class MoveTools {

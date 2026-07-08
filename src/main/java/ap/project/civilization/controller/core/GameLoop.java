@@ -1,4 +1,4 @@
-package ap.project.civilization.controller;
+package ap.project.civilization.controller.core;
 
 import javax.swing.*;
 

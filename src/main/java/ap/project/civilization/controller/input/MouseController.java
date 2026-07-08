@@ -1,6 +1,6 @@
 package ap.project.civilization.controller.input;
 
-import ap.project.civilization.controller.GameController;
+import ap.project.civilization.controller.selection.SelectionController;
 import ap.project.civilization.view.GamePanel;
 
 import java.awt.event.*;
