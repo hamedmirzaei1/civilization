@@ -2,6 +2,8 @@ package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.unit.movement.Direction;
+import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 
 import java.util.ArrayList;
@@ -43,7 +45,9 @@ public class UnitManager {
         hexUnitData.get(hex).add(unit);
     }
     private void spawnUnits(HexManager hexManager) {
-        Unit unit = unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
+                FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
     }
 
     public void update() {

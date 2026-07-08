@@ -2,6 +2,7 @@ package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.hex.HexManager;
+import ap.project.civilization.model.unit.units.BorderExpander;
 import ap.project.civilization.model.unit.units.Explorer;
 
 public class UnitFactory {
@@ -13,17 +14,11 @@ public class UnitFactory {
         this.hexManager = hexManager;
     }
 
-    public Unit createUnit(UnitType unitType, Hex location) {
-        Unit unit;
-        if(unitType == UnitType.EXPLORER) {
-            unit = new Explorer(location,
-                    hexManager.getPixelCoords().get(location).x,
-                    hexManager.getPixelCoords().get(location).y);
+    public void createUnit(UnitType unitType, Hex location) {
+        Unit unit = unitType.create(location,
+                hexManager.getPixelCoords().get(location).x,
+                hexManager.getPixelCoords().get(location).y);
 
-            unitManager.addUnit(unit, location);
-            return unit;
-        }
-        //todo
-        return null;
+        unitManager.addUnit(unit, location);
     }
 }

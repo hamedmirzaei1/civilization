@@ -13,6 +13,7 @@ public abstract class Unit {
     private Hex currentHex;
     private Hex targetHex;
     private double targetX, targetY;
+    private boolean selected;
 
     private double x, y;
     double dx, dy;
@@ -24,7 +25,6 @@ public abstract class Unit {
     public abstract void getFocus();
     public abstract void getApproach(Hex hex);
 
-    private boolean selected;
     public Unit(Hex currentHex, UnitType unitType, int ap, int maxAP, double x, double y) {
         this.currentHex = currentHex;
         this.unitType = unitType;
@@ -38,6 +38,7 @@ public abstract class Unit {
         moving = false;
 
         selected = false;
+        arrive();
     }
 
     public void update(UnitManager unitManager) {

@@ -26,7 +26,7 @@ public class TerrainSpawn {
                 hexManager.putHex(i, j, new Terrain(new HexCoord(i, j), randomTerrain));
             }
         }
-        for(Hex h : FogOfWar.neigbors(townHall, hexManager)) {
+        for(Hex h : FogOfWar.neighbors(townHall, hexManager)) {
             h.setUnlock(true);
         }
     }

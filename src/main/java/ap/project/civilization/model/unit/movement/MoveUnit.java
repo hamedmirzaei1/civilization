@@ -30,7 +30,7 @@ public class MoveUnit {
 
     public static void setNeighborsMovable(Unit unit, boolean movable) {
         if(unit.getCurrentHex() == null) return;
-        for(Hex h : FogOfWar.neigbors(unit.getCurrentHex(), HexManager.getInstance())) {
+        for(Hex h : FogOfWar.neighbors(unit.getCurrentHex(), HexManager.getInstance())) {
             h.setMovable(movable);
         }
     }

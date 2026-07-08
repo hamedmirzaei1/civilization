@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class FogOfWar {
-    public static Collection<Hex> neigbors(Hex hex, HexManager hexManager) {
+    public static Collection<Hex> neighbors(Hex hex, HexManager hexManager) {
         Collection<Hex> result = new ArrayList<>();
         for(int i=-1; i<=1; i++) {
             for(int j=-1; j<=1; j++) {
@@ -20,6 +20,10 @@ public class FogOfWar {
             }
         }
         return result;
+    }
+
+    public static Hex getNearHex(Hex hex, Direction direction, HexManager hexManager) {
+        return hexManager.getHex(hex.getQ()+direction.getDq(), hex.getR()+direction.getDr());
     }
 
     public static void makeUnitHexVisible(Unit unit) {
