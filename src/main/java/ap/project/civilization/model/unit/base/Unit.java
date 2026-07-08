@@ -5,7 +5,7 @@ import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveUnit;
 
 public abstract class Unit {
-    private UnitType unitType;
+    private UnitType type;
 
     private int maxAP;
     private int ap;
@@ -27,7 +27,7 @@ public abstract class Unit {
 
     public Unit(Hex currentHex, UnitType unitType, int ap, int maxAP, double x, double y) {
         this.currentHex = currentHex;
-        this.unitType = unitType;
+        this.type = unitType;
         this.ap = ap;
         this.maxAP = maxAP;
 
@@ -103,5 +103,9 @@ public abstract class Unit {
     }
     public void setMoving(boolean moving) {
         this.moving = moving;
+    }
+
+    public UnitType getType() {
+        return type;
     }
 }

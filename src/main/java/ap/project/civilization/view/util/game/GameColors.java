@@ -18,4 +18,5 @@ public final class GameColors {
     public static final Color MOVABLE_BORDER = new Color(26, 112, 143);
 
     public static final Color EXPLORER_UNIT = new Color(39, 96, 152);
+    public static final Color BORDER_EXPANDER_UNIT = UNLOCK_REGION_BORDER;
 }
