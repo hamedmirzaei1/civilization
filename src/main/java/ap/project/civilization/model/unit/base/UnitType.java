@@ -2,6 +2,7 @@ package ap.project.civilization.model.unit.base;
 
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.unit.units.BorderExpander;
+import ap.project.civilization.model.unit.units.Builder;
 import ap.project.civilization.model.unit.units.Explorer;
 import ap.project.civilization.view.util.game.GameColors;
 
@@ -19,8 +20,13 @@ public enum UnitType {
         public Unit create(Hex hex, double x, double y) {
             return new BorderExpander(hex, x, y);
         }
+    },
+    BUILDER(GameColors.BUILDER_UNIT, "Bu") {
+        @Override
+        public Unit create(Hex hex, double x, double y) {
+            return new Builder(hex, x, y);
+        }
     };
-//    BUILDER,
 //    WORKER;
 
     public abstract Unit create(Hex hex, double x, double y);

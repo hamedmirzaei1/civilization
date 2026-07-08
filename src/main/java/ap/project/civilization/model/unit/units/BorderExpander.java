@@ -5,7 +5,7 @@ import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.model.unit.base.UnitManager;
 import ap.project.civilization.model.unit.base.UnitType;
-import ap.project.civilization.model.unit.movement.MoveUnit;
+import ap.project.civilization.model.unit.movement.MoveTools;
 
 import static ap.project.civilization.model.util.ModelConstants.BORDER_EXPANDER_AP;
 
@@ -21,12 +21,12 @@ public class BorderExpander extends Unit {
     }
     @Override
     public void getFocus() {
-        MoveUnit.setNeighborsMovable(this, true);
+        MoveTools.setNeighborsMovable(this, true);
 
     }
     @Override
     public void getApproach(Hex selectedHex) {
-        MoveUnit.moveToHex(this, selectedHex, HexManager.getInstance(), UnitManager.getInstance());
-        MoveUnit.setNeighborsMovable(this, false);
+        MoveTools.moveToHex(this, selectedHex, HexManager.getInstance(), UnitManager.getInstance());
+        MoveTools.setNeighborsMovable(this, false);
     }
 }

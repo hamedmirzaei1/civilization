@@ -66,7 +66,7 @@ public class UnitManager {
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
 
-        unitFactory.createUnit(UnitType.BORDER_EXPANDER,
+        unitFactory.createUnit(UnitType.BUILDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));
         unitFactory.createUnit(UnitType.BORDER_EXPANDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.LEFT, hexManager));

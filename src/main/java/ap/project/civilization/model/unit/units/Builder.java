@@ -5,23 +5,13 @@ import ap.project.civilization.model.hex.HexManager;
 import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.model.unit.base.UnitManager;
 import ap.project.civilization.model.unit.base.UnitType;
-import ap.project.civilization.model.unit.movement.FogOfWar;
 import ap.project.civilization.model.unit.movement.MoveTools;
 import ap.project.civilization.model.util.ModelConstants;
 
-public class Explorer extends Unit {
+public class Builder extends Unit {
 
-    public Explorer(Hex location, double x, double y) {
-        super(location, UnitType.EXPLORER, ModelConstants.EXPLORER_AP, ModelConstants.EXPLORER_AP, x, y);
-    }
-
-
-    @Override
-    public void arrive() {
-        super.arrive();
-        for(Hex hex : FogOfWar.neighbors(getCurrentHex(), HexManager.getInstance())) {
-            hex.setVisible(true);
-        }
+    public Builder(Hex currentHex, double x, double y) {
+        super(currentHex, UnitType.BUILDER, ModelConstants.BUILDER_AP, ModelConstants.BUILDER_AP, x, y);
     }
 
     @Override

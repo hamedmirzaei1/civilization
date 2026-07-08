@@ -6,7 +6,7 @@ import ap.project.civilization.model.unit.base.Unit;
 import ap.project.civilization.model.unit.base.UnitManager;
 import ap.project.civilization.view.util.ui.ViewConstants;
 
-public class MoveUnit {
+public class MoveTools {
     private static final int NORMAL_SPEED = 2;
 
     public static void moveToHex(Unit unit, Hex targetHex, HexManager hexManager, UnitManager unitManager) {

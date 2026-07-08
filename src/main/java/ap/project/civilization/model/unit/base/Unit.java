@@ -3,7 +3,7 @@ package ap.project.civilization.model.unit.base;
 import ap.project.civilization.model.hex.Hex;
 import ap.project.civilization.model.unit.movement.Slot;
 import ap.project.civilization.model.unit.movement.FogOfWar;
-import ap.project.civilization.model.unit.movement.MoveUnit;
+import ap.project.civilization.model.unit.movement.MoveTools;
 
 public abstract class Unit {
     private UnitType type;
@@ -74,7 +74,7 @@ public abstract class Unit {
     }
 
     public boolean arrived() {
-        return Math.hypot(targetX - x, targetY - y) <= MoveUnit.getSpeed();
+        return Math.hypot(targetX - x, targetY - y) <= MoveTools.getSpeed();
     }
 
     public Hex getCurrentHex() {
