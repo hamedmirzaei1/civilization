@@ -1,6 +1,4 @@
-package ap.project.civilization.view.render.ui;
-
-import ap.project.civilization.view.util.ui.ViewConstants;
+package ap.project.civilization.view.util.ui;
 
 import java.awt.*;
 

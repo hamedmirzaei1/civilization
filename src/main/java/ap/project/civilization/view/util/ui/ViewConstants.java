@@ -6,8 +6,6 @@ public final class ViewConstants {
 
     public static final double HEX_BASE_SIZE = 60; //todo : move to model utils
 
-    public static final int GAME_UI_MARGIN = 15;
-
 
     public static int getWindowWidth() {
         return windowWidth;

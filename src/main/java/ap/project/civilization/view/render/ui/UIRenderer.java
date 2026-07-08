@@ -4,16 +4,17 @@ import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.Renderable;
+import ap.project.civilization.view.render.ui.panels.ItemMenu;
 
 import java.awt.*;
 
 public class UIRenderer implements Renderable {
-    private final SelectionMenuView selectionMenu;
+    private final ItemMenu selectionMenu;
 
     private final GamePanel view;
     public UIRenderer(GamePanel view) {
         this.view = view;
-        selectionMenu = new SelectionMenuView();
+        selectionMenu = new ItemMenu();
     }
 
     @Override
@@ -22,10 +23,8 @@ public class UIRenderer implements Renderable {
         selectionMenu.render(g2d);
     }
 
-    public SelectionMenuView getSelectionMenu() {
+    public ItemMenu getSelectionMenu() {
         return selectionMenu;
     }
 
-    public void setController(GameController controller) {
-    }
 }

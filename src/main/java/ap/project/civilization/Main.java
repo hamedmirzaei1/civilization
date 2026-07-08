@@ -14,8 +14,6 @@ public class Main {
             GamePanel view = new GamePanel(model);
             GameController controller = new GameController(model, view);
 
-            view.setController(controller);
-
             GameFrame gameFrame = new GameFrame(controller, view);
         });
     }

@@ -1,19 +1,19 @@
 package ap.project.civilization.controller.selection;
 
 import ap.project.civilization.model.world.hex.Hex;
-import ap.project.civilization.model.ui.HexMenuProvider;
+import ap.project.civilization.model.ui.menuproviders.HexMenuProvider;
 import ap.project.civilization.model.ui.MenuModel;
-import ap.project.civilization.model.ui.UnitMenuProvider;
+import ap.project.civilization.model.ui.menuproviders.UnitMenuProvider;
 import ap.project.civilization.model.world.unit.core.Unit;
-import ap.project.civilization.view.render.ui.SelectionMenuView;
+import ap.project.civilization.view.render.ui.panels.ItemMenu;
 
 public class SelectionMenuController {
-    private final SelectionMenuView menu;
+    private final ItemMenu menu;
 
     private final HexMenuProvider hexProvider;
     private final UnitMenuProvider unitProvider;
 
-    public SelectionMenuController(SelectionMenuView menu) {
+    public SelectionMenuController(ItemMenu menu) {
         this.menu = menu;
 
         hexProvider = new HexMenuProvider();

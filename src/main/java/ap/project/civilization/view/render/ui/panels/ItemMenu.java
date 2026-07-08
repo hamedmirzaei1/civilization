@@ -1,6 +1,7 @@
-package ap.project.civilization.view.render.ui;
+package ap.project.civilization.view.render.ui.panels;
 
 import ap.project.civilization.model.ui.MenuModel;
+import ap.project.civilization.view.util.ui.UILayout;
 import ap.project.civilization.view.render.ui.components.UIPanel;
 import ap.project.civilization.view.util.ui.Fonts;
 import ap.project.civilization.view.util.ui.UIColors;
@@ -8,10 +9,11 @@ import ap.project.civilization.view.util.ui.UIColors;
 import java.awt.*;
 
 
-public class SelectionMenuView extends UIPanel{
+public class ItemMenu extends UIPanel{
     private MenuModel menuModel;
 
-    public SelectionMenuView() {
+    private final Stroke NORMAL = new BasicStroke(4);
+    public ItemMenu() {
         super(UILayout.selectionMenuBounds(0, 0),
                 UILayout.SELECTION_MENU_PADDING,
                 UILayout.SELECTION_MENU_SPACING);
@@ -30,6 +32,10 @@ public class SelectionMenuView extends UIPanel{
 
         g2d.setColor(UIColors.LIGHT_MENU_BACKGROUND);
         g2d.fillRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
+
+        g2d.setColor(UIColors.LIGHT_MENU_BORDER);
+        g2d.setStroke(NORMAL);
+        g2d.drawRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
 
         g2d.setFont(Fonts.GLOOCK(20f));
         g2d.setColor(UIColors.LABEL_LIGHT);

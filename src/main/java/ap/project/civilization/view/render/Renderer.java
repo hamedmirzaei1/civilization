@@ -41,9 +41,6 @@ public class Renderer implements Renderable{
         uiRenderer.render(g2d, camera);
     }
 
-    public void setController(GameController controller) {
-        uiRenderer.setController(controller);
-    }
 
     public HexRenderer getHexRenderer() {
         return hexRenderer;
