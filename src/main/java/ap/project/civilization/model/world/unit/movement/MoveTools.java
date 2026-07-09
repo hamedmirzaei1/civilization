@@ -9,11 +9,17 @@ import ap.project.civilization.view.util.ui.ViewConstants;
 public class MoveTools {
     private static final int NORMAL_SPEED = 2;
 
-    public static void moveToHex(Unit unit, Hex targetHex, HexManager hexManager, UnitManager unitManager) {
-        if(!targetHex.isMovable()) return;
+    public static boolean moveOneHex(Unit unit, Hex targetHex, HexManager hexManager, UnitManager unitManager) {
+        if(!targetHex.isMovable()) return false;
+
+        boolean isNeighbor = false;
+        for(Hex hex : FogOfWar.neighbors(unit.getCurrentHex(), hexManager)) {
+            if(hex.equals(targetHex)) isNeighbor = true;
+        }
+        if(!isNeighbor) return false;
 
         int slot = Slot.findEmptySlot(targetHex, unitManager);
-        if(slot == -1) return;
+        if(slot == -1) return false;
         Slot.releaseSlot(unit.getSlotNumber(), unit.getCurrentHex(), unitManager);
         unit.setSlotNumber(slot);
 
@@ -22,6 +28,8 @@ public class MoveTools {
 
         unit.getMovement().setTarget(targetHex, targetX, targetY);
         applyVelocity(unit, targetX, targetY, NORMAL_SPEED);
+
+        return true;
     }
 
     private static void applyVelocity(Unit unit, double targetX, double targetY, double speed) {
@@ -53,13 +61,6 @@ public class MoveTools {
         double targetY = getTargetY(unit.getCurrentHex(), unit.getSlotNumber(), hexManager);
         unit.getMovement().setTarget(null, targetX, targetY);
         applyVelocity(unit, targetX, targetY, speed);
-    }
-
-    public static void setNeighborsMovable(Unit unit, boolean movable) {
-        if(unit.getCurrentHex() == null) return;
-        for(Hex h : FogOfWar.neighbors(unit.getCurrentHex(), HexManager.getInstance())) {
-            h.setMovable(movable);
-        }
     }
 
     public static int getSpeed() {

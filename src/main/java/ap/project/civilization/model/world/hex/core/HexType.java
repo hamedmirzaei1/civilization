@@ -7,12 +7,14 @@ import ap.project.civilization.view.util.game.GameColors;
 import java.awt.*;
 import java.util.Set;
 
+import static ap.project.civilization.model.util.ModelConstants.*;
+
 public enum HexType implements SelectableType {
-    FOREST(GameColors.FOREST_TERRAIN, "Forest", Set.of(Resource.WOOD), 3),
-    PLAIN(GameColors.PLAIN_TERRAIN, "Plain", Set.of(Resource.FOOD), 1),
-    MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.STONE, Resource.IRON), 4),
-    LAWN(GameColors.LAWN_TERRAIN, "Lawn", Set.of(Resource.FOOD), 2),
-    TOWN_HALL(GameColors.TOWN_HALL, "Town Hall", Set.of(), 0);
+    FOREST(GameColors.FOREST_TERRAIN, "Forest", Set.of(Resource.WOOD), FOREST_MOVE_COST),
+    PLAIN(GameColors.PLAIN_TERRAIN, "Plain", Set.of(Resource.FOOD), PLAIN_MOVE_COST),
+    MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.STONE, Resource.IRON), MOUNTAIN_MOVE_COST),
+    LAWN(GameColors.LAWN_TERRAIN, "Lawn", Set.of(Resource.FOOD), LAWN_MOVE_COST),
+    TOWN_HALL(GameColors.TOWN_HALL, "Town Hall", Set.of(), TOWN_HALL_MOVE_COST);
 
     private final Color color;
     private final String displayName;

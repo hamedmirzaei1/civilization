@@ -1,7 +1,9 @@
 package ap.project.civilization.model.world.unit.core;
 
+import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.unit.UnitManager;
+import ap.project.civilization.model.world.unit.movement.Move;
 import ap.project.civilization.model.world.unit.movement.MovementComponent;
 import ap.project.civilization.model.world.unit.movement.Slot;
 import ap.project.civilization.model.world.unit.movement.FogOfWar;
@@ -17,8 +19,14 @@ public abstract class Unit {
 
     int slotNumber;
 
-    public abstract void getFocus();
-    public abstract void getApproach(Hex hex);
+    public void getFocus() {
+        Move.setNeighborsMovable(this);
+    }
+
+    public void getApproach(Hex selectedHex) {
+        Move.MoveToHex(this, selectedHex, HexManager.getInstance(), UnitManager.getInstance());
+        Move.setNeighborsUnmovable(this);
+    }
 
     public Unit(Hex currentHex, UnitType unitType, double x, double y) {
         this.currentHex = currentHex;
@@ -75,5 +83,13 @@ public abstract class Unit {
 
     public int getAp() {
         return ap;
+    }
+
+    public void reduceAP(int amount) {
+        if(ap - amount < 0) throw new IllegalArgumentException("negative ap for unit");
+        ap -= amount;
+    }
+    public void reviveAP() {
+        ap = type.getMaxAP();
     }
 }
