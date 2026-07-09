@@ -2,8 +2,7 @@ package ap.project.civilization.model.ui.menuproviders;
 
 import ap.project.civilization.model.ui.MenuAction;
 import ap.project.civilization.model.ui.MenuModel;
-import ap.project.civilization.model.world.hex.Hex;
-import ap.project.civilization.model.world.terrain.Terrain;
+import ap.project.civilization.model.world.hex.core.Hex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ public class HexMenuProvider implements MenuProvider<Hex> {
     @Override
     public MenuModel createMenu(Hex hex) {
         List<String> details = new ArrayList<>();
-        details.add(((Terrain)hex).getTerrainType().name());
+        details.add(hex.getType().getDisplayName());
 
         List<MenuAction> actions = new ArrayList<>();
         actions.add(new MenuAction("close", () -> {

@@ -1,6 +1,6 @@
 package ap.project.civilization.model.world.unit.movement;
 
-import ap.project.civilization.model.world.hex.Hex;
+import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.unit.core.Unit;
 

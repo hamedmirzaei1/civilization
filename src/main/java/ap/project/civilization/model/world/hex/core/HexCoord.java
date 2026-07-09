@@ -1,4 +1,4 @@
-package ap.project.civilization.model.world.hex;
+package ap.project.civilization.model.world.hex.core;
 
 public class HexCoord {
     private final int q;

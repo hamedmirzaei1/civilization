@@ -1,8 +1,8 @@
 package ap.project.civilization.view.render.hex;
 
 import ap.project.civilization.model.GameModel;
-import ap.project.civilization.model.world.hex.Hex;
-import ap.project.civilization.model.world.hex.HexCoord;
+import ap.project.civilization.model.world.hex.core.Hex;
+import ap.project.civilization.model.world.hex.core.HexCoord;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.Renderable;

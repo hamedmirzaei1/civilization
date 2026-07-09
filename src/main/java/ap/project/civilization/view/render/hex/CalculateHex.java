@@ -1,6 +1,6 @@
 package ap.project.civilization.view.render.hex;
 
-import ap.project.civilization.model.world.hex.HexCoord;
+import ap.project.civilization.model.world.hex.core.HexCoord;
 
 import java.awt.geom.Path2D;
 

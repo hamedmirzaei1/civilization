@@ -1,8 +1,9 @@
-package ap.project.civilization.model.world.terrain;
+package ap.project.civilization.model.world.hex.terrain;
 
-import ap.project.civilization.model.world.hex.Hex;
-import ap.project.civilization.model.world.hex.HexCoord;
+import ap.project.civilization.model.world.hex.core.Hex;
+import ap.project.civilization.model.world.hex.core.HexCoord;
 import ap.project.civilization.model.world.hex.HexManager;
+import ap.project.civilization.model.world.hex.core.HexType;
 import ap.project.civilization.model.world.unit.movement.FogOfWar;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,7 +23,7 @@ public class TerrainSpawn {
             for (int j = 0; j < number; j++) {
                 if(i == townHall.getQ() && j == townHall.getR()) continue;
 
-                TerrainType randomTerrain = TerrainType.values()[ThreadLocalRandom.current().nextInt(TerrainType.values().length)];
+                HexType randomTerrain = HexType.values()[ThreadLocalRandom.current().nextInt(HexType.values().length-1)];
                 hexManager.putHex(i, j, new Terrain(new HexCoord(i, j), randomTerrain));
             }
         }

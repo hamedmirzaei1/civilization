@@ -12,7 +12,7 @@ public class UnitMenuProvider implements MenuProvider<Unit> {
     @Override
     public MenuModel createMenu(Unit unit) {
         List<String> details = new ArrayList<>();
-        details.add(unit.getType().name());
+        details.add(unit.getType().getDisplayName());
 
         List<MenuAction> actions = new ArrayList<>();
 

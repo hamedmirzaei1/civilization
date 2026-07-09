@@ -2,7 +2,7 @@ package ap.project.civilization.view.render.unit;
 
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.world.unit.core.Unit;
-import ap.project.civilization.model.world.unit.core.UnitManager;
+import ap.project.civilization.model.world.unit.UnitManager;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.Renderable;
 import ap.project.civilization.view.render.hex.HexRenderer;

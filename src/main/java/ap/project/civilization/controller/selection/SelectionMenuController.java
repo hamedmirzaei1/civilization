@@ -1,6 +1,6 @@
 package ap.project.civilization.controller.selection;
 
-import ap.project.civilization.model.world.hex.Hex;
+import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.ui.menuproviders.HexMenuProvider;
 import ap.project.civilization.model.ui.MenuModel;
 import ap.project.civilization.model.ui.menuproviders.UnitMenuProvider;

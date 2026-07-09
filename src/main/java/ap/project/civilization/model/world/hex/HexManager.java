@@ -1,6 +1,8 @@
 package ap.project.civilization.model.world.hex;
 
-import ap.project.civilization.model.world.terrain.TerrainSpawn;
+import ap.project.civilization.model.world.hex.core.Hex;
+import ap.project.civilization.model.world.hex.core.HexCoord;
+import ap.project.civilization.model.world.hex.terrain.TerrainSpawn;
 import ap.project.civilization.model.util.ModelConstants;
 
 import java.awt.geom.Point2D;

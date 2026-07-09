@@ -1,10 +1,8 @@
 package ap.project.civilization.view.render.hex;
 
-import ap.project.civilization.model.world.hex.Hex;
-import ap.project.civilization.model.world.terrain.Terrain;
-import ap.project.civilization.model.world.terrain.TownHall;
+import ap.project.civilization.model.world.hex.core.Hex;
+import ap.project.civilization.model.world.hex.core.HexType;
 import ap.project.civilization.view.util.game.AssetManager;
-import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
 import java.awt.geom.Path2D;
@@ -14,36 +12,21 @@ public class DrawHex {
     public static void draw(Graphics2D g2d, Path2D.Double outlineHex, Path2D.Double hexShape, Hex hex, double nx, double ny, int hexSize) {
         g2d.translate(nx, ny);
 
-        if(hex.isUnlock()) {
-            g2d.setColor(GameColors.UNLOCK_REGION_BORDER);
-            g2d.fill(outlineHex);
-        } else {
-            g2d.setColor(Color.DARK_GRAY);
-            g2d.fill(outlineHex);
-        }
-        if(hex.isSelected()) {
-            g2d.setColor(GameColors.SELECTED_BORDER);
-            g2d.fill(outlineHex);
-        }
-        if(hex.isMovable()) {
-            g2d.setColor(GameColors.MOVABLE_BORDER);
-            g2d.fill(outlineHex);
-        }
+        g2d.setColor(DrawHexLogic.borderColor(hex));
+        g2d.fill(outlineHex);
 
         g2d.setStroke(stroke);
         g2d.setColor(Color.BLACK);
         g2d.draw(outlineHex);
 
-        if((hex instanceof Terrain) && hex.isVisible()) {
-            g2d.setColor(((Terrain) hex).getTerrainType().getColor());
+        if(hex.isVisible()) {
+            g2d.setColor(hex.getType().getColor());
             g2d.fill(hexShape);
 
             drawResource(g2d, hex, hexSize);
         }
 
-        if(hex instanceof TownHall) {
-            g2d.setColor(GameColors.TOWN_HALL);
-            g2d.fill(hexShape);
+        if(hex.getType() ==  HexType.TOWN_HALL) {
             int offset = -(int)(hexSize * 0.75);
             g2d.drawImage(AssetManager.get("TOWN_HALL"), offset, offset, null);
         }
@@ -57,7 +40,7 @@ public class DrawHex {
         int drawY = 0;
         String asset = "";
 
-        switch (((Terrain) hex).getTerrainType()) {
+        switch (hex.getType()) {
             case MOUNTAIN:
                 drawX -= hexSize * 0.8;
                 drawY -= hexSize * 0.8;

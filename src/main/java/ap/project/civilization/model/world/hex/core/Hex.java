@@ -1,4 +1,4 @@
-package ap.project.civilization.model.world.hex;
+package ap.project.civilization.model.world.hex.core;
 
 public abstract class Hex {
     private final HexCoord coordinate;
@@ -7,17 +7,18 @@ public abstract class Hex {
     private boolean selected;
     private boolean movable;
 
-    public Hex(HexCoord coordinate) {
+    private HexType type;
+
+    public Hex(HexCoord coordinate, HexType type) {
         this.coordinate = coordinate;
+        this.type = type;
+
         visible = false;
         unlock = false;
         selected = false;
         movable = false;
     }
 
-    public HexCoord getCoordinate() {
-        return coordinate;
-    }
     public int getQ() {
         return coordinate.getQ();
     }
@@ -53,5 +54,9 @@ public abstract class Hex {
     }
     public void setMovable(boolean movable) {
         this.movable = movable;
+    }
+
+    public HexType getType() {
+        return type;
     }
 }

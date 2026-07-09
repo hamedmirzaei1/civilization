@@ -1,7 +1,10 @@
-package ap.project.civilization.model.world.unit.core;
+package ap.project.civilization.model.world.unit;
 
-import ap.project.civilization.model.world.hex.Hex;
+import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.HexManager;
+import ap.project.civilization.model.world.unit.core.Unit;
+import ap.project.civilization.model.world.unit.core.UnitFactory;
+import ap.project.civilization.model.world.unit.core.UnitType;
 import ap.project.civilization.model.world.unit.movement.Direction;
 import ap.project.civilization.model.world.unit.movement.FogOfWar;
 import ap.project.civilization.model.world.unit.movement.UnitMovementUpdate;
