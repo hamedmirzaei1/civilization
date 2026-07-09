@@ -19,5 +19,12 @@ public final class ModelConstants {
     public static final int MAX_TERRAIN_RESOURCE = 100;
     public static final int MIN_TERRAIN_RESOURCE = 30;
 
+    public static final int LUMBER_MILl_RATE = 7;
+    public static final int STONE_MINE_RATE = 4;
+    public static final int IRON_MINE_RATE = 3;
+    public static final int FARM_RATE = 3;
+    public static final int STABLE_RATE = 3;
+
+
 
 }

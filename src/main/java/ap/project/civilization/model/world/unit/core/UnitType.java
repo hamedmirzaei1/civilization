@@ -1,6 +1,6 @@
 package ap.project.civilization.model.world.unit.core;
 
-import ap.project.civilization.model.SelectableType;
+import ap.project.civilization.model.world.SelectableType;
 import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.unit.units.BorderExpander;
