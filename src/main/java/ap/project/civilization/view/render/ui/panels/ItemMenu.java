@@ -37,14 +37,17 @@ public class ItemMenu extends UIPanel{
         g2d.setStroke(NORMAL);
         g2d.drawRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
 
-        g2d.setFont(Fonts.GLOOCK(20f));
+        g2d.setFont(Fonts.GLOOCK(25f));
         g2d.setColor(UIColors.LABEL_LIGHT);
         int margin = g2d.getFontMetrics().getAscent() - g2d.getFontMetrics().getDescent();
 
         int i=1;
         for(String s : menuModel.getDetails()) {
+            if(i > 1) g2d.setFont(Fonts.GLOOCK(18f));
             int stringWidth = g2d.getFontMetrics().stringWidth(s);
-            g2d.drawString(s, bounds.x + bounds.width/2 - stringWidth/2, bounds.y + margin*i + padding);
+            g2d.drawString(s,
+                    bounds.x + bounds.width/2 - stringWidth/2,
+                    bounds.y + (margin*i+spacing*(i-1)) + padding);
             i++;
         }
     }

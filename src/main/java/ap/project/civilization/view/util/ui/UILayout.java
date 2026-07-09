@@ -5,7 +5,7 @@ import java.awt.*;
 public final class UILayout {
     public static int SIDE_MARGIN = 20;
     public static int SELECTION_MENU_PADDING = 20;
-    public static int SELECTION_MENU_SPACING = 10;
+    public static int SELECTION_MENU_SPACING = 15;
 
     public static Rectangle selectionMenuBounds(int windowWidth, int windowHeight) {
         return new Rectangle(

@@ -23,8 +23,9 @@ public class TerrainFactory {
 
         for(Resource resource : Resource.values()) {
             if(terrain.getType().hasResource(resource)) {
-                terrain.getInventory().add(resource,
-                        ThreadLocalRandom.current().nextInt(1, ModelConstants.MAXIMUM_TERRAIN_RESOURCE));
+                terrain.getInventory().add(resource, ThreadLocalRandom.current().nextInt(
+                        ModelConstants.MIN_TERRAIN_RESOURCE,
+                        ModelConstants.MAX_TERRAIN_RESOURCE));
             }
 
         }
