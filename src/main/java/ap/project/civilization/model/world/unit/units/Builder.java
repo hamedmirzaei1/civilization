@@ -11,7 +11,7 @@ import ap.project.civilization.model.util.ModelConstants;
 public class Builder extends Unit {
 
     public Builder(Hex currentHex, double x, double y) {
-        super(currentHex, UnitType.BUILDER, ModelConstants.BUILDER_AP, ModelConstants.BUILDER_AP, x, y);
+        super(currentHex, UnitType.BUILDER, x, y);
     }
 
     @Override

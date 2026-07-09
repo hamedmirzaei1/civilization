@@ -12,7 +12,7 @@ import ap.project.civilization.model.util.ModelConstants;
 public class Explorer extends Unit {
 
     public Explorer(Hex location, double x, double y) {
-        super(location, UnitType.EXPLORER, ModelConstants.EXPLORER_AP, ModelConstants.EXPLORER_AP, x, y);
+        super(location, UnitType.EXPLORER, x, y);
     }
 
 

@@ -11,7 +11,7 @@ import static ap.project.civilization.model.util.ModelConstants.BORDER_EXPANDER_
 
 public class BorderExpander extends Unit {
     public BorderExpander(Hex currentHex, double x, double y) {
-        super(currentHex, UnitType.BORDER_EXPANDER, BORDER_EXPANDER_AP, BORDER_EXPANDER_AP, x, y);
+        super(currentHex, UnitType.BORDER_EXPANDER, x, y);
     }
 
     @Override

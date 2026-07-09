@@ -9,7 +9,6 @@ import ap.project.civilization.model.world.unit.movement.FogOfWar;
 public abstract class Unit {
     private final UnitType type;
 
-    private final int maxAP;
     private int ap;
 
     private final MovementComponent movement;
@@ -21,11 +20,10 @@ public abstract class Unit {
     public abstract void getFocus();
     public abstract void getApproach(Hex hex);
 
-    public Unit(Hex currentHex, UnitType unitType, int ap, int maxAP, double x, double y) {
+    public Unit(Hex currentHex, UnitType unitType, double x, double y) {
         this.currentHex = currentHex;
         this.type = unitType;
-        this.ap = ap;
-        this.maxAP = maxAP;
+        this.ap = unitType.getMaxAP();
 
         selected = false;
 
@@ -73,5 +71,9 @@ public abstract class Unit {
 
     public void setSlotNumber(int slotNumber) {
         this.slotNumber = slotNumber;
+    }
+
+    public int getAp() {
+        return ap;
     }
 }

@@ -8,20 +8,22 @@ import java.awt.*;
 import java.util.Set;
 
 public enum HexType implements SelectableType {
-    FOREST(GameColors.FOREST_TERRAIN, "Forest", Set.of(Resource.WOOD)),
-    PLAIN(GameColors.PLAIN_TERRAIN, "Plain", Set.of(Resource.FOOD)),
-    MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.STONE, Resource.IRON)),
-    LAWN(GameColors.LAWN_TERRAIN, "Lawn", Set.of(Resource.FOOD)),
-    TOWN_HALL(GameColors.TOWN_HALL, "Town Hall", Set.of());
+    FOREST(GameColors.FOREST_TERRAIN, "Forest", Set.of(Resource.WOOD), 3),
+    PLAIN(GameColors.PLAIN_TERRAIN, "Plain", Set.of(Resource.FOOD), 1),
+    MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.STONE, Resource.IRON), 4),
+    LAWN(GameColors.LAWN_TERRAIN, "Lawn", Set.of(Resource.FOOD), 2),
+    TOWN_HALL(GameColors.TOWN_HALL, "Town Hall", Set.of(), 0);
 
     private final Color color;
     private final String displayName;
     private final Set<Resource> resources;
+    private final int moveCost;
 
-    HexType(Color color, String displayName, Set<Resource> resources) {
+    HexType(Color color, String displayName, Set<Resource> resources, int moveCost) {
         this.color = color;
         this.displayName = displayName;
         this.resources = resources;
+        this.moveCost = moveCost;
     }
 
     public Color getColor() {
@@ -42,5 +44,9 @@ public enum HexType implements SelectableType {
             if(r == resource) return true;
         }
         return false;
+    }
+
+    public int getMoveCost() {
+        return moveCost;
     }
 }

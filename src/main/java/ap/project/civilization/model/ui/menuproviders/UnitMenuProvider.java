@@ -14,6 +14,8 @@ public class UnitMenuProvider implements MenuProvider<Unit> {
         List<String> details = new ArrayList<>();
         details.add(unit.getType().getDisplayName());
 
+        details.add("ap:  " + unit.getAp() + " of  " + unit.getType().getMaxAP());
+
         List<MenuAction> actions = new ArrayList<>();
 
         return new MenuModel(details, actions);
