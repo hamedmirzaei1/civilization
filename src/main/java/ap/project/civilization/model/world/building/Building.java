@@ -1,21 +1,21 @@
 package ap.project.civilization.model.world.building;
 
-import ap.project.civilization.model.world.hex.terrain.Terrain;
+import ap.project.civilization.model.world.hex.core.Hex;
 
-public abstract class Building {
+public class Building {
     private final BuildingType type;
-    private final Terrain terrain;
+    private final Hex hex;
 
-    public Building(BuildingType type, Terrain terrain) {
+    public Building(BuildingType type, Hex hex) {
         this.type = type;
-        this.terrain = terrain;
+        this.hex = hex;
     }
 
     public BuildingType getType() {
         return type;
     }
 
-    public Terrain getTerrain() {
-        return terrain;
+    public Hex getHex() {
+        return hex;
     }
 }

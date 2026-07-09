@@ -1,4 +1,4 @@
-package ap.project.civilization.model.world.hex.core;
+package ap.project.civilization.model.world.hex.hexes;
 
 import ap.project.civilization.model.world.SelectableType;
 import ap.project.civilization.model.world.resource.Resource;

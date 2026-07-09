@@ -1,7 +1,7 @@
 package ap.project.civilization.view.render.hex;
 
 import ap.project.civilization.model.world.hex.core.Hex;
-import ap.project.civilization.model.world.hex.core.HexType;
+import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.view.util.game.AssetManager;
 
 import java.awt.*;

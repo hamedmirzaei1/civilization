@@ -1,7 +1,8 @@
 package ap.project.civilization.model.world.building;
 
-import ap.project.civilization.model.world.hex.terrain.Terrain;
-import ap.project.civilization.model.world.hex.terrain.TownHall;
+import ap.project.civilization.model.world.hex.hexes.Terrain;
+import ap.project.civilization.model.world.hex.hexes.TownHall;
+import ap.project.civilization.model.world.resource.Inventory;
 
 public class ProductionBuilding extends Building {
     private boolean active;
@@ -15,8 +16,9 @@ public class ProductionBuilding extends Building {
     }
 
     public void produce() {
-        if(getTerrain().getInventory().Contains(getType().getResource()) &&
-                getTerrain().getInventory().remove(getType().getResource(), productionRate)) {
+        Inventory inventory = ((Terrain)getHex()).getInventory();
+        if(inventory.Contains(getType().getResource()) &&
+                inventory.remove(getType().getResource(), productionRate)) {
             TownHall.getInstance().getWarehouse().add(getType().getResource(), productionRate);
         }
     }

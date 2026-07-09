@@ -12,6 +12,7 @@ public enum BuildingType {
     FARM("Farm", Resource.FOOD, FARM_RATE),
     STABLE("Stable", Resource.FOOD, STABLE_RATE),
 
+    TOWN_HALL("Town Hall Building", null, 0),
     TOWN("Town", null, 0);
 
 

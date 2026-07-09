@@ -1,5 +1,8 @@
 package ap.project.civilization.model.world.hex.core;
 
+import ap.project.civilization.model.world.building.Building;
+import ap.project.civilization.model.world.hex.hexes.HexType;
+
 public abstract class Hex {
     private final HexCoord coordinate;
     private boolean visible;
@@ -7,7 +10,8 @@ public abstract class Hex {
     private boolean selected;
     private boolean movable;
 
-    private HexType type;
+    private final HexType type;
+    private Building building;
 
     public Hex(HexCoord coordinate, HexType type) {
         this.coordinate = coordinate;
@@ -58,5 +62,14 @@ public abstract class Hex {
 
     public HexType getType() {
         return type;
+    }
+
+    public Building getBuilding() {
+        if(building == null) throw new IllegalStateException("No building is constructed for this terrain");
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 }

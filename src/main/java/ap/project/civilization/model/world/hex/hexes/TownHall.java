@@ -1,9 +1,8 @@
-package ap.project.civilization.model.world.hex.terrain;
+package ap.project.civilization.model.world.hex.hexes;
 
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.core.HexCoord;
 import ap.project.civilization.model.util.ModelConstants;
-import ap.project.civilization.model.world.hex.core.HexType;
 import ap.project.civilization.model.world.resource.Warehouse;
 
 public class TownHall extends Hex {
