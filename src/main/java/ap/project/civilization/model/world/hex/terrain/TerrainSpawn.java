@@ -15,7 +15,7 @@ public class TerrainSpawn {
         this.hexManager = hexManager;
     }
     public void createTerrain(int number) {
-        TownHall townHall = new TownHall();
+        TownHall townHall = TownHall.getInstance();
         hexManager.putHex(townHall.getQ(), townHall.getR(), townHall);
         hexManager.setTownHall(townHall);
 

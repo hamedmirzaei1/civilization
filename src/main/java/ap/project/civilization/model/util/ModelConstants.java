@@ -8,4 +8,6 @@ public final class ModelConstants {
     public static final int BORDER_EXPANDER_AP = 10;
     public static final int BUILDER_AP = 10;
 
+    public static final int TOWN_HALL_WAREHOUSE_CAP = 20;
+
 }

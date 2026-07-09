@@ -16,14 +16,25 @@ public class Inventory {
         return resources.get(resource);
     }
 
-    public void add(Resource resource, int amount) {
-        if(amount < 1) return;
+    public boolean add(Resource resource, int amount) {
+        if(amount < 1)  {
+            throw new IllegalArgumentException("negative amount of resource");
+        }
         resources.put(resource, get(resource) + amount);
+        return true;
     }
 
     public boolean remove(Resource resource, int amount) {
+        if(amount < 1)  {
+            throw new IllegalArgumentException("negative amount of resource");
+        }
+
         if(get(resource) < amount) return false;
         resources.put(resource, get(resource) - amount);
         return true;
+    }
+
+    public boolean Contains(Resource resource) {
+        return (get(resource) != 0);
     }
 }
