@@ -10,4 +10,6 @@ public final class ModelConstants {
 
     public static final int TOWN_HALL_WAREHOUSE_CAP = 20;
 
+    public static final int MAXIMUM_TERRAIN_RESOURCE = 100;
+
 }

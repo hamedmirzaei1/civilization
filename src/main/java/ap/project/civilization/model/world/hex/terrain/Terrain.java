@@ -6,17 +6,17 @@ import ap.project.civilization.model.world.hex.core.HexType;
 import ap.project.civilization.model.world.resource.Inventory;
 
 public class Terrain extends Hex {
+    private final Inventory inventory;
 
-    private Inventory resources;
     public Terrain(HexCoord coordinate, HexType type) {
         super(coordinate, type);
 
         setVisible(false);
 
-        resources = new Inventory();
+        inventory = new Inventory();
     }
 
-    public Inventory getResources() {
-        return resources;
+    public Inventory getInventory() {
+        return inventory;
     }
 }

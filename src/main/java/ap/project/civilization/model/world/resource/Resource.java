@@ -6,7 +6,7 @@ public enum Resource {
     STONE("Stone"),
     IRON("Iron");
 
-    private String displayName;
+    private final String displayName;
 
     Resource(String displayName) {
         this.displayName = displayName;
