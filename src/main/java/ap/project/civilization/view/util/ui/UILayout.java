@@ -7,6 +7,7 @@ public final class UILayout {
     public static int SELECTION_MENU_PADDING = 20;
     public static int SELECTION_MENU_SPACING = 15;
 
+
     public static Rectangle selectionMenuBounds(int windowWidth, int windowHeight) {
         return new Rectangle(
                 SIDE_MARGIN,
@@ -15,5 +16,4 @@ public final class UILayout {
                 (int) (windowHeight * 0.3 - (SIDE_MARGIN))
         );
     }
-
 }

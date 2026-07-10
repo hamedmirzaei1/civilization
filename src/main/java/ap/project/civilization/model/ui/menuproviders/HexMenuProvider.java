@@ -3,6 +3,7 @@ package ap.project.civilization.model.ui.menuproviders;
 import ap.project.civilization.model.ui.MenuAction;
 import ap.project.civilization.model.ui.MenuModel;
 import ap.project.civilization.model.world.hex.core.Hex;
+import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.resource.Resource;
 
@@ -18,6 +19,10 @@ public class HexMenuProvider implements MenuProvider<Hex> {
         if(hex.isVisible()) {
 
             details.add(hex.getType().getDisplayName());
+
+            if(hex.hasBuilding() && hex.getType() != HexType.TOWN_HALL) {
+                details.add("with " + hex.getBuilding().getType().getDisplayName());
+            }
 
             String resourceText = "";
             boolean firstTime = true;
