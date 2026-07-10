@@ -1,15 +1,22 @@
 package ap.project.civilization.model.world.hex.core;
 
+import ap.project.civilization.model.world.building.BuildingFactory;
+import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.hex.hexes.HexType;
+import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
+import ap.project.civilization.model.world.unit.movement.Direction;
+import ap.project.civilization.model.world.unit.movement.FogOfWar;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TerrainSpawn {
     private final HexFactory hexFactory;
+    private final HexManager hexManager;
 
     public TerrainSpawn(HexManager hexManager) {
+        this.hexManager = hexManager;
         hexFactory = new HexFactory(hexManager);
     }
 
@@ -27,5 +34,7 @@ public class TerrainSpawn {
         }
 
         hexFactory.setTownHall();
+        Terrain terrain = (Terrain) FogOfWar.getNearHex(townHall, Direction.UP_RIGHT, hexManager);
+        BuildingFactory.createProductionBuilding(terrain, BuildingType.FIELD);
     }
 }

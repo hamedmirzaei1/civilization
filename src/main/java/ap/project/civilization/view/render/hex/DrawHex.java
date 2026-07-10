@@ -23,12 +23,11 @@ public class DrawHex {
             g2d.setColor(hex.getType().getColor());
             g2d.fill(hexShape);
 
+            if(hex.hasBuilding()) {
+                int offset = -(int)(hexSize * 0.75);
+                g2d.drawImage(hex.getBuilding().getType().getAsset(), offset, offset, null);
+            }
             drawResource(g2d, hex, hexSize);
-        }
-
-        if(hex.getType() ==  HexType.TOWN_HALL) {
-            int offset = -(int)(hexSize * 0.75);
-            g2d.drawImage(AssetManager.get("TOWN_HALL"), offset, offset, null);
         }
 
 
@@ -42,13 +41,12 @@ public class DrawHex {
 
         switch (hex.getType()) {
             case MOUNTAIN:
-                drawX -= hexSize * 0.8;
-                drawY -= hexSize * 0.8;
+                drawX -= hexSize * 0.6;
                 asset = "ROCK";
                 g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
 
-                drawX = 0;
-                drawY = 0;
+                drawX = (int)(hexSize*0.2);
+                drawY = (int)(-hexSize*0.3);
                 asset = "IRON";
                 g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
                 break;

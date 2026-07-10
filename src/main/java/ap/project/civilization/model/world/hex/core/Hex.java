@@ -68,6 +68,9 @@ public abstract class Hex {
         if(building == null) throw new IllegalStateException("No building is constructed for this terrain");
         return building;
     }
+    public boolean hasBuilding() {
+        return building != null;
+    }
 
     public void setBuilding(Building building) {
         this.building = building;

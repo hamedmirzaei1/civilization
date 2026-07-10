@@ -1,6 +1,8 @@
 package ap.project.civilization.model.world.hex.hexes;
 
 import ap.project.civilization.model.world.SelectableType;
+import ap.project.civilization.model.world.building.BuildingType;
+import ap.project.civilization.model.world.building.BuildingType.*;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.view.util.game.GameColors;
 

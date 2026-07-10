@@ -6,7 +6,7 @@ import ap.project.civilization.model.world.building.BuildingType;
 import java.util.Set;
 
 public enum Resource {
-    FOOD("Food", Set.of(BuildingType.FARM, BuildingType.STABLE)),
+    FOOD("Food", Set.of(BuildingType.FIELD, BuildingType.STABLE)),
     WOOD("Wood", Set.of(BuildingType.LUMBER_MILL)),
     STONE("Stone", Set.of(BuildingType.STONE_MINE)),
     IRON("Iron", Set.of(BuildingType.IRON_MINE));

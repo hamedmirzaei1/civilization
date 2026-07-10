@@ -18,6 +18,7 @@ public final class AssetManager {
     private AssetManager() { }
     static {
         updateScale((int)ViewConstants.HEX_BASE_SIZE);
+
     }
 
     public static void loadAll() throws IOException {
@@ -28,6 +29,15 @@ public final class AssetManager {
         load("/sprites/iron.png", "IRON");
 
         load("/sprites/town-hall.png", "TOWN_HALL");
+        load("/sprites/lumber-mill.png", "LUMBER_MILL");
+        load("/sprites/field-2.png", "FIELD");
+        load("/sprites/stable.png", "STABLE");
+        load("/sprites/stone-mine.png", "STONE_MINE");
+        load("/sprites/iron-mine.png", "IRON_MINE");
+
+
+
+
 
     }
 
@@ -45,11 +55,18 @@ public final class AssetManager {
 
         sprites.put("TREE", scale(originals.get("TREE"), hexSize, hexSize));
         sprites.put("ROCK", scale(originals.get("ROCK"), hexSize, hexSize));
-        sprites.put("FARM", scale(originals.get("FARM"), (int)(hexSize * 0.6), (int)(hexSize * 0.6)));
+        sprites.put("FARM", scale(originals.get("FARM"), (int)(hexSize * 0.5), (int)(hexSize * 0.5)));
         sprites.put("COW", scale(originals.get("COW"), (int)(hexSize * 0.6), (int)(hexSize * 0.6)));
         sprites.put("IRON", scale(originals.get("IRON"), (int)(hexSize * 0.5), (int)(hexSize * 0.5)));
 
         sprites.put("TOWN_HALL", scale(originals.get("TOWN_HALL"), (int)(hexSize * 1.5), (int)(hexSize * 1.5)));
+        sprites.put("LUMBER_MILL", scale(originals.get("LUMBER_MILL"), (int)(hexSize), (int)(hexSize)));
+        sprites.put("FIELD", scale(originals.get("FIELD"), (int)(hexSize * 0.8), (int)(hexSize)));
+        sprites.put("STABLE", scale(originals.get("STABLE"), (int)(hexSize * 0.9), (int)(hexSize * 0.9)));
+        sprites.put("STONE_MINE", scale(originals.get("STONE_MINE"), (int)(hexSize), (int)(hexSize)));
+        sprites.put("IRON_MINE", scale(originals.get("IRON_MINE"), (int)(hexSize), (int)(hexSize)));
+
+
     }
 
     private static BufferedImage scale(BufferedImage src, int width, int height) {
