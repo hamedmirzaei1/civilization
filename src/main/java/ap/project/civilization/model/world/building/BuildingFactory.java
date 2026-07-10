@@ -5,7 +5,9 @@ import ap.project.civilization.model.world.hex.hexes.TownHall;
 
 public class BuildingFactory {
 
-    public static void createProductionBuilding(Terrain terrain, BuildingType type) {
+    public static void createProductionBuilding(Terrain terrain) {
+        BuildingType type = terrain.getType().getBuildingType();
+
         if(type == BuildingType.TOWN_HALL || type == BuildingType.TOWN) {
             throw new IllegalArgumentException("town or townhall can't be built");
         }
