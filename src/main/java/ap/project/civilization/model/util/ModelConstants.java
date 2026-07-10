@@ -7,6 +7,8 @@ public final class ModelConstants {
     public static final int EXPLORER_AP = 16;
     public static final int BORDER_EXPANDER_AP = 8;
     public static final int BUILDER_AP = 6;
+    public static final int WORKER_AP = 12;
+
 
     public static final int FOREST_MOVE_COST = 3;
     public static final int MOUNTAIN_MOVE_COST = 4;

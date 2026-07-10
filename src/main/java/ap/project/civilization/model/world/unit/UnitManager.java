@@ -68,6 +68,8 @@ public class UnitManager {
         unitFactory.createUnit(UnitType.BUILDER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.BUILDER, hexManager.getTownHall());
         unitFactory.createUnit(UnitType.EXPLORER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.WORKER, hexManager.getTownHall());
+        unitFactory.createUnit(UnitType.WORKER, hexManager.getTownHall());
 
         unitFactory.createUnit(UnitType.BORDER_EXPANDER,
                 FogOfWar.getNearHex(hexManager.getTownHall(), Direction.RIGHT, hexManager));

@@ -20,5 +20,7 @@ public final class GameColors {
     public static final Color EXPLORER_UNIT = new Color(39, 96, 152);
     public static final Color BORDER_EXPANDER_UNIT = UNLOCK_REGION_BORDER;
     public static final Color BUILDER_UNIT = new Color(166, 1, 1);
+    public static final Color WORKER_UNIT = new Color(27, 25, 25);
+
 
 }

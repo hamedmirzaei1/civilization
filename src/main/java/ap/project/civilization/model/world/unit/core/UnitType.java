@@ -6,6 +6,7 @@ import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.unit.units.BorderExpander;
 import ap.project.civilization.model.world.unit.units.Builder;
 import ap.project.civilization.model.world.unit.units.Explorer;
+import ap.project.civilization.model.world.unit.units.Worker;
 import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
@@ -28,8 +29,12 @@ public enum UnitType implements SelectableType {
         public Unit create(Hex hex, double x, double y) {
             return new Builder(hex, x, y);
         }
+    },
+    WORKER(GameColors.WORKER_UNIT, "W", "Worker", ModelConstants.WORKER_AP) {
+        public Unit create(Hex hex, double x, double y) {
+            return new Worker(hex, x, y);
+        }
     };
-//    WORKER;
 
     public abstract Unit create(Hex hex, double x, double y);
 

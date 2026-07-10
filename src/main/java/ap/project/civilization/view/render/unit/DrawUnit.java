@@ -20,15 +20,6 @@ public class DrawUnit {
         g2d.setColor(unit.getType().getColor());
         g2d.fillOval((int)(screenX-r), (int)(screenY-r), (int)unitSize, (int)unitSize);
 
-        if(unit.isSelected()) {
-            g2d.setColor(GameColors.SELECTED_BORDER);
-            g2d.setStroke(SELECTED);
-        } else {
-            g2d.setColor(Color.WHITE);
-            g2d.setStroke(NORMAL);
-        }
-        g2d.drawOval((int)(screenX-r), (int)(screenY-r), (int)unitSize, (int)unitSize);
-
 
         g2d.setColor(Color.WHITE);
 
@@ -40,5 +31,15 @@ public class DrawUnit {
         g2d.drawString(unit.getType().getText(),
                 (int)(screenX-textWidth/2),
                 (int)(screenY + textHeight/2));
+
+
+        if(unit.isSelected()) {
+            g2d.setColor(GameColors.SELECTED_BORDER);
+            g2d.setStroke(SELECTED);
+        } else {
+            g2d.setColor(Color.WHITE);
+            g2d.setStroke(NORMAL);
+        }
+        g2d.drawOval((int)(screenX-r), (int)(screenY-r), (int)unitSize, (int)unitSize);
     }
 }
