@@ -1,6 +1,5 @@
 package ap.project.civilization.model.world.hex.hexes;
 
-import ap.project.civilization.model.world.SelectableType;
 import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.view.util.game.GameColors;
@@ -11,7 +10,7 @@ import java.util.Set;
 import static ap.project.civilization.model.util.ModelConstants.*;
 import static ap.project.civilization.model.world.building.BuildingType.*;
 
-public enum HexType implements SelectableType {
+public enum HexType {
     FOREST(GameColors.FOREST_TERRAIN, "Forest", Set.of(Resource.WOOD), FOREST_MOVE_COST, LUMBER_MILL),
     PLAIN(GameColors.PLAIN_TERRAIN, "Plain", Set.of(Resource.FOOD), PLAIN_MOVE_COST, STABLE),
     MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.STONE, Resource.IRON), MOUNTAIN_MOVE_COST, STONE_MINE),
@@ -37,7 +36,6 @@ public enum HexType implements SelectableType {
         return color;
     }
 
-    @Override
     public String getDisplayName() {
         return displayName;
     }

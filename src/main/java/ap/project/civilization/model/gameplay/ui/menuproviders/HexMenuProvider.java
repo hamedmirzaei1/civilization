@@ -1,7 +1,7 @@
-package ap.project.civilization.model.ui.menuproviders;
+package ap.project.civilization.model.gameplay.ui.menuproviders;
 
-import ap.project.civilization.model.ui.MenuAction;
-import ap.project.civilization.model.ui.MenuModel;
+import ap.project.civilization.model.gameplay.ui.MenuAction;
+import ap.project.civilization.model.gameplay.ui.MenuModel;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.hex.hexes.Terrain;

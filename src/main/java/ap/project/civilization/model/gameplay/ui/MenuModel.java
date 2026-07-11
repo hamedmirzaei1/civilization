@@ -1,4 +1,4 @@
-package ap.project.civilization.model.ui;
+package ap.project.civilization.model.gameplay.ui;
 
 import java.util.List;
 

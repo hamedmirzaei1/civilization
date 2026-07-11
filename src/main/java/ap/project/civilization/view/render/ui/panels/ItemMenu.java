@@ -1,7 +1,7 @@
 package ap.project.civilization.view.render.ui.panels;
 
-import ap.project.civilization.model.ui.MenuAction;
-import ap.project.civilization.model.ui.MenuModel;
+import ap.project.civilization.model.gameplay.ui.MenuAction;
+import ap.project.civilization.model.gameplay.ui.MenuModel;
 import ap.project.civilization.view.render.ui.components.UIButton;
 import ap.project.civilization.view.render.ui.components.UILabel;
 import ap.project.civilization.view.util.ui.UILayout;

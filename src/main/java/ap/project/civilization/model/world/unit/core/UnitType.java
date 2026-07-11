@@ -1,6 +1,5 @@
 package ap.project.civilization.model.world.unit.core;
 
-import ap.project.civilization.model.world.SelectableType;
 import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.unit.units.BorderExpander;
@@ -11,7 +10,7 @@ import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
 
-public enum UnitType implements SelectableType {
+public enum UnitType {
     EXPLORER(GameColors.EXPLORER_UNIT, "E", "Explorer", ModelConstants.EXPLORER_AP) {
         @Override
         public Unit create(Hex hex, double x, double y) {
@@ -58,7 +57,6 @@ public enum UnitType implements SelectableType {
         return text;
     }
 
-    @Override
     public String getDisplayName() {
         return displayName;
     }

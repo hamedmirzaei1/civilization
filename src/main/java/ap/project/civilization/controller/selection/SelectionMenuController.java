@@ -1,9 +1,9 @@
 package ap.project.civilization.controller.selection;
 
 import ap.project.civilization.model.world.hex.core.Hex;
-import ap.project.civilization.model.ui.menuproviders.HexMenuProvider;
-import ap.project.civilization.model.ui.MenuModel;
-import ap.project.civilization.model.ui.menuproviders.UnitMenuProvider;
+import ap.project.civilization.model.gameplay.ui.menuproviders.HexMenuProvider;
+import ap.project.civilization.model.gameplay.ui.MenuModel;
+import ap.project.civilization.model.gameplay.ui.menuproviders.UnitMenuProvider;
 import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.view.render.ui.components.UIButton;
 import ap.project.civilization.view.render.ui.panels.ItemMenu;
