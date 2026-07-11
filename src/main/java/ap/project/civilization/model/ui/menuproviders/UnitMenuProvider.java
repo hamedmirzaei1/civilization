@@ -40,6 +40,7 @@ public class UnitMenuProvider implements MenuProvider<Unit> {
                 @Override
                 public void run() {
                     worker.setEmployed(false);
+                    System.out.println("fired");
                 };
             });
         }
@@ -48,6 +49,7 @@ public class UnitMenuProvider implements MenuProvider<Unit> {
                 @Override
                 public void run() {
                     worker.setEmployed(true);
+                    System.out.println("employed");
                 }
             });
         }

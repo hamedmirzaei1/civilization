@@ -5,7 +5,10 @@ import ap.project.civilization.model.ui.menuproviders.HexMenuProvider;
 import ap.project.civilization.model.ui.MenuModel;
 import ap.project.civilization.model.ui.menuproviders.UnitMenuProvider;
 import ap.project.civilization.model.world.unit.core.Unit;
+import ap.project.civilization.view.render.ui.components.UIButton;
 import ap.project.civilization.view.render.ui.panels.ItemMenu;
+
+import java.awt.event.MouseEvent;
 
 public class SelectionMenuController {
     private final ItemMenu menu;
@@ -30,5 +33,18 @@ public class SelectionMenuController {
     }
     public void hideMenu() {
         menu.setMenu(null);
+    }
+
+    public boolean handleButtons(MouseEvent e) {
+        if(!menu.isVisible()) return false;
+
+        for(UIButton btn : menu.getButtons()) {
+            if(btn.contains(e.getX(), e.getY())) {
+                btn.click();
+                hideMenu();
+                return true;
+            }
+        }
+        return false;
     }
 }

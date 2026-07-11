@@ -7,6 +7,7 @@ import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
+import ap.project.civilization.view.render.ui.components.UIButton;
 
 import java.awt.event.MouseEvent;
 
@@ -30,13 +31,18 @@ public class SelectionController {
 
         selectionMode = false;
 
-        menuController = new SelectionMenuController(view.getRenderer().getUiRenderer().getSelectionMenu());
+        menuController = new SelectionMenuController(view.getRenderer().getUiRenderer().getItemMenu());
     }
 
     public void select(MouseEvent e) {
         double worldX = camera.screenToWorldX(e.getX());
         double worldY = camera.screenToWorldY(e.getY());
         HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
+
+        if(menuController.handleButtons(e)) {
+            unSelect();
+            return;
+        }
 
         lastSelectedHex = selectedHex;
         selectedHex = model.getHexManager().getHex(coord);
@@ -46,8 +52,6 @@ public class SelectionController {
               selectedUnit.getApproach(selectedHex);
             }
             unSelect();
-            menuController.hideMenu();
-            selectionMode = false;
         }
         else {
             selectUnit(worldX, worldY);
@@ -65,7 +69,7 @@ public class SelectionController {
     }
 
     private void selectUnit(double x, double y) {
-        for(Unit unit : model.getUnitManager().getHexUnitData().get(selectedHex)) {  //todo: scale to 6 neighbors
+        for(Unit unit : model.getUnitManager().getHexUnitData().get(selectedHex)) {
             if(unit.getMovement().isMoving()) return;
 
             double dx = x - unit.getMovement().getX();
@@ -81,14 +85,22 @@ public class SelectionController {
     }
 
     public void unSelect() {
-        if(lastSelectedHex != null) lastSelectedHex.setSelected(false);
-        lastSelectedHex = null;
-        if(selectedUnit != null) selectedUnit.setSelected(false);
-        selectedUnit = null;
+        if(lastSelectedHex != null) {
+            lastSelectedHex.setSelected(false);
+            lastSelectedHex = null;
+        }
+        if(selectedHex != null) {
+            selectedHex.setSelected(false);
+            selectedHex = null;
+        }
+        if(selectedUnit != null) {
+            selectedUnit.setSelected(false);
+            selectedUnit = null;
+        }
+
+        selectionMode = false;
+        menuController.hideMenu();
     }
 
-    public boolean isSelectionMode() {
-        return selectionMode;
-    }
 
 }

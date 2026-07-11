@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class UIPanel {
     protected final Rectangle bounds;
-    protected boolean visible;
+    private boolean visible;
 
     protected final int padding;
     protected final int spacing;
@@ -17,12 +17,18 @@ public abstract class UIPanel {
         visible = false;
     }
 
-    public abstract void render(Graphics2D g2d);
+    public abstract void render(Graphics2D g2d, int panelWidth, int panelHeight);
+    public abstract void drawPanel(Graphics2D g2d);
+    public abstract void drawComponents(Graphics2D g2d);
 
     public void show() {
         visible = true;
     }
     public void hide() {
         visible = false;
+    }
+
+    public boolean isVisible() {
+        return visible;
     }
 }
