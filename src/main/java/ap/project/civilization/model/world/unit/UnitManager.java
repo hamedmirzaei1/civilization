@@ -63,6 +63,10 @@ public class UnitManager {
         units.add(unit);
         hexUnitData.get(hex).add(unit);
     }
+    public void consumeUnit(Unit unit) {
+        units.remove(unit);
+        hexUnitData.get(unit.getCurrentHex()).remove(unit);
+    }
 
     public void spawnUnits(HexManager hexManager) {
         unitFactory.createUnit(UnitType.BUILDER, hexManager.getTownHall());

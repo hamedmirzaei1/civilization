@@ -1,6 +1,8 @@
 package ap.project.civilization.view.render.unit;
 
 import ap.project.civilization.model.world.unit.core.Unit;
+import ap.project.civilization.model.world.unit.core.UnitType;
+import ap.project.civilization.model.world.unit.units.Worker;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.util.game.GameColors;
 import ap.project.civilization.view.util.ui.Fonts;
@@ -33,13 +35,19 @@ public class DrawUnit {
                 (int)(screenY + textHeight/2));
 
 
+        g2d.setColor(Color.WHITE);
+        g2d.setStroke(NORMAL);
+
+
+        if(unit.getType() == UnitType.WORKER && ((Worker)unit).isEmployed()) {
+            g2d.setColor(GameColors.MOVABLE_BORDER);
+            g2d.setStroke(SELECTED);
+        }
         if(unit.isSelected()) {
             g2d.setColor(GameColors.SELECTED_BORDER);
             g2d.setStroke(SELECTED);
-        } else {
-            g2d.setColor(Color.WHITE);
-            g2d.setStroke(NORMAL);
         }
+
         g2d.drawOval((int)(screenX-r), (int)(screenY-r), (int)unitSize, (int)unitSize);
     }
 }

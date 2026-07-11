@@ -32,9 +32,15 @@ public class Move {
     }
 
     public static void setNeighborsUnmovable(Unit unit) {
-       if(unit.getCurrentHex() == null) return;
-       for(Hex h : FogOfWar.neighbors(unit.getCurrentHex(), HexManager.getInstance())) {
+        if(unit.getCurrentHex() == null) return;
+        for(Hex h : FogOfWar.neighbors(unit.getCurrentHex(), HexManager.getInstance())) {
            h.setMovable(false);
-       }
+        }
+    }
+
+    public static void setAllUnmovable() {
+        for(Hex h : HexManager.getInstance().getHexes()) {
+            h.setMovable(false);
+        }
     }
 }

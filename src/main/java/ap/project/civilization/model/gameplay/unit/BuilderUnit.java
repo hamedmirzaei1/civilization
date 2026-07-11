@@ -35,4 +35,8 @@ public class BuilderUnit extends GeneralUnit {
         return true;
     }
 
+    @Override
+    protected void addDetails(Unit unit, List<String> details) {
+        details.add("charges left: " + ((Builder)unit).getCharges());
+    }
 }

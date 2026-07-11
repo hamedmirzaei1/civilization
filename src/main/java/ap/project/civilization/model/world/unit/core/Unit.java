@@ -92,4 +92,8 @@ public abstract class Unit {
     public void reviveAP() {
         ap = type.getMaxAP();
     }
+
+    protected void setAP(int ap) {
+        this.ap = ap;
+    }
 }

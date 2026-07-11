@@ -7,7 +7,6 @@ import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.Camera;
 import ap.project.civilization.view.render.hex.CalculateHex;
-import ap.project.civilization.view.render.ui.components.UIButton;
 
 import java.awt.event.MouseEvent;
 

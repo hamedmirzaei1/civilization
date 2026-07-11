@@ -15,6 +15,7 @@ public class HexMenuProvider implements MenuProvider<Hex> {
     @Override
     public MenuModel createMenu(Hex hex) {
         List<String> details = new ArrayList<>();
+        List<MenuAction> actions = new ArrayList<>();
 
         if(hex.isVisible()) {
 
@@ -23,6 +24,7 @@ public class HexMenuProvider implements MenuProvider<Hex> {
             if(hex.hasBuilding() && hex.getType() != HexType.TOWN_HALL) {
                 details.add("with " + hex.getBuilding().getType().getDisplayName());
             }
+
 
             String resourceText = "";
             boolean firstTime = true;
@@ -37,9 +39,10 @@ public class HexMenuProvider implements MenuProvider<Hex> {
             details.add("Unknown");
         }
 
-        List<MenuAction> actions = new ArrayList<>();
-        actions.add(new MenuAction("close", () -> {
-        }));
+        if(!hex.hasBuilding()){
+            details.add(" you can build " + hex.getType().getBuildingType().getDisplayName());
+            details.add(hex.getType().getBuildingType().getRequiredAP() + " ap");
+        }
 
         return new MenuModel(details, actions);
     }
