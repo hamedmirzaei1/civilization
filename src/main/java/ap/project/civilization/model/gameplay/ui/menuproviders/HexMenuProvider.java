@@ -2,6 +2,7 @@ package ap.project.civilization.model.gameplay.ui.menuproviders;
 
 import ap.project.civilization.model.gameplay.ui.MenuAction;
 import ap.project.civilization.model.gameplay.ui.MenuModel;
+import ap.project.civilization.model.world.building.ProductionBuilding;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
@@ -22,7 +23,9 @@ public class HexMenuProvider implements MenuProvider<Hex> {
             details.add(hex.getType().getDisplayName());
 
             if(hex.hasBuilding() && hex.getType() != HexType.TOWN_HALL) {
+                ProductionBuilding building = (ProductionBuilding) hex.getBuilding();
                 details.add("with " + hex.getBuilding().getType().getDisplayName());
+                details.add("workers  " + building.getWorkerNumbers() + " of  "  + building.getCapacity());
             }
 
 
@@ -35,14 +38,16 @@ public class HexMenuProvider implements MenuProvider<Hex> {
             }
             if (!resourceText.isEmpty()) details.add(resourceText);
 
+            if(!hex.hasBuilding()){
+                details.add(" you can build " + hex.getType().getBuildingType().getDisplayName());
+                details.add(hex.getType().getBuildingType().getRequiredAP() + " ap");
+            }
+
         } else {
             details.add("Unknown");
         }
 
-        if(!hex.hasBuilding()){
-            details.add(" you can build " + hex.getType().getBuildingType().getDisplayName());
-            details.add(hex.getType().getBuildingType().getRequiredAP() + " ap");
-        }
+
 
         return new MenuModel(details, actions);
     }

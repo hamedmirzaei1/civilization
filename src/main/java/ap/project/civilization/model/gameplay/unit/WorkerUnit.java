@@ -3,6 +3,7 @@ package ap.project.civilization.model.gameplay.unit;
 import ap.project.civilization.model.gameplay.ui.MenuAction;
 import ap.project.civilization.model.gameplay.ui.MenuModel;
 import ap.project.civilization.model.world.building.BuildingType;
+import ap.project.civilization.model.world.building.ProductionBuilding;
 import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.model.world.unit.units.Worker;
 
@@ -20,11 +21,21 @@ public class WorkerUnit extends GeneralUnit {
         details.add(unit.getType().getDisplayName());
         details.add("ap:  " + unit.getAp() + " of  " + worker.getMaxAP());
 
+
+
         if(canBeEmployed(worker)) {
-            actions.add(new MenuAction("Employ", () -> worker.setEmployed(true)));
+            ProductionBuilding building = (ProductionBuilding) unit.getCurrentHex().getBuilding();
+            actions.add(new MenuAction("Employ", () -> {
+            worker.setEmployed(true);
+            building.addWorker();
+            }));
         }
         if(worker.isEmployed()){
-            actions.add(new MenuAction("Un-employ", () -> worker.setEmployed(false)));
+            ProductionBuilding building = (ProductionBuilding) unit.getCurrentHex().getBuilding();
+            actions.add(new MenuAction("Un-employ", () -> {
+                worker.setEmployed(false);
+                building.removeWorker();
+            }));
         }
 
         return new MenuModel(details, actions);
@@ -35,6 +46,8 @@ public class WorkerUnit extends GeneralUnit {
         if(!worker.getCurrentHex().hasBuilding()) return false;
         if(worker.getCurrentHex().getBuilding().getType() == BuildingType.TOWN_HALL ||
                 worker.getCurrentHex().getBuilding().getType() == BuildingType.TOWN) return false;
+        ProductionBuilding building = (ProductionBuilding) worker.getCurrentHex().getBuilding();
+        if(!building.hasCapacity()) return false;
         return true;
     }
 

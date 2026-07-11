@@ -29,6 +29,7 @@ public class BuilderUnit extends GeneralUnit {
     }
 
     private boolean canBuild(Builder builder, Hex hex) {
+        if(!hex.isUnlock()) return false;
         if(hex.hasBuilding()) return false;
         if(builder.getAp() < hex.getType().getBuildingType().getRequiredAP()) return false;
 

@@ -18,11 +18,12 @@ public class ItemMenu extends UIPanel{
 
     private final List<UIButton> buttons = new ArrayList<>();
     private final List<UILabel> labels = new ArrayList<>();
+    private int items = 0;
 
     private final Stroke NORMAL = new BasicStroke(4);
 
     public ItemMenu() {
-        super(UILayout.selectionMenuBounds(0, 0),
+        super(UILayout.selectionMenuBounds(0, 0, 0),
                 UILayout.SELECTION_MENU_PADDING,
                 UILayout.SELECTION_MENU_SPACING);
 
@@ -48,9 +49,9 @@ public class ItemMenu extends UIPanel{
     }
 
     public void updateLayout(int panelWidth, int panelHeight) {
-        if(bounds.equals(UILayout.selectionMenuBounds(panelWidth, panelHeight))) return;
+        if(bounds.equals(UILayout.selectionMenuBounds(panelWidth, panelHeight, items))) return;
 
-        bounds.setBounds(UILayout.selectionMenuBounds(panelWidth, panelHeight));
+        bounds.setBounds(UILayout.selectionMenuBounds(panelWidth, panelHeight, items));
         createComponents();
     }
 
@@ -79,6 +80,7 @@ public class ItemMenu extends UIPanel{
     private void createComponents() {
         buttons.clear();
         labels.clear();
+        items = 0;
 
         int y = bounds.y + padding;
 
@@ -87,6 +89,7 @@ public class ItemMenu extends UIPanel{
             Rectangle r = new Rectangle(bounds.x, y, bounds.width, 20);
             labels.add(new UILabel(r, menuModel.getDetails().get(i), size));
             y += 20 + spacing;
+            items++;
         }
 
         y += spacing;
@@ -95,6 +98,7 @@ public class ItemMenu extends UIPanel{
             Rectangle r = new Rectangle(bounds.x + 30, y, bounds.width - 60, 35);
             buttons.add(new UIButton(r, action.getText(), action.getAction()));
             y += 35 + spacing;
+            items++;
         }
 
     }

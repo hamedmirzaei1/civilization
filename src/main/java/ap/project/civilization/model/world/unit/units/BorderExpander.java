@@ -13,10 +13,4 @@ public class BorderExpander extends Unit {
         super(currentHex, UnitType.BORDER_EXPANDER, x, y);
     }
 
-    @Override
-    public void arrive() {
-        super.arrive();
-        if(!getCurrentHex().isUnlock()) getCurrentHex().setUnlock(true);
-    }
-
 }

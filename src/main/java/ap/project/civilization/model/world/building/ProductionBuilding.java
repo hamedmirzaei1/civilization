@@ -8,11 +8,16 @@ public class ProductionBuilding extends Building {
     private boolean active;
     private int productionRate;
 
+    private int workerNumbers;
+    private int capacity;
     public ProductionBuilding(BuildingType type, Terrain terrain) {
         super(type, terrain);
 
         active = false;
         this.productionRate = type.getProducingRate();
+
+        workerNumbers = 0;
+        capacity = 3;
     }
 
     public void produce() {
@@ -21,5 +26,25 @@ public class ProductionBuilding extends Building {
                 inventory.remove(getType().getResource(), productionRate)) {
             TownHall.getInstance().getWarehouse().add(getType().getResource(), productionRate);
         }
+    }
+
+    public void addWorker() {
+        if(workerNumbers+1 > capacity) throw new IllegalStateException("not enough capacity in building");
+        workerNumbers++;
+    }
+    public void removeWorker() {
+        if(workerNumbers-1 < 0) throw new IllegalStateException("there's no worker to remove from building");
+        workerNumbers--;
+    }
+    public boolean hasCapacity() {
+        return workerNumbers < capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getWorkerNumbers() {
+        return workerNumbers;
     }
 }
