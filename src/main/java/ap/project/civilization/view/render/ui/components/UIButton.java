@@ -6,9 +6,9 @@ import ap.project.civilization.view.util.ui.UIColors;
 import java.awt.*;
 
 public class UIButton {
-    private Rectangle bounds;
-    private String text;
-    private Runnable action;
+    private final Rectangle bounds;
+    private final String text;
+    private final Runnable action;
 
     public UIButton(Rectangle bounds, String text, Runnable action) {
         this.bounds = bounds;
