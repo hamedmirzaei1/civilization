@@ -29,4 +29,11 @@ public class FogOfWar {
     public static void makeUnitHexVisible(Unit unit) {
         if(!unit.getCurrentHex().isVisible()) unit.getCurrentHex().setVisible(true);
     }
+
+    public static void makeNeighborsVisible(Hex hex) {
+        for(Hex h : neighbors(hex, HexManager.getInstance())) {
+            h.setVisible(true);
+        }
+        hex.setVisible(true);
+    }
 }

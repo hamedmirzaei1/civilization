@@ -5,6 +5,7 @@ import ap.project.civilization.model.world.building.BuildingFactory;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.unit.core.Unit;
+import ap.project.civilization.model.world.unit.movement.FogOfWar;
 import ap.project.civilization.model.world.unit.units.Builder;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class BuilderUnit extends GeneralUnit {
             public void run() {
                 BuildingFactory.createProductionBuilding((Terrain) hex);
                 builder.resolveBuild(hex.getBuilding());
+                FogOfWar.makeNeighborsVisible(unit.getCurrentHex());
             }
         };
 

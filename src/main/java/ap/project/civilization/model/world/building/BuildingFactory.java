@@ -2,6 +2,7 @@ package ap.project.civilization.model.world.building;
 
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
+import ap.project.civilization.model.world.unit.movement.FogOfWar;
 
 public class BuildingFactory {
 

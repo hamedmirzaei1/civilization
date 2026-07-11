@@ -18,9 +18,7 @@ public class Explorer extends Unit {
     @Override
     public void arrive() {
         super.arrive();
-        for(Hex hex : FogOfWar.neighbors(getCurrentHex(), HexManager.getInstance())) {
-            hex.setVisible(true);
-        }
+        FogOfWar.makeNeighborsVisible(getCurrentHex());
     }
 
 }
