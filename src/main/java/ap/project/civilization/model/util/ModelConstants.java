@@ -27,6 +27,12 @@ public final class ModelConstants {
     public static final int FARM_RATE = 3;
     public static final int STABLE_RATE = 3;
 
+    public static final int LUMBER_MILl_AP = 4;
+    public static final int STONE_MINE_AP = 6;
+    public static final int IRON_MINE_AP = 7;
+    public static final int FARM_AP = 4;
+    public static final int STABLE_AP = 3;
+    public static final int TOWN_AP = 7;
 
 
 }
