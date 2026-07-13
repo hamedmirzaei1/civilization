@@ -1,20 +1,21 @@
 package ap.project.civilization.controller.input;
 
-import ap.project.civilization.controller.selection.SelectionController;
+import ap.project.civilization.controller.ui.SelectionController;
+import ap.project.civilization.controller.ui.UIController;
+import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 
 import java.awt.event.*;
 
 public class MouseController implements MouseListener, MouseMotionListener, MouseWheelListener {
+    private final UIController uiController;
 
-    private final SelectionController selectionController;
-
-    public MouseController(GamePanel view, SelectionController selectionController) {
+    public MouseController(GamePanel view, GameModel model) {
         view.addMouseListener(this);
         view.addMouseMotionListener(this);
         view.addMouseWheelListener(this);
 
-        this.selectionController = selectionController;
+        uiController = new UIController(view, model);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class MouseController implements MouseListener, MouseMotionListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        selectionController.select(e);
+        uiController.onMouseClicked(e);
     }
 
     @Override
@@ -43,6 +44,5 @@ public class MouseController implements MouseListener, MouseMotionListener, Mous
 
     @Override
     public void mouseExited(MouseEvent e) {}
-
 
 }

@@ -1,4 +1,4 @@
-package ap.project.civilization.controller.selection;
+package ap.project.civilization.controller.ui;
 
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.model.world.hex.core.Hex;
@@ -22,26 +22,22 @@ public class SelectionController {
     private Hex selectedHex;
     private Hex lastSelectedHex;
 
-    private final SelectionMenuController menuController;
+    private final MenuController menuController;
 
-    public SelectionController(GameModel model, GamePanel view, Camera camera) {
+    public SelectionController(GameModel model, GamePanel view, Camera camera, MenuController menuController) {
         this.camera = camera;
         this.model = model;
 
         selectionMode = false;
 
-        menuController = new SelectionMenuController(view.getRenderer().getUiRenderer().getItemMenu());
+        this.menuController = menuController;
     }
 
-    public void select(MouseEvent e) {
+    public void handleClick(MouseEvent e) {
         double worldX = camera.screenToWorldX(e.getX());
         double worldY = camera.screenToWorldY(e.getY());
         HexCoord coord = CalculateHex.worldPixelToHex(worldX, worldY, HEX_BASE_SIZE);
 
-        if(menuController.handleButtons(e)) {
-            unSelect();
-            return;
-        }
 
         lastSelectedHex = selectedHex;
         selectedHex = model.getHexManager().getHex(coord);

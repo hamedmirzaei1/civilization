@@ -3,7 +3,6 @@ package ap.project.civilization.controller.core;
 import ap.project.civilization.controller.util.CameraController;
 import ap.project.civilization.controller.input.KeyboardController;
 import ap.project.civilization.controller.input.MouseController;
-import ap.project.civilization.controller.selection.SelectionController;
 import ap.project.civilization.model.GameModel;
 import ap.project.civilization.view.GamePanel;
 
@@ -12,10 +11,6 @@ public class GameController {
     private final GameModel model;
 
     private GameLoop gameLoop;
-
-    private KeyboardController keyboardController;
-    private MouseController mouseController;
-    private SelectionController selectionController;
 
     private CameraController cameraController;
 
@@ -38,9 +33,9 @@ public class GameController {
     }
 
     private void initController() {
-        selectionController = new SelectionController(model, view, view.getCamera());
-        mouseController = new MouseController(view, selectionController);
-        keyboardController = new KeyboardController(view);
+        MouseController mouseController = new MouseController(view, model);
+        KeyboardController keyboardController = new KeyboardController(view);
+
         cameraController = new CameraController(view.getCamera(),keyboardController);
 
         gameLoop = new GameLoop(this);
@@ -50,7 +45,4 @@ public class GameController {
         System.exit(0);
     }
 
-    public SelectionController getSelectionController() {
-        return selectionController;
-    }
 }

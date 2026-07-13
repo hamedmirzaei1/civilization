@@ -8,6 +8,8 @@ import ap.project.civilization.model.world.resource.Warehouse;
 public class TownHall extends Hex {
     private static TownHall instance;
 
+    private int unitCapacity = 50;
+
     public static TownHall getInstance() {
         if(instance == null) {
             instance = new TownHall();
@@ -27,5 +29,9 @@ public class TownHall extends Hex {
 
     public Warehouse getWarehouse() {
         return warehouse;
+    }
+
+    public int getUnitCapacity() {
+        return unitCapacity;
     }
 }

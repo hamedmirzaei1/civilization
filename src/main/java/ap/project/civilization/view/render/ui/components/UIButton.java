@@ -6,14 +6,18 @@ import ap.project.civilization.view.util.ui.UIColors;
 import java.awt.*;
 
 public class UIButton {
-    private final Rectangle bounds;
+    protected final Rectangle bounds;
     private final String text;
     private final Runnable action;
 
-    public UIButton(Rectangle bounds, String text, Runnable action) {
+    private boolean visible;
+
+    public UIButton(Rectangle bounds, String text, Runnable action, boolean visible) {
         this.bounds = bounds;
         this.text = text;
         this.action = action;
+
+        this.visible = visible;
     }
 
     public void render(Graphics2D g2d) {
@@ -35,8 +39,18 @@ public class UIButton {
     }
 
     public void click() {
-        if(action != null) {
+        if(action != null && visible) {
             action.run();
+            visible = false;
         }
+    }
+
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public String getText() {
+        return text;
     }
 }

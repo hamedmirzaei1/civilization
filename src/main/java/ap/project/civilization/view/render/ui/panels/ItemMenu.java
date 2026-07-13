@@ -96,7 +96,7 @@ public class ItemMenu extends UIPanel{
 
         for(MenuAction action : menuModel.getActions()) {
             Rectangle r = new Rectangle(bounds.x + 30, y, bounds.width - 60, 35);
-            buttons.add(new UIButton(r, action.getText(), action.getAction()));
+            buttons.add(new UIButton(r, action.getText(), action.getAction(), true));
             y += 35 + spacing;
             items++;
         }

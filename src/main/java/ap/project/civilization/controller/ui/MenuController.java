@@ -1,4 +1,4 @@
-package ap.project.civilization.controller.selection;
+package ap.project.civilization.controller.ui;
 
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.gameplay.ui.menuproviders.HexMenuProvider;
@@ -11,13 +11,13 @@ import ap.project.civilization.view.render.ui.panels.ItemMenu;
 
 import java.awt.event.MouseEvent;
 
-public class SelectionMenuController {
+public class MenuController {
     private final ItemMenu menu;
 
     private final HexMenuProvider hexProvider;
     private final UnitMenuProvider unitProvider;
 
-    public SelectionMenuController(ItemMenu menu) {
+    public MenuController(ItemMenu menu) {
         this.menu = menu;
 
         hexProvider = new HexMenuProvider();
@@ -37,16 +37,4 @@ public class SelectionMenuController {
         Move.setAllUnmovable();
     }
 
-    public boolean handleButtons(MouseEvent e) {
-        if(!menu.isVisible()) return false;
-
-        for(UIButton btn : menu.getButtons()) {
-            if(btn.contains(e.getX(), e.getY())) {
-                btn.click();
-                hideMenu();
-                return true;
-            }
-        }
-        return false;
-    }
 }
