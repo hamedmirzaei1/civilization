@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HexMenuProvider implements MenuProvider<Hex> {
+    private TownHallMenu townHallMenu = new TownHallMenu();
 
     @Override
     public MenuModel createMenu(Hex hex) {
@@ -21,6 +22,10 @@ public class HexMenuProvider implements MenuProvider<Hex> {
         if(hex.isVisible()) {
 
             details.add(hex.getType().getDisplayName());
+
+            if(hex.getType() == HexType.TOWN_HALL) {
+                return townHallMenu.create(details, actions);
+            }
 
             if(hex.hasBuilding() && hex.getType() != HexType.TOWN_HALL) {
                 ProductionBuilding building = (ProductionBuilding) hex.getBuilding();

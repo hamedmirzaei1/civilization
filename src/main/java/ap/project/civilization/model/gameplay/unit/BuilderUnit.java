@@ -1,7 +1,9 @@
 package ap.project.civilization.model.gameplay.unit;
 
 import ap.project.civilization.model.gameplay.ui.MenuAction;
+import ap.project.civilization.model.gamestate.Technology;
 import ap.project.civilization.model.world.building.BuildingFactory;
+import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.unit.core.Unit;
@@ -34,6 +36,10 @@ public class BuilderUnit extends GeneralUnit {
         if(!hex.isUnlock()) return false;
         if(hex.hasBuilding()) return false;
         if(builder.getAp() < hex.getType().getBuildingType().getRequiredAP()) return false;
+
+        if(hex.getType().getBuildingType() == BuildingType.STONE_MINE && !Technology.stoneMine.isUnlocked()) {
+            return false;
+        }
 
         return true;
     }

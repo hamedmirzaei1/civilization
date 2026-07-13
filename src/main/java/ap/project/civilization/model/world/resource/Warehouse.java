@@ -2,9 +2,11 @@ package ap.project.civilization.model.world.resource;
 
 public class Warehouse extends Inventory {
     private int capacity;
+    private int level;
 
     public Warehouse(int capacity) {
         this.capacity = capacity;
+        level = 0;
     }
 
     @Override
@@ -16,15 +18,21 @@ public class Warehouse extends Inventory {
         return true;
     }
 
-    public boolean upgrade(int level) {
+    public void upgrade() {
         switch (level) {
-            case 1:
+            case 0:
                 capacity *= 3;
-                return true;
-            case 2:
+                level++;
+                break;
+            case 1:
                 capacity *=2;
-                return true;
+                level++;
         }
-        return false;
+    }
+    public boolean isUpgradable() {
+        return level<2;
+    }
+    public int getLevel() {
+        return level;
     }
 }

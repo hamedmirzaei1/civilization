@@ -8,13 +8,13 @@ import ap.project.civilization.view.util.ui.ViewConstants;
 import java.awt.*;
 
 public class EndTurnButton extends UIButton {
-    private final Stroke NORMAL = new BasicStroke(8);
+    private final Stroke NORMAL = new BasicStroke(5);
     public EndTurnButton(Runnable action) {
 
         Rectangle r = new Rectangle((int)(ViewConstants.getWindowWidth() * 0.84),
-                (int)(ViewConstants.getWindowHeight() * 0.7),
+                (int)(ViewConstants.getWindowHeight() * 0.8),
                 ViewConstants.getWindowWidth()/8,
-                ViewConstants.getWindowWidth()/8);
+                ViewConstants.getWindowWidth()/16);
         super(r, "End Turn", action, true);
     }
 
@@ -22,10 +22,10 @@ public class EndTurnButton extends UIButton {
     public void render(Graphics2D g2d) {
         if(!isVisible()) return;
         g2d.setColor(UIColors.HOVERED_BUTTON);
-        g2d.fillOval(bounds.x, bounds.y, bounds.width, bounds.height);
+        g2d.fillRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
         g2d.setColor(Color.white);
         g2d.setStroke(NORMAL);
-        g2d.drawOval(bounds.x, bounds.y, bounds.width, bounds.height);
+        g2d.drawRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
 
         g2d.setColor(Color.WHITE);
         g2d.setFont(Fonts.GLOOCK(32f));
