@@ -35,4 +35,8 @@ public class Warehouse extends Inventory {
     public int getLevel() {
         return level;
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
 }

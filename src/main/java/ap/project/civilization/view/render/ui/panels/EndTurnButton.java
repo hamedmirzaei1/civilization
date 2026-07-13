@@ -22,10 +22,10 @@ public class EndTurnButton extends UIButton {
     public void render(Graphics2D g2d) {
         if(!isVisible()) return;
         g2d.setColor(UIColors.HOVERED_BUTTON);
-        g2d.fillRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
+        g2d.fillRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 30, 30);
         g2d.setColor(Color.white);
         g2d.setStroke(NORMAL);
-        g2d.drawRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
+        g2d.drawRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 30, 30);
 
         g2d.setColor(Color.WHITE);
         g2d.setFont(Fonts.GLOOCK(32f));

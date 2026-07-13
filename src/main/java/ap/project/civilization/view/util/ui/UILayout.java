@@ -12,9 +12,9 @@ public final class UILayout {
         int height = items * 55;
         return new Rectangle(
                 SIDE_MARGIN,
-                (int) (windowHeight - height - SIDE_MARGIN),
+                (windowHeight - height - SIDE_MARGIN),
                 (int) (windowWidth * 0.2),
-                (int) (height)
+                (height)
         );
     }
     public static Rectangle updatesPanelBounds(int windowWidth, int windowHeight, int items) {
@@ -24,6 +24,17 @@ public final class UILayout {
                 SIDE_MARGIN,
                 (int)(windowWidth * 0.2),
                 height
+        );
+    }
+
+    public static Rectangle resourcePanelBounds(int windowWidth, int windowHeight) {
+        int width = (int)(windowWidth * 0.6);
+        return new Rectangle(
+                windowWidth-width-SIDE_MARGIN,
+                SIDE_MARGIN,
+                width,
+                (int)(windowHeight*0.05)
+
         );
     }
 }
