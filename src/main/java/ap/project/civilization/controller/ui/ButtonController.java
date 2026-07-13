@@ -1,5 +1,6 @@
 package ap.project.civilization.controller.ui;
 
+import ap.project.civilization.model.gamestate.TurnState;
 import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.ui.components.UIButton;
 import ap.project.civilization.view.render.ui.panels.EndTurnButton;
@@ -26,6 +27,7 @@ public class ButtonController {
         if(endTurnButton.contains(e.getX(), e.getY())) {
             endTurnButton.click();
             selectionController.unSelect();
+            TurnState.getInstance().nextTurn();
             return true;
         }
 

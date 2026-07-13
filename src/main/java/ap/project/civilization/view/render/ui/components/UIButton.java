@@ -41,7 +41,6 @@ public class UIButton {
     public void click() {
         if(action != null && visible) {
             action.run();
-            visible = false;
         }
     }
 

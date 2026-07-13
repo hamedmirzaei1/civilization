@@ -41,7 +41,7 @@ public class UnitManager {
 
     public static UnitManager getInstance() {
         if(instance == null) {
-            instance = new UnitManager(HexManager.getInstance());
+            instance = new  UnitManager(HexManager.getInstance());
         }
         return instance;
     }
@@ -88,4 +88,9 @@ public class UnitManager {
     public HashMap<Hex, boolean[]> getHexSlots() {
         return hexSlots;
     }
+
+    public UnitFactory getUnitFactory() {
+        return unitFactory;
+    }
+
 }

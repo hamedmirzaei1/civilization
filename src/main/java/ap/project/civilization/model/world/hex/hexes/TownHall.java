@@ -34,4 +34,8 @@ public class TownHall extends Hex {
     public int getUnitCapacity() {
         return unitCapacity;
     }
+
+    public void addUnit() {
+        unitCapacity++;
+    }
 }
