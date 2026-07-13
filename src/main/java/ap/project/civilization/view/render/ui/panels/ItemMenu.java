@@ -20,7 +20,6 @@ public class ItemMenu extends UIPanel{
     private final List<UILabel> labels = new ArrayList<>();
     private int items = 0;
 
-    private final Stroke NORMAL = new BasicStroke(4);
 
     public ItemMenu() {
         super(UILayout.selectionMenuBounds(0, 0, 0),
@@ -42,13 +41,14 @@ public class ItemMenu extends UIPanel{
     @Override
     public void render(Graphics2D g2d, int panelWidth, int panelHeight) {
         if(!isVisible()) return;
-        updateLayout(panelWidth, panelHeight);
+        updatePanel(panelWidth, panelHeight);
 
         drawPanel(g2d);
         drawComponents(g2d);
     }
 
-    public void updateLayout(int panelWidth, int panelHeight) {
+    @Override
+    public void updatePanel(int panelWidth, int panelHeight) {
         if(bounds.equals(UILayout.selectionMenuBounds(panelWidth, panelHeight, items))) return;
 
         bounds.setBounds(UILayout.selectionMenuBounds(panelWidth, panelHeight, items));
@@ -56,15 +56,6 @@ public class ItemMenu extends UIPanel{
     }
 
 
-    @Override
-    public void drawPanel(Graphics2D g2d) {
-        g2d.setColor(UIColors.LIGHT_MENU_BACKGROUND);
-        g2d.fillRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
-
-        g2d.setColor(UIColors.LIGHT_MENU_BORDER);
-        g2d.setStroke(NORMAL);
-        g2d.drawRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10);
-    }
 
     @Override
     public void drawComponents(Graphics2D g2d) {

@@ -17,4 +17,13 @@ public final class UILayout {
                 (int) (height)
         );
     }
+    public static Rectangle updatesPanelBounds(int windowWidth, int windowHeight, int items) {
+        int height = items * 40;
+        return new Rectangle(
+                SIDE_MARGIN,
+                SIDE_MARGIN,
+                (int)(windowWidth * 0.2),
+                height
+        );
+    }
 }

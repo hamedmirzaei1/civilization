@@ -9,17 +9,18 @@ import ap.project.civilization.model.world.unit.movement.MoveTools;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.TreeMap;
 
 public class UnitFactory {
     private final UnitManager unitManager;
     private final HexManager hexManager;
 
-    private final HashMap<Integer, LinkedList<UnitType>> creatingQueue;
+    private final TreeMap<Integer, LinkedList<UnitType>> creatingQueue;
 
     public UnitFactory(UnitManager unitManager, HexManager hexManager) {
         this.unitManager = unitManager;
         this.hexManager = hexManager;
-        creatingQueue = new HashMap<>();
+        creatingQueue = new TreeMap<>();
         creatingQueue.put(1, new LinkedList<>());
     }
 
@@ -50,5 +51,9 @@ public class UnitFactory {
             }
         }
         creatingQueue.put(comingTurn, new LinkedList<>());
+    }
+
+    public TreeMap<Integer, LinkedList<UnitType>> getCreatingQueue() {
+        return creatingQueue;
     }
 }

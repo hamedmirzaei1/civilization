@@ -27,10 +27,12 @@ public class TownHallMenu {
             actions.add(new MenuAction("Upgrade Warehouse " + nextLvl, warehouse::upgrade));
         }
 
-        for(UnitType type : UnitType.values()) {
-            actions.add(new MenuAction("Create " + type.getDisplayName(), () -> {
-                unitFactory.addToQueue(type);
-            }));
+        if(TownHall.getInstance().hasCapacity()) {
+            for (UnitType type : UnitType.values()) {
+                actions.add(new MenuAction("Create " + type.getDisplayName(), () -> {
+                    unitFactory.addToQueue(type);
+                }));
+            }
         }
 
         if(!Technology.stoneMine.isUnlocked()) {

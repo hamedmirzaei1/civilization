@@ -4,6 +4,7 @@ import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.core.HexCoord;
 import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.resource.Warehouse;
+import ap.project.civilization.model.world.unit.UnitManager;
 
 public class TownHall extends Hex {
     private static TownHall instance;
@@ -31,8 +32,9 @@ public class TownHall extends Hex {
         return warehouse;
     }
 
-    public int getUnitCapacity() {
-        return unitCapacity;
+    public boolean hasCapacity() {
+        if(UnitManager.getInstance().getUnits().size() < unitCapacity) return true;
+        return false;
     }
 
     public void addUnit() {

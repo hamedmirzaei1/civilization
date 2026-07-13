@@ -13,6 +13,7 @@ public class GameController {
     private GameLoop gameLoop;
 
     private CameraController cameraController;
+    private MouseController mouseController;
 
     public GameController(GameModel model, GamePanel view) {
         this.model = model;
@@ -30,10 +31,11 @@ public class GameController {
         model.update();
         cameraController.update();
         view.repaint();
+        mouseController.getUiController().getHudController().update();
     }
 
     private void initController() {
-        MouseController mouseController = new MouseController(view, model);
+        mouseController = new MouseController(view, model);
         KeyboardController keyboardController = new KeyboardController(view);
 
         cameraController = new CameraController(view.getCamera(),keyboardController);

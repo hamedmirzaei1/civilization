@@ -11,12 +11,15 @@ public class UIController {
     private final SelectionController selectionController;
     private final MenuController menuController;
 
+    private final HUDController hudController;
+
     public UIController(GamePanel view, GameModel model) {
         ItemMenu itemMenu = view.getRenderer().getUiRenderer().getItemMenu();
         menuController = new MenuController(itemMenu);
 
         this.selectionController = new SelectionController(model, view, view.getCamera(), menuController);
         this.buttonController = new ButtonController(view, itemMenu, menuController, selectionController);
+        hudController = new HUDController(view);
     }
 
     public void onMouseClicked(MouseEvent e) {
@@ -25,5 +28,7 @@ public class UIController {
         selectionController.handleClick(e);
     }
 
-
+    public HUDController getHudController() {
+        return hudController;
+    }
 }

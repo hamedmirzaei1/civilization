@@ -45,4 +45,7 @@ public class MouseController implements MouseListener, MouseMotionListener, Mous
     @Override
     public void mouseExited(MouseEvent e) {}
 
+    public UIController getUiController() {
+        return uiController;
+    }
 }
