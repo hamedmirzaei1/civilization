@@ -2,6 +2,7 @@ package ap.project.civilization.view.navigation.panels;
 
 import ap.project.civilization.controller.core.GameController;
 import ap.project.civilization.view.GameFrame;
+import ap.project.civilization.view.navigation.components.ConfirmationDialog;
 import ap.project.civilization.view.navigation.components.MenuButton;
 import ap.project.civilization.view.util.ui.UIColors;
 
@@ -49,7 +50,10 @@ public class MenuPanel extends JPanel {
         });
         settingsButton.addActionListener(e -> gameFrame.changePage("SETTINGS"));
         exitButton.addActionListener(e -> {
-            controller.exitGame();
+            boolean answer = ConfirmationDialog.show(gameFrame, "Are you sure want to exit?");
+            if(answer) {
+                controller.exitGame();
+            }
         });
     }
 }
