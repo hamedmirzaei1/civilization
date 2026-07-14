@@ -25,7 +25,7 @@ public class HexFactory {
         hexManager.putHex(q, r, terrain);
 
         for(Resource resource : Resource.values()) {
-            if(terrain.getType().hasResource(resource)) {
+            if(terrain.getType().hasResource(terrain.getType(), resource)) {
                 terrain.getInventory().add(resource, ThreadLocalRandom.current().nextInt(
                         ModelConstants.MIN_TERRAIN_RESOURCE,
                         ModelConstants.MAX_TERRAIN_RESOURCE));

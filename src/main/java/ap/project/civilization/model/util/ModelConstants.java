@@ -38,5 +38,8 @@ public final class ModelConstants {
 
     public static final int FOOD_CONSUME_PER_UNIT = 2;
 
+    public static final double PLAIN_FOOD_RATE = 0.6;
+    public static final double IRON_RATE = 0.4;
+    public static final double LAWN_FOOD_RATE = 0.8;
 
 }

@@ -1,10 +1,12 @@
 package ap.project.civilization.model.world.hex.hexes;
 
+import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.view.util.game.GameColors;
 
 import java.awt.*;
+import java.util.Random;
 import java.util.Set;
 
 import static ap.project.civilization.model.util.ModelConstants.*;
@@ -44,9 +46,21 @@ public enum HexType {
         return resources;
     }
 
-    public boolean hasResource(Resource resource) {
+    public boolean hasResource(HexType hexType, Resource resource) {
+        Random random = new Random();
         for(Resource r : this.resources) {
-            if(r == resource) return true;
+            if(r == resource) {
+                if(r == Resource.FOOD && hexType == PLAIN) {
+                    return random.nextDouble() < PLAIN_FOOD_RATE;
+                }
+                if(r == Resource.IRON) {
+                    return random.nextDouble() < IRON_RATE;
+                }
+                if(r == Resource.FOOD && hexType == LAWN) {
+                    return random.nextDouble() < LAWN_FOOD_RATE;
+                }
+                return true;
+            }
         }
         return false;
     }
