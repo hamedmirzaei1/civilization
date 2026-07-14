@@ -1,11 +1,14 @@
 package ap.project.civilization.view.util.game;
 
+import ap.project.civilization.view.util.ui.ViewConstants;
+
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
 
 public class MusicPlayer {
     private Clip clip;
+    private int volume = ViewConstants.INIT_MUSIC_VOLUME;
 
     private String MUSIC_PATH = "/audio/aspose_bensound-prism.wav";
 
@@ -26,6 +29,8 @@ public class MusicPlayer {
             clip = AudioSystem.getClip();
             clip.open(audio);
 
+            applyVolume();
+
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
 
@@ -39,5 +44,30 @@ public class MusicPlayer {
             clip.stop();
             clip.close();
         }
+    }
+
+    public void setVolume(int percent) {
+        volume = percent;
+        if (clip == null) return;
+        applyVolume();
+    }
+
+    public void applyVolume() {
+        if (!clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) return;
+
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+        float min = gainControl.getMinimum();
+        float max = gainControl.getMaximum();
+
+        float gain;
+        if (volume == 0) {
+            gain = min;
+        } else {
+            gain = (float) (20.0 * Math.log10(volume / 100.0));
+            gain = Math.max(min, Math.min(max, gain));
+        }
+
+        gainControl.setValue(gain);
     }
 }

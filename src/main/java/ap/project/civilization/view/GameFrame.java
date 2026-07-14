@@ -30,7 +30,7 @@ public class GameFrame extends JFrame {
         cards = new JPanel(cardLayout);
 
         MenuPanel menuPanel = new MenuPanel(controller, this);
-        SettingsPanel settingsPanel = new SettingsPanel();
+        SettingsPanel settingsPanel = new SettingsPanel(this, view.getMusicPlayer());
 
         cards.add(menuPanel, "MENU");
         cards.add(settingsPanel, "SETTINGS");
