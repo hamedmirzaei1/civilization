@@ -6,7 +6,7 @@ public final class ModelConstants {
 
     public static final int EXPLORER_AP = 16;
     public static final int BORDER_EXPANDER_AP = 8;
-    public static final int BUILDER_AP = 20;
+    public static final int BUILDER_AP = 10;
     public static final int WORKER_AP = 12;
 
 
@@ -15,6 +15,8 @@ public final class ModelConstants {
     public static final int PLAIN_MOVE_COST = 1;
     public static final int LAWN_MOVE_COST = 2;
     public static final int TOWN_HALL_MOVE_COST = 1;
+
+    public static final int EXPANDING_COST_AP = 5;
 
     public static final int TOWN_HALL_WAREHOUSE_CAP = 20;
 
