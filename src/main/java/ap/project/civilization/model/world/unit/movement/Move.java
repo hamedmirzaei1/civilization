@@ -26,7 +26,9 @@ public class Move {
             if(h.getType().getMoveCost() > unit.getAp()) {
                 continue;
             }
-
+            if(!Slot.hasEmptySlot(h, UnitManager.getInstance())) {
+                continue;
+            }
             h.setMovable(true);
         }
     }

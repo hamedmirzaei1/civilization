@@ -18,8 +18,8 @@ public class MoveTools {
         }
         if(!isNeighbor) return false;
 
+        if(!Slot.hasEmptySlot(targetHex, unitManager)) return false;
         int slot = Slot.findEmptySlot(targetHex, unitManager);
-        if(slot == -1) return false;
         Slot.releaseSlot(unit.getSlotNumber(), unit.getCurrentHex(), unitManager);
         unit.setSlotNumber(slot);
 

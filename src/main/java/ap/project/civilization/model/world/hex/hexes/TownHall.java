@@ -10,6 +10,7 @@ public class TownHall extends Hex {
     private static TownHall instance;
 
     private int unitCapacity = 10;
+    private int unitNumbers = 5;
 
     public static TownHall getInstance() {
         if(instance == null) {
@@ -32,12 +33,17 @@ public class TownHall extends Hex {
         return warehouse;
     }
 
+    public void addUnit() {
+        unitNumbers++;
+    }
     public boolean hasCapacity() {
-        if(UnitManager.getInstance().getUnits().size() < unitCapacity) return true;
-        return false;
+        return unitNumbers < unitCapacity;
     }
 
     public int getUnitCapacity() {
         return unitCapacity;
+    }
+    public int getUnitNumbers() {
+        return unitNumbers;
     }
 }

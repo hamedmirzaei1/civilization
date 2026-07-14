@@ -25,7 +25,7 @@ public class Resources {
                     warehouse.getCapacity());
         }
 
-        details.add("Units: " + UnitManager.getInstance().getUnits().size() + " of " + TownHall.getInstance().getUnitCapacity());
+        details.add("Units: " + TownHall.getInstance().getUnitNumbers() + " of " + TownHall.getInstance().getUnitCapacity());
         int workers = 0;
         int builders = 0;
         int explorers = 0;

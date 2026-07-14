@@ -21,6 +21,7 @@ public class Updates {
             for(UnitType type : creatingQueue.get(i)) {
                 int turnLeft = type.getSpawningTime() - (TurnState.getInstance().getTurn() - i);
                 details.add("Creating " + type.getDisplayName());
+                if(turnLeft < 0) turnLeft = 0;
                 details.add(turnLeft + " turns left");
             }
         }

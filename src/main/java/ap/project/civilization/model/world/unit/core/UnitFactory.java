@@ -6,6 +6,7 @@ import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.unit.UnitManager;
 import ap.project.civilization.model.world.unit.movement.MoveTools;
+import ap.project.civilization.model.world.unit.movement.Slot;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,6 +36,7 @@ public class UnitFactory {
 
     public void addToQueue(UnitType type) {
         creatingQueue.get(TurnState.getInstance().getTurn()).add(type);
+        TownHall.getInstance().addUnit();
     }
 
     public void resolveTurn() {
@@ -43,6 +45,7 @@ public class UnitFactory {
             for (int i=0; i<creatingQueue.get(turn).size(); i++) {
                 UnitType type = creatingQueue.get(turn).get(i);
                 if(type.getSpawningTime() <= comingTurn-turn) {
+                    if(!Slot.hasEmptySlot(TownHall.getInstance(), unitManager)) continue;
                     createUnit(type, TownHall.getInstance());
                     creatingQueue.get(turn).remove(type);
                     i--;

@@ -47,7 +47,7 @@ public abstract class Unit {
 
     private void findSlot() {
         slotNumber = Slot.findEmptySlot(currentHex, UnitManager.getInstance());
-        if(slotNumber == -1) throw new IllegalStateException("there's no empty slot"); // todo : refactor architecture
+        if(slotNumber == -1) throw new IllegalStateException("there's no empty slot");
     }
 
     public Hex getCurrentHex() {

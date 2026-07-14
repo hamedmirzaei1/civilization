@@ -46,6 +46,16 @@ public class Slot {
         }
         return -1;
     }
+    public static boolean hasEmptySlot(Hex hex, UnitManager unitManager) {
+        for(int i = 0; i< ModelConstants.HEX_SLOT_NUMBER; i++) {
+            if(!unitManager.getHexSlots().get(hex)[i]) {
+                if(unitManager.getHexSlots().get(hex)[i] == false) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     private static void acquireSlot(int i, Hex hex, UnitManager unitManager) {
         unitManager.getHexSlots().get(hex)[i] = true;

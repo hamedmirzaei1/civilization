@@ -26,8 +26,8 @@ public class UIRenderer implements Renderable {
 
     @Override
     public void render(Graphics2D g2d, Camera camera) {
-        itemMenu.render(g2d, view.getWidth(), view.getHeight());
         updatesPanel.render(g2d, view.getWidth(), view.getHeight());
+        itemMenu.render(g2d, view.getWidth(), view.getHeight());
         resourcesPanel.render(g2d, view.getWidth(), view.getHeight());
         if(endTurnButton != null) endTurnButton.render(g2d);
     }
