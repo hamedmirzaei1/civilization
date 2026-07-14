@@ -14,7 +14,7 @@ public class Warehouse extends Inventory {
     public boolean add(Resource resource, int amount) {
         if((get(resource) + amount) > capacity) {
             makeFull(resource);
-            return false;
+            return true;
         }
         super.add(resource, amount);
         return true;

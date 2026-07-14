@@ -1,15 +1,18 @@
 package ap.project.civilization.model.gamestate;
 
+import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.building.ProductionBuilding;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.hex.core.Hex;
+import ap.project.civilization.model.world.hex.hexes.TownHall;
+import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.model.world.unit.UnitManager;
 import ap.project.civilization.model.world.unit.core.Unit;
 
 public class TurnResolve {
-    private HexManager hexManager;
-    private UnitManager unitManager;
+    private final HexManager hexManager;
+    private final UnitManager unitManager;
 
     public TurnResolve(HexManager hexManager, UnitManager unitManager, TurnState turnState) {
         this.hexManager = hexManager;
@@ -20,6 +23,7 @@ public class TurnResolve {
         reviveUnits();
         unitManager.getUnitFactory().resolveTurn();
         produce();
+        consumeUpkeep();
     }
 
     private void reviveUnits() {
@@ -29,6 +33,8 @@ public class TurnResolve {
     }
 
     private void consumeUpkeep() {
+        TownHall.getInstance().getWarehouse().remove(Resource.FOOD,
+                unitManager.getUnits().size() * ModelConstants.FOOD_CONSUME_PER_UNIT);
 
     }
 

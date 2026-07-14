@@ -4,39 +4,46 @@ import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Inventory;
 import ap.project.civilization.model.world.resource.Warehouse;
+import ap.project.civilization.model.world.unit.units.Worker;
 
 public class ProductionBuilding extends Building {
-    private boolean active;
     private int productionRate;
 
-    private int workerNumbers;
+    private Worker[] workers;
+    private int workerNumbers = 0;
     private int capacity;
     public ProductionBuilding(BuildingType type, Terrain terrain) {
         super(type, terrain);
-
-        active = false;
+        workerNumbers = 0;
         this.productionRate = type.getProducingRate();
 
-        workerNumbers = 0;
         capacity = 3;
+        workers = new Worker[capacity];
     }
 
     public void produce() {
         Inventory inventory = ((Terrain)getHex()).getInventory();
         Warehouse warehouse = TownHall.getInstance().getWarehouse();
 
-        if(!inventory.contains(getType().getResource())) return;
-        inventory.remove(getType().getResource(), productionRate*workerNumbers);
-        warehouse.add(getType().getResource(), productionRate*workerNumbers);
+        int removeAmount = inventory.remove(getType().getResource(), getProductionPerTurn());
+        if(removeAmount < getProductionPerTurn()) {
+            getHex().setBuilding(null);
+            for (Worker worker : workers) {
+                worker.setEmployed(false);
+            }
+        }
+
+        warehouse.add(getType().getResource(), removeAmount);
 
     }
 
-    public void addWorker() {
-        if(workerNumbers+1 > capacity) throw new IllegalStateException("not enough capacity in building");
+    public void addWorker(Worker worker) {
+        if(workerNumbers == capacity) throw new IllegalStateException("not enough capacity in building");
+        workers[workerNumbers] = worker;
         workerNumbers++;
     }
     public void removeWorker() {
-        if(workerNumbers-1 < 0) throw new IllegalStateException("there's no worker to remove from building");
+        if(workerNumbers == 0) throw new IllegalStateException("there's no worker to remove from building");
         workerNumbers--;
     }
     public boolean hasCapacity() {
@@ -49,5 +56,9 @@ public class ProductionBuilding extends Building {
 
     public int getWorkerNumbers() {
         return workerNumbers;
+    }
+
+    public int getProductionPerTurn() {
+        return productionRate*workerNumbers;
     }
 }

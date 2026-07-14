@@ -29,8 +29,11 @@ public class HexMenuProvider implements MenuProvider<Hex> {
 
             if(hex.hasBuilding() && hex.getType() != HexType.TOWN_HALL) {
                 ProductionBuilding building = (ProductionBuilding) hex.getBuilding();
-                details.add("with " + hex.getBuilding().getType().getDisplayName());
+                details.add("with " + building.getType().getDisplayName());
                 details.add("workers  " + building.getWorkerNumbers() + " of  "  + building.getCapacity());
+                details.add("producing " + building.getProductionPerTurn() + " " +
+                        building.getType().getResource().getDisplayName() + " per turn");
+                details.add("");
             }
 
 
@@ -44,8 +47,6 @@ public class HexMenuProvider implements MenuProvider<Hex> {
             if (!resourceText.isEmpty()) details.add(resourceText);
 
             if(!hex.hasBuilding()){
-                details.add(" you can build " + hex.getType().getBuildingType().getDisplayName());
-                details.add(hex.getType().getBuildingType().getRequiredAP() + " ap");
             }
 
         } else {

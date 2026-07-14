@@ -25,14 +25,18 @@ public class Inventory {
         return true;
     }
 
-    public boolean remove(Resource resource, int amount) {
+    public int remove(Resource resource, int amount) {
         if(amount < 0)  {
-            makeEmpty(resource);
+            throw new IllegalArgumentException("negative amount");
         }
 
-        if(get(resource) < amount) return false;
+        if(get(resource) < amount) {
+            int result = get(resource);
+            makeEmpty(resource);
+            return result;
+        }
         resources.put(resource, get(resource) - amount);
-        return true;
+        return amount;
     }
 
     private void makeEmpty(Resource resource) {

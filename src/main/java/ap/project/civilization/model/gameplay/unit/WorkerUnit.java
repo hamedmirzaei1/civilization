@@ -27,7 +27,7 @@ public class WorkerUnit extends GeneralUnit {
             ProductionBuilding building = (ProductionBuilding) unit.getCurrentHex().getBuilding();
             actions.add(new MenuAction("Employ", () -> {
             worker.setEmployed(true);
-            building.addWorker();
+            building.addWorker(worker);
             }));
         }
         if(worker.isEmployed()){
