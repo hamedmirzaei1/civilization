@@ -63,7 +63,7 @@ public final class AssetManager {
         sprites.put("LUMBER_MILL", scale(originals.get("LUMBER_MILL"), (int)(hexSize), (int)(hexSize)));
         sprites.put("FIELD", scale(originals.get("FIELD"), (int)(hexSize * 0.8), (int)(hexSize)));
         sprites.put("STABLE", scale(originals.get("STABLE"), (int)(hexSize * 0.9), (int)(hexSize * 0.9)));
-        sprites.put("STONE_MINE", scale(originals.get("STONE_MINE"), (int)(hexSize), (int)(hexSize)));
+        sprites.put("STONE_MINE", scale(originals.get("STONE_MINE"), (int)(hexSize * 0.9), (int)(hexSize * 0.9)));
         sprites.put("IRON_MINE", scale(originals.get("IRON_MINE"), (int)(hexSize), (int)(hexSize)));
 
 

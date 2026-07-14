@@ -20,8 +20,8 @@ public final class ModelConstants {
 
     public static final int TOWN_HALL_WAREHOUSE_CAP = 20;
 
-    public static final int MAX_TERRAIN_RESOURCE = 100;
-    public static final int MIN_TERRAIN_RESOURCE = 30;
+    public static final int MAX_TERRAIN_RESOURCE = 150;
+    public static final int MIN_TERRAIN_RESOURCE = 50;
 
     public static final int LUMBER_MILl_RATE = 7;
     public static final int STONE_MINE_RATE = 4;
