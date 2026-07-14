@@ -9,6 +9,9 @@ import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.model.world.unit.UnitManager;
 import ap.project.civilization.model.world.unit.core.Unit;
+import ap.project.civilization.model.world.unit.core.UnitType;
+import ap.project.civilization.model.world.unit.units.Worker;
+import ap.project.civilization.view.navigation.components.ConfirmationDialog;
 
 public class TurnResolve {
     private final HexManager hexManager;
@@ -47,5 +50,19 @@ public class TurnResolve {
 
             ((ProductionBuilding)hex.getBuilding()).produce();
         }
+    }
+
+    public static boolean unprocessedUnits() {
+        for(Unit unit : UnitManager.getInstance().getUnits()) {
+            if(unit.getType() == UnitType.WORKER) {
+                if(!((Worker)unit).isEmployed()) {
+                    return ConfirmationDialog.show(null, "un-employed workers. continue?");
+                }
+            }
+            if(unit.getAp() > 0 && unit.getType() != UnitType.WORKER) {
+                return ConfirmationDialog.show(null, "units have ap. continue?");
+            }
+        }
+        return true;
     }
 }

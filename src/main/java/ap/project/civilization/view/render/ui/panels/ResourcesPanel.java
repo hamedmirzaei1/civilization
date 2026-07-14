@@ -38,24 +38,38 @@ public class ResourcesPanel extends UIPanel {
         for(UILabel label : labels) {
             label.render(g2d);
         }
-        int x = bounds.x + padding;
+        int x = bounds.x;
         int width = bounds.width/4;
         for(int i=1; i<4; i++) {
             g2d.setStroke(new BasicStroke(4));
             g2d.setColor(UIColors.LIGHT_MENU_BORDER);
-            g2d.drawLine(x+width*i, bounds.y, x+width*i, bounds.y+bounds.height );
+            g2d.drawLine(x+width*i, bounds.y, x+width*i, bounds.y+bounds.height/2);
+        }
+        g2d.drawLine(x, bounds.y+ bounds.height/2, x+bounds.width, bounds.y + bounds.height/2);
+        width = bounds.width/5;
+        for(int i=1; i<6; i++) {
+            g2d.setStroke(new BasicStroke(4));
+            g2d.setColor(UIColors.LIGHT_MENU_BORDER);
+            g2d.drawLine(x+width*i, bounds.y + bounds.height/2, x+width*i, bounds.y+bounds.height);
         }
     }
 
     private void createComponents() {
         labels.clear();
 
-        int x = bounds.x + padding;
+        int x = bounds.x;
 
-        for(int i=0; i < model.getDetails().size(); i++) {
-            Rectangle r = new Rectangle(x, bounds.y+padding, bounds.width/4, bounds.height/2);
+        for(int i=0; i < 4; i++) {
+            Rectangle r = new Rectangle(x, bounds.y+padding, bounds.width/4, bounds.height/3);
             labels.add(new UILabel(r, model.getDetails().get(i), 18f));
-            x += bounds.width/4 + spacing;
+            x += bounds.width/4;
+        }
+        x = bounds.x;
+        for(int i=4; i < model.getDetails().size(); i++) {
+            Rectangle r = new Rectangle(x, bounds.y + (int)(bounds.height * 0.6), bounds.width/5, bounds.height/3);
+            float size = i==4 ? 18f : 14f;
+            labels.add(new UILabel(r, model.getDetails().get(i), size));
+            x += bounds.width/5;
         }
     }
 

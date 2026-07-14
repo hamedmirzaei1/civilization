@@ -33,7 +33,7 @@ public final class UILayout {
                 windowWidth-width-SIDE_MARGIN,
                 SIDE_MARGIN,
                 width,
-                (int)(windowHeight*0.05)
+                (int)(windowHeight*0.13)
 
         );
     }

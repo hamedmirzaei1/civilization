@@ -31,7 +31,6 @@ public class UnitFactory {
 
         unitManager.addUnit(unit, location);
         MoveTools.positionUnit(unit, hexManager, 1);
-        TownHall.getInstance().addUnit();
     }
 
     public void addToQueue(UnitType type) {

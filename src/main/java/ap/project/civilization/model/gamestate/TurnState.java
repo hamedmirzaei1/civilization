@@ -29,24 +29,10 @@ public class TurnState {
         return turn;
     }
     public void nextTurn() {
-        if(!unprocessedUnits()) return;
+        if(!TurnResolve.unprocessedUnits()) return;
 
-        System.out.println("next turn");
         turnResolve.resolveTurn();
         turn++;
     }
 
-    public boolean unprocessedUnits() {
-        for(Unit unit : UnitManager.getInstance().getUnits()) {
-            if(unit.getType() == UnitType.WORKER) {
-                if(!((Worker)unit).isEmployed()) {
-                    return ConfirmationDialog.show(null, "un-employed workers. continue?");
-                }
-            }
-            if(unit.getAp() > 0) {
-                return ConfirmationDialog.show(null, "units have ap. continue?");
-            }
-        }
-        return true;
-    }
 }
