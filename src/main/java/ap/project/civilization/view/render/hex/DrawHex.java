@@ -1,7 +1,11 @@
 package ap.project.civilization.view.render.hex;
 
+import ap.project.civilization.model.world.building.Building;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.hexes.HexType;
+import ap.project.civilization.model.world.hex.hexes.Terrain;
+import ap.project.civilization.model.world.resource.Inventory;
+import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.view.util.game.AssetManager;
 
 import java.awt.*;
@@ -27,7 +31,7 @@ public class DrawHex {
                 int offset = -(int)(hexSize * 0.75);
                 g2d.drawImage(hex.getBuilding().getType().getAsset(), offset, offset, null);
             }
-            drawResource(g2d, hex, hexSize);
+            if(hex.getType() != HexType.TOWN_HALL) drawResource(g2d, hex, hexSize);
         }
 
 
@@ -37,32 +41,23 @@ public class DrawHex {
     private static void drawResource(Graphics2D g2d, Hex hex, int hexSize) {
         int drawX = 0;
         int drawY = 0;
-        String asset = "";
 
-        switch (hex.getType()) {
-            case MOUNTAIN:
-                drawX -= hexSize * 0.6;
-                asset = "ROCK";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
+        if(hex.getType() == HexType.MOUNTAIN) drawX -= hexSize * 0.6;
+        if(hex.getType() == HexType.FOREST) {
+            drawX -= hexSize /4;
+            drawY -= hexSize /4;
+        }
 
-                drawX = (int)(hexSize*0.2);
-                drawY = (int)(-hexSize*0.3);
-                asset = "IRON";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
-                break;
-            case LAWN:
-                asset = "FARM";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY,null);
-                break;
-            case PLAIN:
-                asset = "COW";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY, null);
-                break;
-            case FOREST:
-                drawX -= hexSize /4;
-                drawY -= hexSize /4;
-                asset = "TREE";
-                g2d.drawImage(AssetManager.get(asset), drawX, drawY,null);
+        Terrain terrain = ((Terrain)hex);
+
+        for(Resource resource : hex.getType().getResources()) {
+            if(resource == Resource.IRON) { drawX += (int)(hexSize * 0.7); }
+
+            if (terrain.getInventory().contains(resource)) {
+                g2d.drawImage(resource.getAsset(hex), drawX, drawY, null);
+            }
+
+            if(resource == Resource.IRON) { drawX -= (int)(hexSize * 0.6); }
         }
     }
 }

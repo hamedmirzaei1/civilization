@@ -27,10 +27,10 @@ public class ProductionBuilding extends Building {
 
         int removeAmount = inventory.remove(getType().getResource(), getProductionPerTurn());
         if(removeAmount < getProductionPerTurn()) {
-            getHex().setBuilding(null);
-            for (Worker worker : workers) {
-                worker.setEmployed(false);
+            for(int i=0; i<workerNumbers; i++) {
+                workers[i].setEmployed(false);
             }
+            getHex().setBuilding(null);
         }
 
         warehouse.add(getType().getResource(), removeAmount);
@@ -45,6 +45,7 @@ public class ProductionBuilding extends Building {
     public void removeWorker() {
         if(workerNumbers == 0) throw new IllegalStateException("there's no worker to remove from building");
         workerNumbers--;
+        workers[workerNumbers] = null;
     }
     public boolean hasCapacity() {
         return workerNumbers < capacity;

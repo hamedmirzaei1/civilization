@@ -22,10 +22,10 @@ public final class AssetManager {
     }
 
     public static void loadAll() throws IOException {
-        load("/sprites/cow-2.png", "COW");
-        load("/sprites/rock.png", "ROCK");
-        load("/sprites/tree.png", "TREE");
-        load("/sprites/farm.png", "FARM");
+        load("/sprites/cow-2.png", "FOOD_MEAT");
+        load("/sprites/rock.png", "STONE");
+        load("/sprites/tree.png", "WOOD");
+        load("/sprites/farm.png", "FOOD");
         load("/sprites/iron.png", "IRON");
 
         load("/sprites/town-hall.png", "TOWN_HALL");
@@ -53,10 +53,10 @@ public final class AssetManager {
 
     public static void updateScale(int hexSize) {
 
-        sprites.put("TREE", scale(originals.get("TREE"), hexSize, hexSize));
-        sprites.put("ROCK", scale(originals.get("ROCK"), hexSize, hexSize));
-        sprites.put("FARM", scale(originals.get("FARM"), (int)(hexSize * 0.5), (int)(hexSize * 0.5)));
-        sprites.put("COW", scale(originals.get("COW"), (int)(hexSize * 0.6), (int)(hexSize * 0.6)));
+        sprites.put("WOOD", scale(originals.get("WOOD"), hexSize, hexSize));
+        sprites.put("STONE", scale(originals.get("STONE"), hexSize, hexSize));
+        sprites.put("FOOD", scale(originals.get("FOOD"), (int)(hexSize * 0.5), (int)(hexSize * 0.5)));
+        sprites.put("FOOD_MEAT", scale(originals.get("FOOD_MEAT"), (int)(hexSize * 0.6), (int)(hexSize * 0.6)));
         sprites.put("IRON", scale(originals.get("IRON"), (int)(hexSize * 0.5), (int)(hexSize * 0.5)));
 
         sprites.put("TOWN_HALL", scale(originals.get("TOWN_HALL"), (int)(hexSize * 1.5), (int)(hexSize * 1.5)));
