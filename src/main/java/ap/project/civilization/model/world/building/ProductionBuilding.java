@@ -1,5 +1,7 @@
 package ap.project.civilization.model.world.building;
 
+import ap.project.civilization.model.gamestate.Technology;
+import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Inventory;
@@ -60,6 +62,12 @@ public class ProductionBuilding extends Building {
     }
 
     public int getProductionPerTurn() {
-        return productionRate*workerNumbers;
+        double rate;
+        if(getHex().getType() == HexType.MOUNTAIN && Technology.premiumTool.isUnlocked()) {
+            rate = productionRate * 1.5;
+        } else {
+            rate = productionRate;
+        }
+        return (int)(rate*workerNumbers);
     }
 }

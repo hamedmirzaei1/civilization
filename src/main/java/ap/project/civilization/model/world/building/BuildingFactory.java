@@ -21,6 +21,10 @@ public class BuildingFactory {
         Building building = new ProductionBuilding(BuildingType.IRON_MINE, terrain);
         terrain.setBuilding(building);
     }
+    public static void createTown(Terrain terrain) {
+        Building building = new Building(BuildingType.TOWN, terrain);
+        terrain.setBuilding(building);
+    }
 
     public static void destroyBuilding(Terrain terrain) {
         terrain.setBuilding(null); // todo : logic

@@ -35,9 +35,7 @@ public final class AssetManager {
         load("/sprites/stone-mine.png", "STONE_MINE");
         load("/sprites/iron-mine.png", "IRON_MINE");
 
-
-
-
+        load("/sprites/town.png", "TOWN");
 
     }
 
@@ -66,6 +64,7 @@ public final class AssetManager {
         sprites.put("STONE_MINE", scale(originals.get("STONE_MINE"), (int)(hexSize * 0.9), (int)(hexSize * 0.9)));
         sprites.put("IRON_MINE", scale(originals.get("IRON_MINE"), (int)(hexSize), (int)(hexSize)));
 
+        sprites.put("TOWN", scale(originals.get("TOWN"), (int)(hexSize), (int)(hexSize)));
 
     }
 

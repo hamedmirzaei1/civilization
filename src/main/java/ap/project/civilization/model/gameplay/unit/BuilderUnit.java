@@ -7,6 +7,7 @@ import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
+import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.model.world.unit.movement.FogOfWar;
@@ -32,13 +33,29 @@ public class BuilderUnit extends GeneralUnit {
         }
 
         if(hex.getType() == HexType.MOUNTAIN && Technology.ironMine.isUnlocked()) {
-            if(builder.getAp() < BuildingType.IRON_MINE.getRequiredAP()) return;
             if(!((Terrain)hex).getInventory().contains(Resource.IRON)) return;
+            if(builder.getAp() < BuildingType.IRON_MINE.getRequiredAP()) return;
 
             actions.add(new MenuAction("Build " + BuildingType.IRON_MINE.getDisplayName(), () -> {
                 BuildingFactory.createIronMine((Terrain) hex);
                 builder.resolveBuild(hex.getBuilding());
                 FogOfWar.makeNeighborsVisible(unit.getCurrentHex());
+            }));
+        }
+
+        boolean isEmpty = true;
+        for(Resource r : Resource.values()) {
+            if(((Terrain)hex).getInventory().contains(r)) isEmpty = false;
+        }
+
+        if(isEmpty) {
+            if(builder.getAp() < BuildingType.TOWN.getRequiredAP()) return;
+
+            actions.add(new MenuAction("Build Town", () -> {
+                BuildingFactory.createTown((Terrain) hex);
+                builder.resolveBuild(hex.getBuilding());
+                FogOfWar.makeNeighborsVisible(unit.getCurrentHex());
+                TownHall.getInstance().updateCapacity();
             }));
         }
 

@@ -9,7 +9,7 @@ import ap.project.civilization.model.world.unit.UnitManager;
 public class TownHall extends Hex {
     private static TownHall instance;
 
-    private int unitCapacity = 10;
+    private int unitCapacity = 20;
     private int unitNumbers = 5;
 
     public static TownHall getInstance() {
@@ -45,5 +45,9 @@ public class TownHall extends Hex {
     }
     public int getUnitNumbers() {
         return unitNumbers;
+    }
+
+    public void updateCapacity() {
+        unitCapacity += 10;
     }
 }
