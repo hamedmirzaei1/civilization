@@ -5,6 +5,7 @@ public class Warehouse extends Inventory {
     private int level;
 
     public Warehouse(int capacity) {
+        super();
         this.capacity = capacity;
         level = 0;
     }
@@ -12,7 +13,8 @@ public class Warehouse extends Inventory {
     @Override
     public boolean add(Resource resource, int amount) {
         if((get(resource) + amount) > capacity) {
-            throw new IllegalStateException("Not enough capacity");
+            makeFull(resource);
+            return false;
         }
         super.add(resource, amount);
         return true;
@@ -29,6 +31,10 @@ public class Warehouse extends Inventory {
                 level++;
         }
     }
+    private void makeFull(Resource resource) {
+        getResources().put(resource, capacity);
+    }
+
     public boolean isUpgradable() {
         return level<2;
     }

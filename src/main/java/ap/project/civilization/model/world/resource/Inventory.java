@@ -4,9 +4,10 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class Inventory {
-    private final Map<Resource, Integer> resources = new EnumMap<>(Resource.class);
+    private final Map<Resource, Integer> resources;
 
     public Inventory() {
+        resources = new EnumMap<>(Resource.class);
         for(Resource r : Resource.values()) {
             resources.put(r, 0);
         }
@@ -17,16 +18,16 @@ public class Inventory {
     }
 
     public boolean add(Resource resource, int amount) {
-        if(amount < 1)  {
-            throw new IllegalArgumentException("negative amount of resource");
+        if(amount < 0)  {
+            return false;
         }
         resources.put(resource, get(resource) + amount);
         return true;
     }
 
     public boolean remove(Resource resource, int amount) {
-        if(amount < 1)  {
-            throw new IllegalArgumentException("negative amount of resource");
+        if(amount < 0)  {
+            makeEmpty(resource);
         }
 
         if(get(resource) < amount) return false;
@@ -34,7 +35,16 @@ public class Inventory {
         return true;
     }
 
-    public boolean Contains(Resource resource) {
+    private void makeEmpty(Resource resource) {
+        resources.put(resource, 0);
+    }
+
+
+    public boolean contains(Resource resource) {
         return (get(resource) != 0);
+    }
+
+    public Map<Resource, Integer> getResources() {
+        return resources;
     }
 }

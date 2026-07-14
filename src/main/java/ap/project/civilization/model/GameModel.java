@@ -1,5 +1,6 @@
 package ap.project.civilization.model;
 
+import ap.project.civilization.model.gamestate.TurnResolve;
 import ap.project.civilization.model.gamestate.TurnState;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.unit.UnitManager;
@@ -7,13 +8,13 @@ import ap.project.civilization.model.world.unit.UnitManager;
 public class GameModel {
     private final HexManager hexManager;
     private final UnitManager unitManager;
-    private TurnState turnState;
+    private TurnResolve turnResolve;
 
     public GameModel() {
         hexManager = HexManager.getInstance();
         unitManager = UnitManager.getInstance();
         unitManager.spawnUnits(hexManager);
-        turnState = TurnState.getInstance();
+        TurnState turnState = TurnState.getInstance();
     }
 
     public void update() {

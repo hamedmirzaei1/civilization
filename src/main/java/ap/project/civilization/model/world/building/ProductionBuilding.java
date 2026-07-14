@@ -3,6 +3,7 @@ package ap.project.civilization.model.world.building;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Inventory;
+import ap.project.civilization.model.world.resource.Warehouse;
 
 public class ProductionBuilding extends Building {
     private boolean active;
@@ -22,10 +23,12 @@ public class ProductionBuilding extends Building {
 
     public void produce() {
         Inventory inventory = ((Terrain)getHex()).getInventory();
-        if(inventory.Contains(getType().getResource()) &&
-                inventory.remove(getType().getResource(), productionRate)) {
-            TownHall.getInstance().getWarehouse().add(getType().getResource(), productionRate);
-        }
+        Warehouse warehouse = TownHall.getInstance().getWarehouse();
+
+        if(!inventory.contains(getType().getResource())) return;
+        inventory.remove(getType().getResource(), productionRate*workerNumbers);
+        warehouse.add(getType().getResource(), productionRate*workerNumbers);
+
     }
 
     public void addWorker() {

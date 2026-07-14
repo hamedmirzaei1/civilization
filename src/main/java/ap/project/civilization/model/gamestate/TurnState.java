@@ -1,5 +1,6 @@
 package ap.project.civilization.model.gamestate;
 
+import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.unit.UnitManager;
 
 public class TurnState {
@@ -7,6 +8,7 @@ public class TurnState {
 
     private TurnState(){
         turn = 1;
+        turnResolve = new TurnResolve(HexManager.getInstance(), UnitManager.getInstance(), this);
     }
 
     public static TurnState getInstance() {
@@ -17,13 +19,14 @@ public class TurnState {
     }
 
     private int turn;
+    private TurnResolve turnResolve;
 
     public int getTurn() {
         return turn;
     }
     public void nextTurn() {
         System.out.println("next turn");
-        UnitManager.getInstance().getUnitFactory().resolveTurn();
+        turnResolve.resolveTurn();
         turn++; // must be the last statement
     }
 }
