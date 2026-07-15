@@ -47,6 +47,9 @@ public class Inventory {
     public boolean contains(Resource resource) {
         return (get(resource) != 0);
     }
+    public boolean contains(Resource resource, int amount) {
+        return amount < get(resource);
+    }
 
     public Map<Resource, Integer> getResources() {
         return resources;

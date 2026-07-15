@@ -1,6 +1,7 @@
 package ap.project.civilization.model.gameplay.unit;
 
 import ap.project.civilization.model.gameplay.ui.MenuAction;
+import ap.project.civilization.model.gamestate.Consumer;
 import ap.project.civilization.model.gamestate.Technology;
 import ap.project.civilization.model.world.building.BuildingFactory;
 import ap.project.civilization.model.world.building.BuildingType;
@@ -29,17 +30,20 @@ public class BuilderUnit extends GeneralUnit {
                 BuildingFactory.createProductionBuilding((Terrain) hex);
                 builder.resolveBuild(hex.getBuilding());
                 FogOfWar.makeNeighborsVisible(unit.getCurrentHex());
+                Consumer.consume(hex.getBuilding().getType().getRequiredResource());
             }));
         }
 
         if(hex.getType() == HexType.MOUNTAIN && Technology.ironMine.isUnlocked()) {
             if(!((Terrain)hex).getInventory().contains(Resource.IRON)) return;
             if(builder.getAp() < BuildingType.IRON_MINE.getRequiredAP()) return;
+            if(!Consumer.canConsume(BuildingType.IRON_MINE.getRequiredResource())) return;
 
             actions.add(new MenuAction("Build " + BuildingType.IRON_MINE.getDisplayName(), () -> {
                 BuildingFactory.createIronMine((Terrain) hex);
                 builder.resolveBuild(hex.getBuilding());
                 FogOfWar.makeNeighborsVisible(unit.getCurrentHex());
+                Consumer.consume(BuildingType.IRON_MINE.getRequiredResource());
             }));
         }
 
@@ -50,12 +54,15 @@ public class BuilderUnit extends GeneralUnit {
 
         if(isEmpty) {
             if(builder.getAp() < BuildingType.TOWN.getRequiredAP()) return;
+            if(!Consumer.canConsume(BuildingType.TOWN.getRequiredResource())) return;
+
 
             actions.add(new MenuAction("Build Town", () -> {
                 BuildingFactory.createTown((Terrain) hex);
                 builder.resolveBuild(hex.getBuilding());
                 FogOfWar.makeNeighborsVisible(unit.getCurrentHex());
                 TownHall.getInstance().updateCapacity();
+                Consumer.consume(BuildingType.TOWN.getRequiredResource());
             }));
         }
 
@@ -70,6 +77,7 @@ public class BuilderUnit extends GeneralUnit {
     private boolean canBuildGeneral(Builder builder, Hex hex) {
         if(builder.getAp() < hex.getType().getBuildingType().getRequiredAP()) return false;
         if(!((Terrain)hex).getInventory().contains(hex.getType().getBuildingType().getResource())) return false;
+        if(!Consumer.canConsume(hex.getType().getBuildingType().getRequiredResource())) return false;
 
         if(hex.getType().getBuildingType() == BuildingType.STONE_MINE && !Technology.stoneMine.isUnlocked()) {
             return false;
