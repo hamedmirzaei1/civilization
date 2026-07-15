@@ -34,11 +34,5 @@ public class TerrainSpawn {
         }
 
         hexFactory.setTownHall();
-        Terrain terrain = (Terrain) FogOfWar.getNearHex(townHall, Direction.UP_RIGHT, hexManager);
-        BuildingFactory.createProductionBuilding(terrain);
-        Terrain terrain2 = (Terrain) FogOfWar.getNearHex(townHall, Direction.LEFT, hexManager);
-        BuildingFactory.createProductionBuilding(terrain2);
-        Terrain terrain3 = (Terrain) FogOfWar.getNearHex(townHall, Direction.DOWN_RIGHT, hexManager);
-        BuildingFactory.createProductionBuilding(terrain3);
     }
 }
