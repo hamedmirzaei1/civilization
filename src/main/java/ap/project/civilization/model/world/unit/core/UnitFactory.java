@@ -34,6 +34,9 @@ public class UnitFactory {
         MoveTools.positionUnit(unit, hexManager, 1);
     }
 
+    public boolean canBuildUnit(UnitType type) {
+        return false;
+    }
     public void addToQueue(UnitType type) {
         creatingQueue.get(TurnState.getInstance().getTurn()).add(type);
         TownHall.getInstance().addUnit();

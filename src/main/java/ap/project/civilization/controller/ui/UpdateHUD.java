@@ -6,12 +6,12 @@ import ap.project.civilization.view.GamePanel;
 import ap.project.civilization.view.render.ui.panels.ResourcesPanel;
 import ap.project.civilization.view.render.ui.panels.UpdatesPanel;
 
-public class HUDController {
+public class UpdateHUD {
 
     private final UpdatesPanel updatesPanel;
     private final ResourcesPanel resourcesPanel;
 
-    public HUDController(GamePanel view) {
+    public UpdateHUD(GamePanel view) {
         updatesPanel = view.getRenderer().getUiRenderer().getUpdatesPanel();
         resourcesPanel = view.getRenderer().getUiRenderer().getResourcesPanel();
     }

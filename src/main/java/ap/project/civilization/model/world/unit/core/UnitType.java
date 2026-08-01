@@ -11,25 +11,25 @@ import ap.project.civilization.view.util.game.GameColors;
 import java.awt.*;
 
 public enum UnitType {
-    EXPLORER(GameColors.EXPLORER_UNIT, "E", "Explorer", ModelConstants.EXPLORER_AP, 3) {
+    EXPLORER(UnitDisplayComponent.EXPLORER, ModelConstants.EXPLORER_AP, 3) {
         @Override
         public Unit create(Hex hex, double x, double y) {
             return new Explorer(hex, x, y);
         }
     },
-    BORDER_EXPANDER(GameColors.BORDER_EXPANDER_UNIT, "Bo", "Border Expander", ModelConstants.BORDER_EXPANDER_AP, 2) {
+    BORDER_EXPANDER(UnitDisplayComponent.BORDER_EXPANDER, ModelConstants.BORDER_EXPANDER_AP, 2) {
         @Override
         public Unit create(Hex hex, double x, double y) {
             return new BorderExpander(hex, x, y);
         }
     },
-    BUILDER(GameColors.BUILDER_UNIT, "Bu", "Builder", ModelConstants.BUILDER_AP, 4) {
+    BUILDER(UnitDisplayComponent.BUILDER, ModelConstants.BUILDER_AP, 4) {
         @Override
         public Unit create(Hex hex, double x, double y) {
             return new Builder(hex, x, y);
         }
     },
-    WORKER(GameColors.WORKER_UNIT, "W", "Worker", ModelConstants.WORKER_AP, 1) {
+    WORKER(UnitDisplayComponent.WORKER, ModelConstants.WORKER_AP, 1) {
         public Unit create(Hex hex, double x, double y) {
             return new Worker(hex, x, y);
         }
@@ -37,30 +37,26 @@ public enum UnitType {
 
     public abstract Unit create(Hex hex, double x, double y);
 
-    private final Color color;
-    private final String text;
-    private final String displayName;
     private final int maxAP;
     private final int spawningTime;
+    private final UnitDisplayComponent displayComponent;
 
-    UnitType(Color color, String text, String displayName, int maxAP, int spawningTime) {
-        this.color = color;
-        this.text = text;
-        this.displayName = displayName;
+    UnitType(UnitDisplayComponent displayComponent, int maxAP, int spawningTime) {
+        this.displayComponent = displayComponent;
         this.maxAP = maxAP;
         this.spawningTime = spawningTime;
     }
 
     public Color getColor() {
-        return color;
+        return displayComponent.getColor();
     }
 
     public String getText() {
-        return text;
+        return displayComponent.getText();
     }
 
     public String getDisplayName() {
-        return displayName;
+        return displayComponent.getDisplayName();
     }
 
     public int getMaxAP() {

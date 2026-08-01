@@ -1,10 +1,9 @@
-package ap.project.civilization.model.gameplay.ui.menuproviders;
+package ap.project.civilization.model.gameplay.core;
 
-import ap.project.civilization.model.gameplay.ui.MenuModel;
-import ap.project.civilization.model.gameplay.unit.BorderExpanderUnit;
-import ap.project.civilization.model.gameplay.unit.BuilderUnit;
-import ap.project.civilization.model.gameplay.unit.GeneralUnit;
-import ap.project.civilization.model.gameplay.unit.WorkerUnit;
+import ap.project.civilization.model.gameplay.unitprovider.BorderExpanderUnit;
+import ap.project.civilization.model.gameplay.unitprovider.BuilderUnit;
+import ap.project.civilization.model.gameplay.unitprovider.GeneralUnit;
+import ap.project.civilization.model.gameplay.unitprovider.WorkerUnit;
 import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.model.world.unit.core.UnitType;
 

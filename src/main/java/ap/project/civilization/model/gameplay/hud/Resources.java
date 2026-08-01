@@ -1,7 +1,7 @@
 package ap.project.civilization.model.gameplay.hud;
 
-import ap.project.civilization.model.gameplay.ui.MenuAction;
-import ap.project.civilization.model.gameplay.ui.MenuModel;
+import ap.project.civilization.model.gameplay.core.MenuAction;
+import ap.project.civilization.model.gameplay.core.MenuModel;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.model.world.resource.Warehouse;

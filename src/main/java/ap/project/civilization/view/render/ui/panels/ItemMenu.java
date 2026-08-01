@@ -1,12 +1,11 @@
 package ap.project.civilization.view.render.ui.panels;
 
-import ap.project.civilization.model.gameplay.ui.MenuAction;
-import ap.project.civilization.model.gameplay.ui.MenuModel;
+import ap.project.civilization.model.gameplay.core.MenuAction;
+import ap.project.civilization.model.gameplay.core.MenuModel;
 import ap.project.civilization.view.render.ui.components.UIButton;
 import ap.project.civilization.view.render.ui.components.UILabel;
 import ap.project.civilization.view.util.ui.UILayout;
 import ap.project.civilization.view.render.ui.components.UIPanel;
-import ap.project.civilization.view.util.ui.UIColors;
 
 import java.awt.*;
 import java.util.ArrayList;

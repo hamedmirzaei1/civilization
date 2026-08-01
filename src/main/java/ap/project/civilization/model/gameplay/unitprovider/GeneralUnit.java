@@ -1,7 +1,7 @@
-package ap.project.civilization.model.gameplay.unit;
+package ap.project.civilization.model.gameplay.unitprovider;
 
-import ap.project.civilization.model.gameplay.ui.MenuAction;
-import ap.project.civilization.model.gameplay.ui.MenuModel;
+import ap.project.civilization.model.gameplay.core.MenuAction;
+import ap.project.civilization.model.gameplay.core.MenuModel;
 import ap.project.civilization.model.world.unit.core.Unit;
 
 import java.util.ArrayList;

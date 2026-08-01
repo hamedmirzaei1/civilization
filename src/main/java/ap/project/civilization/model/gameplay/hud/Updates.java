@@ -1,7 +1,7 @@
 package ap.project.civilization.model.gameplay.hud;
 
-import ap.project.civilization.model.gameplay.ui.MenuAction;
-import ap.project.civilization.model.gameplay.ui.MenuModel;
+import ap.project.civilization.model.gameplay.core.MenuAction;
+import ap.project.civilization.model.gameplay.core.MenuModel;
 import ap.project.civilization.model.gamestate.TurnState;
 import ap.project.civilization.model.world.unit.UnitManager;
 import ap.project.civilization.model.world.unit.core.UnitType;

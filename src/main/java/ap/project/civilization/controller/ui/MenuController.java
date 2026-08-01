@@ -1,15 +1,12 @@
 package ap.project.civilization.controller.ui;
 
 import ap.project.civilization.model.world.hex.core.Hex;
-import ap.project.civilization.model.gameplay.ui.menuproviders.HexMenuProvider;
-import ap.project.civilization.model.gameplay.ui.MenuModel;
-import ap.project.civilization.model.gameplay.ui.menuproviders.UnitMenuProvider;
+import ap.project.civilization.model.gameplay.HexMenuProvider;
+import ap.project.civilization.model.gameplay.core.MenuModel;
+import ap.project.civilization.model.gameplay.core.UnitMenuProvider;
 import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.model.world.unit.movement.Move;
-import ap.project.civilization.view.render.ui.components.UIButton;
 import ap.project.civilization.view.render.ui.panels.ItemMenu;
-
-import java.awt.event.MouseEvent;
 
 public class MenuController {
     private final ItemMenu menu;

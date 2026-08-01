@@ -1,6 +1,6 @@
-package ap.project.civilization.model.gameplay.unit;
+package ap.project.civilization.model.gameplay.unitprovider;
 
-import ap.project.civilization.model.gameplay.ui.MenuAction;
+import ap.project.civilization.model.gameplay.core.MenuAction;
 import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.hex.core.Hex;

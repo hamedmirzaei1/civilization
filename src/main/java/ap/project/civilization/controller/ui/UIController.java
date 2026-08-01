@@ -11,7 +11,7 @@ public class UIController {
     private final SelectionController selectionController;
     private final MenuController menuController;
 
-    private final HUDController hudController;
+    private final UpdateHUD updateHud;
 
     public UIController(GamePanel view, GameModel model) {
         ItemMenu itemMenu = view.getRenderer().getUiRenderer().getItemMenu();
@@ -19,7 +19,7 @@ public class UIController {
 
         this.selectionController = new SelectionController(model, view, view.getCamera(), menuController);
         this.buttonController = new ButtonController(view, itemMenu, menuController, selectionController);
-        hudController = new HUDController(view);
+        updateHud = new UpdateHUD(view);
     }
 
     public void onMouseClicked(MouseEvent e) {
@@ -28,7 +28,7 @@ public class UIController {
         selectionController.handleClick(e);
     }
 
-    public HUDController getHudController() {
-        return hudController;
+    public UpdateHUD getHudController() {
+        return updateHud;
     }
 }
