@@ -17,6 +17,7 @@ public enum HexType {
     MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.IRON, Resource.STONE), MOUNTAIN_MOVE_COST, STONE_MINE),
     ROCK_MOUNTAIN(GameColors.ROCK_MOUNTAIN_TERRAIN, "Rocky Mountain", Set.of(), -1, null),
     LAWN(GameColors.LAWN_TERRAIN, "Lawn", Set.of(Resource.FOOD), LAWN_MOVE_COST, FIELD),
+    SEA(GameColors.SEA_TERRAIN, "Sea", Set.of(Resource.FOOD), -1, null),
     TOWN_HALL(GameColors.TOWN_HALL, "Town Hall", Set.of(), TOWN_HALL_MOVE_COST, BuildingType.TOWN_HALL);
 
     private final Color color;
