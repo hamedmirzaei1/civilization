@@ -23,7 +23,7 @@ public class Move {
             if(!h.isVisible() && unit.getType() != UnitType.EXPLORER) {
                 continue;
             }
-            if(h.getType().getMoveCost() > unit.getAp()) {
+            if(h.getType().getMoveCost() > unit.getAp() || h.getType().getMoveCost() == -1) {
                 continue;
             }
             if(!Slot.hasEmptySlot(h, UnitManager.getInstance())) {

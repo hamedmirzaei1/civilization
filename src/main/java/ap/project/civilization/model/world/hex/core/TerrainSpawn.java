@@ -23,11 +23,12 @@ public class TerrainSpawn {
     public void createTerrain(int number) {
         TownHall townHall = TownHall.getInstance();
 
+        int counter = 0;
         for (int i = 0; i < number; i++) {
             for (int j = 0; j < number; j++) {
                 if(i == townHall.getQ() && j == townHall.getR()) continue;
 
-                HexType randomTerrain = HexType.values()[ThreadLocalRandom.current().nextInt(HexType.values().length-1)];
+                HexType randomTerrain = HexType.values()[ThreadLocalRandom.current().nextInt(HexType.values().length - 1)];
 
                 hexFactory.createTerrain(randomTerrain, i, j);
             }

@@ -1,6 +1,5 @@
 package ap.project.civilization.model.world.hex.hexes;
 
-import ap.project.civilization.model.util.ModelConstants;
 import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.view.util.game.GameColors;
@@ -16,6 +15,7 @@ public enum HexType {
     FOREST(GameColors.FOREST_TERRAIN, "Forest", Set.of(Resource.WOOD), FOREST_MOVE_COST, LUMBER_MILL),
     PLAIN(GameColors.PLAIN_TERRAIN, "Plain", Set.of(Resource.FOOD), PLAIN_MOVE_COST, STABLE),
     MOUNTAIN(GameColors.MOUNTAIN_TERRAIN, "Mountain", Set.of(Resource.IRON, Resource.STONE), MOUNTAIN_MOVE_COST, STONE_MINE),
+    ROCK_MOUNTAIN(GameColors.ROCK_MOUNTAIN_TERRAIN, "Rocky Mountain", Set.of(), -1, null),
     LAWN(GameColors.LAWN_TERRAIN, "Lawn", Set.of(Resource.FOOD), LAWN_MOVE_COST, FIELD),
     TOWN_HALL(GameColors.TOWN_HALL, "Town Hall", Set.of(), TOWN_HALL_MOVE_COST, BuildingType.TOWN_HALL);
 
