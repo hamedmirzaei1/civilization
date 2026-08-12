@@ -15,6 +15,8 @@ public class TerrainSpawn {
     private final HexFactory hexFactory;
     private final HexManager hexManager;
 
+    private final int extendRate = 0;
+
     public TerrainSpawn(HexManager hexManager) {
         this.hexManager = hexManager;
         hexFactory = new HexFactory(hexManager);
@@ -35,5 +37,15 @@ public class TerrainSpawn {
         }
 
         hexFactory.setTownHall();
+    }
+
+    private boolean extendable(HexType hexType) {
+        if(hexType == HexType.SEA && extendRate < ThreadLocalRandom.current().nextInt(10, 30)) {
+            return true;
+        }
+        if(hexType == HexType.ROCK_MOUNTAIN && extendRate < ThreadLocalRandom.current().nextInt(5, 15)) {
+            return true;
+        }
+        return false;
     }
 }
