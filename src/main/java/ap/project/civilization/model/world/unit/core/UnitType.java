@@ -39,6 +39,7 @@ public enum UnitType {
 
     private final int maxAP;
     private final int spawningTime;
+
     private final UnitDisplayComponent displayComponent;
 
     UnitType(UnitDisplayComponent displayComponent, int maxAP, int spawningTime) {

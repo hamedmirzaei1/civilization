@@ -1,5 +1,8 @@
 package ap.project.civilization.model.world.resource;
 
+import ap.project.civilization.model.gamestate.CentralTransaction;
+import ap.project.civilization.model.util.CostConstants;
+
 public class Warehouse extends Inventory {
     private int capacity;
     private int level;
@@ -36,7 +39,13 @@ public class Warehouse extends Inventory {
     }
 
     public boolean isUpgradable() {
-        return level<2;
+        if(level == 0) {
+            return CentralTransaction.getInstance().canAfford(CostConstants.upgradeTownHallWarehouse1);
+        }
+        if(level == 1) {
+            return CentralTransaction.getInstance().canAfford(CostConstants.upgradeTownHallWarehouse2);
+        }
+        return false;
     }
     public int getLevel() {
         return level;

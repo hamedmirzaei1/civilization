@@ -3,6 +3,7 @@ package ap.project.civilization.model.gameplay;
 import ap.project.civilization.model.gameplay.core.MenuAction;
 import ap.project.civilization.model.gameplay.core.MenuModel;
 import ap.project.civilization.model.gamestate.Technology;
+import ap.project.civilization.model.util.CostConstants;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Warehouse;
 import ap.project.civilization.model.world.unit.UnitManager;
@@ -14,12 +15,17 @@ import java.util.List;
 public class TownHallMenu {
     private final UnitFactory unitFactory;
 
+    private List<String> details;
+    private List<MenuAction> actions;
+
     public TownHallMenu() {
         unitFactory = UnitManager.getInstance().getUnitFactory();
     }
 
     public MenuModel create(List<String> details, List<MenuAction> actions) {
-        Warehouse warehouse = TownHall.getInstance().getWarehouse();
+        this.actions = actions;
+        this.details = details;
+
 
         if(TownHall.getInstance().hasCapacity()) {
             for (UnitType type : UnitType.values()) {
@@ -29,12 +35,7 @@ public class TownHallMenu {
             }
         }
 
-        if(warehouse.isUpgradable()) {
-            String nextLvl = "";
-            if(warehouse.getLevel() == 0) nextLvl = "I";
-            if(warehouse.getLevel() == 1) nextLvl = "II";
-            actions.add(new MenuAction("Upgrade Warehouse " + nextLvl, warehouse::upgrade));
-        }
+        addWareHouseUpgrades();
 
         if(!Technology.stoneMine.isUnlocked()) {
             actions.add(new MenuAction("Stone Mine Tech", Technology.stoneMine::unLock));
@@ -48,5 +49,24 @@ public class TownHallMenu {
         }
 
         return new MenuModel(details, actions);
+    }
+
+    private void addWareHouseUpgrades() {
+        Warehouse warehouse = TownHall.getInstance().getWarehouse();
+
+        String nextLvl = "";
+        if(warehouse.getLevel() == 0) {
+            nextLvl = "I";
+            details.add(CostConstants.upgradeTownHallWarehouse1.displayCost());
+        }
+        if(warehouse.getLevel() == 1) {
+            nextLvl = "II";
+            details.add(CostConstants.upgradeTownHallWarehouse2.displayCost());
+        }
+
+        if(warehouse.isUpgradable()) {
+            actions.add(new MenuAction("Upgrade Warehouse " + nextLvl, warehouse::upgrade));
+        }
+
     }
 }
