@@ -4,6 +4,8 @@ import ap.project.civilization.model.world.hex.core.Hex;
 import ap.project.civilization.model.world.hex.core.HexCoord;
 import ap.project.civilization.model.world.hex.core.TerrainSpawn;
 import ap.project.civilization.model.util.ModelConstants;
+import ap.project.civilization.model.world.hex.hexes.MarginHex;
+import ap.project.civilization.model.world.unit.movement.Direction;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class HexManager {
     private final TerrainSpawn terrainSpawn;
     private Hex townHall;
     private final HashMap<Hex, Point2D.Double> pixelCoords;
+
+    private HashMap<Hex, MarginHex> marginHexes;
 
     private HexManager() {
         hexData = new HashMap<>();
@@ -81,5 +85,15 @@ public class HexManager {
     }
     public void setTownHall(Hex townHall) {
         this.townHall = townHall;
+    }
+
+
+    public void putMarginHex(Hex hex, MarginHex marginHex) {
+        marginHexes.put(hex, marginHex);
+    }
+
+    public MarginHex getMarginHex(Hex hex) {
+        if(!marginHexes.containsKey(hex)) return null;
+        return marginHexes.get(hex);
     }
 }

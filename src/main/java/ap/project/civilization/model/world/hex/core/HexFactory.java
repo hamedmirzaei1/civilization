@@ -7,7 +7,9 @@ import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.hex.hexes.Terrain;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Resource;
+import ap.project.civilization.model.world.unit.movement.Direction;
 import ap.project.civilization.model.world.unit.movement.FogOfWar;
+import ap.project.civilization.model.world.unit.movement.MoveTools;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -43,5 +45,9 @@ public class HexFactory {
         for(Hex h : FogOfWar.neighbors(townHall, hexManager)) {
             h.setUnlock(true);
         }
+    }
+
+    private void createMarginHex(Hex hex, Direction direction) {
+        if(hexManager.getMarginHex(FogOfWar.getNearHex(hex, direction, hexManager)) != null) return;
     }
 }
