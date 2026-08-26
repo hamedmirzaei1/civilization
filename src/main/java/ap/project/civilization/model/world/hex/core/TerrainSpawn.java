@@ -31,7 +31,6 @@ public class TerrainSpawn {
                 if(i == townHall.getQ() && j == townHall.getR()) continue;
 
                 HexType randomTerrain = HexType.values()[ThreadLocalRandom.current().nextInt(HexType.values().length - 1)];
-
                 hexFactory.createTerrain(randomTerrain, i, j);
             }
         }
@@ -39,7 +38,7 @@ public class TerrainSpawn {
         hexFactory.setTownHall();
     }
 
-    private boolean extendable(HexType hexType) {
+    private boolean isExtendable(HexType hexType) {
         if(hexType == HexType.SEA && extendRate < ThreadLocalRandom.current().nextInt(10, 30)) {
             return true;
         }

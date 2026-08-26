@@ -13,6 +13,9 @@ public final class GameColors {
     public static final Color SEA_TERRAIN = new Color(15, 69, 191);
     public static final Color TOWN_HALL = new Color(188, 143, 19);
 
+    public static final Color WALL_MARGIN = new Color(51, 32, 32);
+    public static final Color RIVER_MARGIN = new Color(28, 140, 225);
+
     public static final Color BACKGROUND = new Color(156, 147, 146);
 
     public static final Color UNLOCK_REGION_BORDER = new Color(154, 110, 2);
