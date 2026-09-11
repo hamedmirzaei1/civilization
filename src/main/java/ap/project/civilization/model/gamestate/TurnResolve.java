@@ -5,7 +5,6 @@ import ap.project.civilization.model.world.building.BuildingType;
 import ap.project.civilization.model.world.building.ProductionBuilding;
 import ap.project.civilization.model.world.hex.HexManager;
 import ap.project.civilization.model.world.hex.core.Hex;
-import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Resource;
 import ap.project.civilization.model.world.unit.UnitManager;
 import ap.project.civilization.model.world.unit.core.Unit;
@@ -36,8 +35,8 @@ public class TurnResolve {
     }
 
     private void consumeUpkeep() {
-        TownHall.getInstance().getWarehouse().remove(Resource.FOOD,
-                unitManager.getUnits().size() * ModelConstants.FOOD_CONSUME_PER_UNIT);
+        CentralTransaction.getInstance().pay(new Cost().add(Resource.FOOD,
+                unitManager.getUnits().size() * ModelConstants.FOOD_CONSUME_PER_UNIT));
 
     }
 

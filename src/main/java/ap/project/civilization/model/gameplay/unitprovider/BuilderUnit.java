@@ -2,6 +2,7 @@ package ap.project.civilization.model.gameplay.unitprovider;
 
 import ap.project.civilization.model.gameplay.core.MenuAction;
 import ap.project.civilization.model.gamestate.Consumer;
+import ap.project.civilization.model.gamestate.Cost;
 import ap.project.civilization.model.gamestate.Technology;
 import ap.project.civilization.model.world.building.BuildingFactory;
 import ap.project.civilization.model.world.building.BuildingType;
@@ -88,5 +89,37 @@ public class BuilderUnit extends GeneralUnit {
     @Override
     protected void addDetails(Unit unit, List<String> details) {
         details.add("charges left: " + ((Builder)unit).getCharges());
+
+        Hex hex = unit.getCurrentHex();
+        if(!canBuild(hex)) return;
+
+        BuildingType type = hex.getType().getBuildingType();
+        if(type != null) {
+            addConstructionCost(type, details);
+        }
+
+        if(hex.getType() == HexType.MOUNTAIN) {
+            addConstructionCost(BuildingType.IRON_MINE, details);
+        }
+
+        if(isEmpty(hex)) {
+            addConstructionCost(BuildingType.TOWN, details);
+        }
+    }
+
+    private void addConstructionCost(BuildingType type, List<String> details) {
+        Cost cost = new Cost();
+        for(Resource r : type.getRequiredResource()) {
+            cost.add(r, Consumer.getConsumingRate());
+        }
+        if(cost.getAll().isEmpty()) return;
+        details.add(type.getDisplayName() + " cost: " + cost.displayCost().trim());
+    }
+
+    private boolean isEmpty(Hex hex) {
+        for(Resource r : Resource.values()) {
+            if(((Terrain)hex).getInventory().contains(r)) return false;
+        }
+        return true;
     }
 }

@@ -21,7 +21,7 @@ public class CentralTransaction {
 
     public boolean canAfford(Cost cost) {
         for(Resource resource : cost.getAll().keySet()) {
-            if(!townHallWarehouse.contains(resource)) return false;
+            if(townHallWarehouse.get(resource) < cost.get(resource)) return false;
         }
         return true;
     }

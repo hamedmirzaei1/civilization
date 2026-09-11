@@ -1,26 +1,28 @@
 package ap.project.civilization.model.gamestate;
 
 
-import ap.project.civilization.model.world.hex.hexes.TownHall;
 import ap.project.civilization.model.world.resource.Resource;
-import ap.project.civilization.model.world.resource.Warehouse;
 
 import java.util.Set;
 
 public class Consumer {
     private static final int consumingRate = 5;
 
+    public static int getConsumingRate() {
+        return consumingRate;
+    }
+
     public static void consume(Set<Resource> resources) {
-        Warehouse warehouse = TownHall.getInstance().getWarehouse();
+        CentralTransaction transaction = CentralTransaction.getInstance();
         for (Resource r : resources) {
-            warehouse.remove(r, consumingRate);
+            transaction.pay(new Cost().add(r, consumingRate));
         }
     }
     public static boolean canConsume(Set<Resource> resource) {
-        Warehouse warehouse = TownHall.getInstance().getWarehouse();
+        Cost cost = new Cost();
         for (Resource r : resource) {
-            if (!warehouse.contains(r, consumingRate)) return false;
+            cost.add(r, consumingRate);
         }
-        return true;
+        return CentralTransaction.getInstance().canAfford(cost);
     }
 }
