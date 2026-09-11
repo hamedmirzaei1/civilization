@@ -36,6 +36,7 @@ public final class AssetManager {
         load("/sprites/iron-mine.png", "IRON_MINE");
 
         load("/sprites/town.png", "TOWN");
+        load("/sprites/boat.png", "BOAT");
 
     }
 
@@ -65,6 +66,13 @@ public final class AssetManager {
         sprites.put("IRON_MINE", scale(originals.get("IRON_MINE"), (int)(hexSize), (int)(hexSize)));
 
         sprites.put("TOWN", scale(originals.get("TOWN"), (int)(hexSize), (int)(hexSize)));
+
+        if(originals.containsKey("BOAT")) {
+            BufferedImage boatSrc = originals.get("BOAT");
+            int boatWidth = (int)(hexSize / 3.0);
+            int boatHeight = (int)(boatWidth * boatSrc.getHeight() / (double) boatSrc.getWidth());
+            sprites.put("BOAT", scale(boatSrc, boatWidth, boatHeight));
+        }
 
     }
 

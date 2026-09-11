@@ -1,13 +1,16 @@
 package ap.project.civilization.view.render.unit;
 
+import ap.project.civilization.model.world.hex.hexes.HexType;
 import ap.project.civilization.model.world.unit.core.Unit;
 import ap.project.civilization.model.world.unit.core.UnitType;
 import ap.project.civilization.model.world.unit.units.Worker;
 import ap.project.civilization.view.render.Camera;
+import ap.project.civilization.view.util.game.AssetManager;
 import ap.project.civilization.view.util.game.GameColors;
 import ap.project.civilization.view.util.ui.Fonts;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class DrawUnit {
     private final static Stroke NORMAL = new BasicStroke(3);
@@ -18,6 +21,15 @@ public class DrawUnit {
         double screenY = camera.worldToScreenY(unit.getMovement().getY());
         double r = unitSize/2;
 
+        if(unit.getCurrentHex() != null && unit.getCurrentHex().getType() == HexType.SEA) {
+            BufferedImage boat = AssetManager.get("BOAT");
+            if(boat != null) {
+                g2d.drawImage(boat,
+                        (int)(screenX - boat.getWidth() / 2.0),
+                        (int)(screenY - boat.getHeight() / 2.0), null);
+            }
+            return;
+        }
 
         g2d.setColor(unit.getType().getColor());
         g2d.fillOval((int)(screenX-r), (int)(screenY-r), (int)unitSize, (int)unitSize);
