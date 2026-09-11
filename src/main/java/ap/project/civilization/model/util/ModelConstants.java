@@ -21,6 +21,7 @@ public final class ModelConstants {
     public static final int PLAIN_MOVE_COST = 1;
     public static final int LAWN_MOVE_COST = 2;
     public static final int TOWN_HALL_MOVE_COST = 1;
+    public static final int SEA_MOVE_COST = 4;
 
     public static final int EXPANDING_COST_AP = 5;
 

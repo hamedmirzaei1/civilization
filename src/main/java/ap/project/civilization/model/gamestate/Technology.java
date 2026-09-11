@@ -4,7 +4,8 @@ public enum Technology {
     stoneMine,
     ironMine,
     premiumTool,
-    townBuild;
+    townBuild,
+    sailing;
 
     private boolean unlocked;
 

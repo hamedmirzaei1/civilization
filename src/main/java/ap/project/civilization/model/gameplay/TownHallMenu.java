@@ -43,6 +43,8 @@ public class TownHallMenu {
             actions.add(new MenuAction("Iron Mine Tech", Technology.ironMine::unLock));
         } else if(!Technology.premiumTool.isUnlocked()) {
             actions.add(new MenuAction("Premium Tool Tech", Technology.premiumTool::unLock));
+        } else if(!Technology.sailing.isUnlocked()) {
+            actions.add(new MenuAction("Sailing Tech", Technology.sailing::unLock));
         }
         if(!Technology.townBuild.isUnlocked()) {
             actions.add(new MenuAction("Build Town Tech", Technology.townBuild::unLock));
