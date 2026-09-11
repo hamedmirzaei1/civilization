@@ -4,6 +4,12 @@ public final class ModelConstants {
     public static final int WORLD_SIZE = 50;
     public static final int HEX_SLOT_NUMBER = 6;
 
+    public static final int SEA_SEED_COUNT = 8;
+    public static final int ROCK_MOUNTAIN_SEED_COUNT = 6;
+    public static final int SEA_MAX_BLOB_SIZE = 30;
+    public static final int ROCK_MOUNTAIN_MAX_BLOB_SIZE = 10;
+    public static final int MAP_BORDER_KEEP_OUT = 2;
+
     public static final int EXPLORER_AP = 16;
     public static final int BORDER_EXPANDER_AP = 8;
     public static final int BUILDER_AP = 10;
