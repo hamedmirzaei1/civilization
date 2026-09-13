@@ -113,7 +113,7 @@ public class BuilderUnit extends GeneralUnit {
             cost.add(r, Consumer.getConsumingRate());
         }
         if(cost.getAll().isEmpty()) return;
-        details.add(type.getDisplayName() + " cost: " + cost.displayCost().trim());
+        details.add(type.getDisplayName() + " cost:: " + cost.displayCost().trim());
     }
 
     private boolean isEmpty(Hex hex) {

@@ -13,7 +13,7 @@ public final class UILayout {
         return new Rectangle(
                 SIDE_MARGIN,
                 (windowHeight - height - SIDE_MARGIN),
-                (int) (windowWidth * 0.2),
+                (int) (windowWidth * 0.3),
                 (height)
         );
     }

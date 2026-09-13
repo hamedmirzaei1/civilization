@@ -2,6 +2,8 @@ package ap.project.civilization.model.gameplay;
 
 import ap.project.civilization.model.gameplay.core.MenuAction;
 import ap.project.civilization.model.gameplay.core.MenuModel;
+import ap.project.civilization.model.gamestate.CentralTransaction;
+import ap.project.civilization.model.gamestate.Cost;
 import ap.project.civilization.model.gamestate.Technology;
 import ap.project.civilization.model.util.CostConstants;
 import ap.project.civilization.model.world.hex.hexes.TownHall;
@@ -36,21 +38,38 @@ public class TownHallMenu {
         }
 
         addWareHouseUpgrades();
-
-        if(!Technology.stoneMine.isUnlocked()) {
-            actions.add(new MenuAction("Stone Mine Tech", Technology.stoneMine::unLock));
-        } else if (!Technology.ironMine.isUnlocked()) {
-            actions.add(new MenuAction("Iron Mine Tech", Technology.ironMine::unLock));
-        } else if(!Technology.premiumTool.isUnlocked()) {
-            actions.add(new MenuAction("Premium Tool Tech", Technology.premiumTool::unLock));
-        } else if(!Technology.sailing.isUnlocked()) {
-            actions.add(new MenuAction("Sailing Tech", Technology.sailing::unLock));
-        }
-        if(!Technology.townBuild.isUnlocked()) {
-            actions.add(new MenuAction("Build Town Tech", Technology.townBuild::unLock));
-        }
+        addTechUpgrades();
 
         return new MenuModel(details, actions);
+    }
+
+    private void addTechUpgrades() {
+        List<Technology> chain = List.of(
+                Technology.stoneMine,
+                Technology.ironMine,
+                Technology.premiumTool,
+                Technology.sailing);
+
+        for (Technology tech : chain) {
+            if (!tech.isUnlocked()) {
+                addTechUpgrade(tech);
+                break;
+            }
+        }
+
+        if(!Technology.townBuild.isUnlocked()) {
+            addTechUpgrade(Technology.townBuild);
+        }
+    }
+
+    private void addTechUpgrade(Technology tech) {
+        Cost cost = tech.getCost();
+        details.add(tech.getDisplayName() + ":: " + cost.displayCost().trim());
+        if(!CentralTransaction.getInstance().canAfford(cost)) return;
+        actions.add(new MenuAction(tech.getDisplayName() + " Tech", () -> {
+            CentralTransaction.getInstance().pay(cost);
+            tech.unLock();
+        }));
     }
 
     private void addWareHouseUpgrades() {
@@ -59,15 +78,23 @@ public class TownHallMenu {
         String nextLvl = "";
         if(warehouse.getLevel() == 0) {
             nextLvl = "I";
-            details.add(CostConstants.upgradeTownHallWarehouse1.displayCost());
+            details.add(nextLvl + " lvl warehouse:: " + CostConstants.upgradeTownHallWarehouse1.displayCost());
+            if(warehouse.isUpgradable()) {
+                actions.add(new MenuAction("Upgrade Warehouse " + nextLvl, () -> {
+                    CentralTransaction.getInstance().pay(CostConstants.upgradeTownHallWarehouse1);
+                    warehouse.upgrade();
+                }));
+            }
         }
         if(warehouse.getLevel() == 1) {
             nextLvl = "II";
-            details.add(CostConstants.upgradeTownHallWarehouse2.displayCost());
-        }
-
-        if(warehouse.isUpgradable()) {
-            actions.add(new MenuAction("Upgrade Warehouse " + nextLvl, warehouse::upgrade));
+            details.add(nextLvl + " lvl warehouse:: " + CostConstants.upgradeTownHallWarehouse2.displayCost());
+            if(warehouse.isUpgradable()) {
+                actions.add(new MenuAction("Upgrade Warehouse " + nextLvl, () -> {
+                    CentralTransaction.getInstance().pay(CostConstants.upgradeTownHallWarehouse2);
+                    warehouse.upgrade();
+                }));
+            }
         }
 
     }
