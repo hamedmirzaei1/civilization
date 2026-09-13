@@ -27,14 +27,14 @@ public final class ModelConstants {
 
     public static final int TOWN_HALL_WAREHOUSE_CAP = 20;
 
-    public static final int MAX_TERRAIN_RESOURCE = 150;
+    public static final int MAX_TERRAIN_RESOURCE = 250;
     public static final int MIN_TERRAIN_RESOURCE = 50;
 
-    public static final int LUMBER_MILl_RATE = 7;
+    public static final int LUMBER_MILl_RATE = 6;
     public static final int STONE_MINE_RATE = 4;
     public static final int IRON_MINE_RATE = 3;
-    public static final int FARM_RATE = 3;
-    public static final int STABLE_RATE = 4;
+    public static final int FARM_RATE = 5;
+    public static final int STABLE_RATE = 8;
 
     public static final int LUMBER_MILl_AP = 4;
     public static final int STONE_MINE_AP = 6;
@@ -43,7 +43,7 @@ public final class ModelConstants {
     public static final int STABLE_AP = 3;
     public static final int TOWN_AP = 7;
 
-    public static final int FOOD_CONSUME_PER_UNIT = 2;
+    public static final int FOOD_CONSUME_PER_UNIT = 1;
 
     public static final double PLAIN_FOOD_RATE = 0.6;
     public static final double IRON_RATE = 0.4;
