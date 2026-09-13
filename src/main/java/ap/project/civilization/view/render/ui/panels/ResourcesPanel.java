@@ -61,16 +61,24 @@ public class ResourcesPanel extends UIPanel {
 
         for(int i=0; i < 4; i++) {
             Rectangle r = new Rectangle(x, bounds.y+padding, bounds.width/4, bounds.height/3);
-            labels.add(new UILabel(r, model.getDetails().get(i), 18f));
+            labels.add(new UILabel(r, model.getDetails().get(i), 18f, colorFor(i)));
             x += bounds.width/4;
         }
         x = bounds.x;
         for(int i=4; i < model.getDetails().size(); i++) {
             Rectangle r = new Rectangle(x, bounds.y + (int)(bounds.height * 0.6), bounds.width/5, bounds.height/3);
             float size = i==4 ? 18f : 14f;
-            labels.add(new UILabel(r, model.getDetails().get(i), size));
+            labels.add(new UILabel(r, model.getDetails().get(i), size, colorFor(i)));
             x += bounds.width/5;
         }
+    }
+
+    private Color colorFor(int i) {
+        List<Color> colors = model.getColors();
+        if(colors != null && i < colors.size() && colors.get(i) != null) {
+            return colors.get(i);
+        }
+        return UIColors.LABEL_LIGHT;
     }
 
     public void setModel(MenuModel model) {

@@ -15,4 +15,7 @@ public final class UIColors {
     public static final Color LIGHT_MENU_BORDER = new Color(41, 34, 31);
     public static final Color LABEL_LIGHT = new Color(14, 12, 12);
 
+    public static final Color RATE_POSITIVE = new Color(0, 150, 90);
+    public static final Color RATE_NEGATIVE = new Color(200, 60, 60);
+
 }
