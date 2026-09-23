@@ -1,6 +1,6 @@
-# Civilization style hex-based strategy game
+# Civilization style hex-based game
 This was my Advanced Programming course final project (winter 2026). It's a 2d sandbox game which you can start exploring the hexagonal world and build
-some special buildings for gatering resources and creating new units. after all you will have an economical system that need to be managed.
+some special buildings for gathering resources and creating new units. after all you will have an economical system that need to be managed.
 
 ![Screenshot](docs/screenshot_1.png)
 
